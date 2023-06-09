@@ -10,7 +10,7 @@
     </dependencies>
 
     <providers>
-        <provider interface="javafx.application.Application">de.amr.Main</provider>
+        <provider interface="javafx.application.Application">de.amr.games.pacman.ui.fx.app.PacManGames2dApp</provider>
     </providers>
 
 </project>

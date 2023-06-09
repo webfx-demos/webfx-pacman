@@ -11,7 +11,6 @@ module webfx.pacman.application {
     requires webfx.platform.util;
 
     // Exported packages
-    exports de.amr;
     exports de.amr.games.pacman.controller;
     exports de.amr.games.pacman.event;
     exports de.amr.games.pacman.lib;
@@ -29,6 +28,6 @@ module webfx.pacman.application {
     exports org.tinylog;
 
     // Provided services
-    provides javafx.application.Application with de.amr.Main;
+    provides javafx.application.Application with de.amr.games.pacman.ui.fx.app.PacManGames2dApp;
 
 }

@@ -1,5 +1,8 @@
 package org.tinylog;
 
+/**
+ * Mock class for missing TinyLog support.
+ */
 public class Logger {
 
     public static void info(String msg, Object... args) {};

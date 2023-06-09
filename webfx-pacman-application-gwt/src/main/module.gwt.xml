@@ -115,7 +115,6 @@
     <source path="dev/webfx/kit/util/properties"/>
     <source path="dev/webfx/kit/util/properties/conversion"/>
     <!--============================< webfx-pacman-application >============================-->
-    <source path="de/amr"/>
     <source path="de/amr/games/pacman/controller"/>
     <source path="de/amr/games/pacman/event"/>
     <source path="de/amr/games/pacman/lib"/>
