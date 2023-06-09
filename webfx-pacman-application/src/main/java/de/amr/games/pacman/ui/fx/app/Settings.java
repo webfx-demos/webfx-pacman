@@ -8,21 +8,22 @@ import de.amr.games.pacman.lib.Direction;
 import de.amr.games.pacman.model.GameVariant;
 import javafx.scene.input.KeyCode;
 
-import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
+import dev.webfx.platform.util.collection.Collections;
 
 /**
  * @author Armin Reichert
  */
 public class Settings {
 
-	private static final Map<Direction, KeyCode> KEYS_NUMPAD = Map.of(//
+	private static final Map<Direction, KeyCode> KEYS_NUMPAD = Collections.mapOf(//
 			Direction.UP, KeyCode.NUMPAD8, //
 			Direction.DOWN, KeyCode.NUMPAD5, //
 			Direction.LEFT, KeyCode.NUMPAD4, //
 			Direction.RIGHT, KeyCode.NUMPAD6);
 
-	private static final Map<Direction, KeyCode> KEYS_CURSOR = Map.of(//
+	private static final Map<Direction, KeyCode> KEYS_CURSOR = Collections.mapOf(//
 			Direction.UP, KeyCode.UP, //
 			Direction.DOWN, KeyCode.DOWN, //
 			Direction.LEFT, KeyCode.LEFT, //
@@ -45,7 +46,7 @@ public class Settings {
 	public Map<Direction, KeyCode> keyMap;
 
 	public Settings() {
-		this(Collections.emptyMap());
+		this(new HashMap<>(0));
 	}
 
 	public Settings(Map<String, String> pm) {

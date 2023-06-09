@@ -90,7 +90,7 @@ public class GamePage {
 				ui.theme().image(variant == GameVariant.MS_PACMAN ? "mspacman.helpButton.icon" : "pacman.helpButton.icon"));
 		icon.setFitWidth(HELP_BUTTON_SIZE);
 		icon.setFitHeight(HELP_BUTTON_SIZE);
-		icon.setSmooth(true);
+//		icon.setSmooth(true);
 		return icon;
 	}
 
