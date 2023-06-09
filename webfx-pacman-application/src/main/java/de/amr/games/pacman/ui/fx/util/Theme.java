@@ -87,6 +87,7 @@ public class Theme {
 	}
 
 	public Stream<AudioClip> audioClips() {
-		return namedThings.values().stream().filter(AudioClip.class::isInstance).map(AudioClip.class::cast);
+//		return namedThings.values().stream().filter(AudioClip.class::isInstance).map(AudioClip.class::cast);
+		return namedThings.values().stream().filter(value -> value instanceof AudioClip).map(value -> (AudioClip) value);
 	}
 }

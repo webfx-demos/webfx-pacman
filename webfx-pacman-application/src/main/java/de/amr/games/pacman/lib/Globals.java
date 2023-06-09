@@ -218,7 +218,16 @@ public class Globals {
 	}
 
 	public static byte[][] copyByteArray2D(byte[][] array) {
-		return Arrays.stream(array).map(byte[]::clone).toArray(byte[][]::new);
+//		return Arrays.stream(array).map(byte[]::clone).toArray(byte[][]::new);
+		int numRows = array.length;
+		int numCols = array[0].length;
+		var copy = new byte[numRows][numCols];
+		for (int i = 0; i < numRows; ++i) {
+			for (int j = 0; j < numCols; ++j) {
+				copy[i][j] = array[i][j];
+			}
+		}
+		return copy;
 	}
 
 	@SafeVarargs
