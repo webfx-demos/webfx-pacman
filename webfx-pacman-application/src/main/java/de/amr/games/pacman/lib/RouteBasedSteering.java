@@ -10,6 +10,7 @@ import de.amr.games.pacman.model.actors.Creature;
 import org.tinylog.Logger;
 
 import java.util.List;
+import dev.webfx.platform.util.collection.Collections;
 
 /**
  * Steering of a creature based on a route.
@@ -18,7 +19,7 @@ import java.util.List;
  */
 public class RouteBasedSteering extends Steering {
 
-	private List<NavigationPoint> route = List.of();
+	private List<NavigationPoint> route = Collections.listOf();
 	private int targetIndex;
 	private boolean complete;
 

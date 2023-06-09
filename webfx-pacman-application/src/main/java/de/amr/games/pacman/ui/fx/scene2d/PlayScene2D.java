@@ -83,7 +83,8 @@ public class PlayScene2D extends GameScene2D {
 				drawPacManMaze(0, t(3), level.world());
 			}
 			if (state() == GameState.LEVEL_TEST) {
-				drawText(String.format("TEST    L%d", levelNumber), ArcadeTheme.YELLOW, sceneFont(), t(8.5), t(21));
+//				drawText(String.format("TEST    L%d", levelNumber), ArcadeTheme.YELLOW, sceneFont(), t(8.5), t(21));
+				drawText("TEST    L" + levelNumber, ArcadeTheme.YELLOW, sceneFont(), t(8.5), t(21));
 			} else if (state() == GameState.GAME_OVER || !game().hasCredit()) {
 				drawText("GAME  OVER", ArcadeTheme.RED, sceneFont(), t(9), t(21));
 			} else if (state() == GameState.READY) {

@@ -24,6 +24,8 @@ public class GhostEvent extends GameEvent {
 
 	@Override
 	public String toString() {
-		return String.format("%s: tile %s, ghost %s", type, tile, ghost);
+		return "GhostEvent{" +
+				"ghost=" + ghost +
+				'}';
 	}
 }

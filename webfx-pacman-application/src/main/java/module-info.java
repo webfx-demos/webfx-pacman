@@ -8,6 +8,7 @@ module webfx.pacman.application {
     requires javafx.controls;
     requires javafx.graphics;
     requires javafx.media;
+    requires webfx.platform.util;
 
     // Exported packages
     exports de.amr;

@@ -10,13 +10,13 @@ import de.amr.games.pacman.model.actors.Animations;
 import de.amr.games.pacman.model.actors.Ghost;
 import de.amr.games.pacman.model.actors.Pac;
 import de.amr.games.pacman.model.actors.PacAnimations;
+import dev.webfx.platform.util.collection.Collections;
 import org.tinylog.Logger;
 
 import java.util.BitSet;
 import java.util.List;
 
 import static de.amr.games.pacman.lib.Globals.*;
-
 /**
  * Intro scene of the Ms. Pac-Man game.
  * <p>
@@ -38,7 +38,7 @@ public class MsPacManIntro extends Fsm<MsPacManIntro.State, MsPacManIntro.Contex
 		public int            numBulbs             = 96;
 		public int            bulbOnDistance       = 16;
 		public Pac            msPacMan             = new Pac("Ms. Pac-Man");
-		public List<Ghost>    ghosts               = List.of(
+		public List<Ghost>    ghosts               = Collections.listOf(
 			                                             new Ghost(GameModel.RED_GHOST,    "Blinky"),
 			                                             new Ghost(GameModel.PINK_GHOST,   "Pinky"),
 			                                             new Ghost(GameModel.CYAN_GHOST,   "Inky"),

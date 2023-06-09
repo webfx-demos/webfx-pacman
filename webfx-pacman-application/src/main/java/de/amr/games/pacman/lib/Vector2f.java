@@ -107,8 +107,12 @@ public final class Vector2f {
 //				&& Float.floatToIntBits(y) == Float.floatToIntBits(other.y);
 //	}
 
+
 	@Override
 	public String toString() {
-		return String.format("(%.2f,%.2f)", x, y);
+		return "Vector2f{" +
+				"x=" + x +
+				", y=" + y +
+				'}';
 	}
 }

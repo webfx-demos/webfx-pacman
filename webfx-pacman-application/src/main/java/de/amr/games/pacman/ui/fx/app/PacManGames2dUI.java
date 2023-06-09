@@ -302,7 +302,8 @@ public class PacManGames2dUI implements GameEventListener {
 	}
 
 	public void showFlashMessageSeconds(double seconds, String message, Object... args) {
-		gamePage.flashMessageView().showMessage(String.format(message, args), seconds);
+//		gamePage.flashMessageView().showMessage(String.format(message, args), seconds);
+		gamePage.flashMessageView().showMessage(message, seconds);
 	}
 
 	public Theme theme() {

@@ -40,6 +40,15 @@ public class GameEvent {
 	public final byte type;
 	public final Optional<Vector2i> tile;
 
+	@Override
+	public String toString() {
+		return "GameEvent{" +
+				"game=" + game +
+				", type=" + type +
+				", tile=" + tile +
+				'}';
+	}
+
 	/**
 	 * @param game game model
 	 * @param type event type
@@ -51,11 +60,5 @@ public class GameEvent {
 		this.game = game;
 		this.type = type;
 		this.tile = Optional.ofNullable(tile);
-	}
-
-	@Override
-	public String toString() {
-		var tileStr = tile.isPresent() ? String.format(" tile: %s", tile.get()) : "";
-		return String.format("%s%s", type, tileStr);
 	}
 }

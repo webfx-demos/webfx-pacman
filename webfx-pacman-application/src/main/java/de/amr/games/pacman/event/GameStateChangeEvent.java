@@ -13,7 +13,6 @@ import de.amr.games.pacman.model.GameModel;
  * @author Armin Reichert
  */
 public class GameStateChangeEvent extends GameEvent {
-
 	public final GameState oldGameState;
 	public final GameState newGameState;
 
@@ -25,6 +24,9 @@ public class GameStateChangeEvent extends GameEvent {
 
 	@Override
 	public String toString() {
-		return String.format("%s(%s->%s)", getClass().getSimpleName(), oldGameState, newGameState);
+		return "GameStateChangeEvent{" +
+				"oldGameState=" + oldGameState +
+				", newGameState=" + newGameState +
+				'}';
 	}
 }

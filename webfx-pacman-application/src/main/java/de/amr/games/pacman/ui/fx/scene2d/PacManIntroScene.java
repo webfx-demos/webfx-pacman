@@ -151,12 +151,12 @@ public class PacManIntroScene extends GameScene2D {
 			drawSpriteOverBoundingBox(ss.ghostFacingRight(id), t(tx) + 4, t(ty));
 			if (ic.ghostInfo[id].characterVisible) {
 				var text = "-" + ic.ghostInfo[id].character;
-				var color = ui().theme().color(String.format("ghost.%d.color.normal.dress", id));
+				var color = ui().theme().color("ghost." + id + ".color.normal.dress");
 				drawText(text, color, sceneFont(), t(tx + 3), t(ty + 1));
 			}
 			if (ic.ghostInfo[id].nicknameVisible) {
 				var text = QUOTE + ic.ghostInfo[id].ghost.name() + QUOTE;
-				var color = ui().theme().color(String.format("ghost.%d.color.normal.dress", id));
+				var color = ui().theme().color("ghost." + id + ".color.normal.dress");
 				drawText(text, color, sceneFont(), t(tx + 14), t(ty + 1));
 			}
 		}

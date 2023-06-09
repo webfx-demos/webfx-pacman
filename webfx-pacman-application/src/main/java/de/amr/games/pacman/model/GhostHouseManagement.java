@@ -128,6 +128,6 @@ public class GhostHouseManagement {
 	}
 
 	private Optional<GhostUnlockResult> unlockResult(Ghost ghost, String reason, Object... args) {
-		return Optional.of(new GhostUnlockResult(ghost, String.format(reason, args)));
+		return Optional.of(new GhostUnlockResult(ghost, /*String.format(reason, args)*/ reason + ":" + args));
 	}
 }

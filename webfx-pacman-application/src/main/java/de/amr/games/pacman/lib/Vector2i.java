@@ -64,11 +64,6 @@ public final class Vector2i {
 		return Stream.of(Direction.UP, Direction.RIGHT, Direction.DOWN, Direction.LEFT).map(dir -> this.plus(dir.vector()));
 	}
 
-	@Override
-	public String toString() {
-		return String.format("(%2d,%2d)", x, y);
-	}
-
 	public Vector2f toFloatVec() {
 		return new Vector2f(x, y);
 	}
@@ -88,5 +83,13 @@ public final class Vector2i {
 			return false;
 		Vector2i other = (Vector2i) obj;
 		return x == other.x && y == other.y;
+	}
+
+	@Override
+	public String toString() {
+		return "Vector2i{" +
+				"x=" + x +
+				", y=" + y +
+				'}';
 	}
 }

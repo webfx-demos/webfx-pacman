@@ -231,10 +231,13 @@ public abstract class GameScene2D implements GameScene {
 
 	protected void drawScore(Score score, String title, double x, double y) {
 		drawText(title, ArcadeTheme.PALE, sceneFont(), x, y);
-		var pointsText = String.format("%02d", score.points());
-		drawText(String.format("%7s", pointsText), ArcadeTheme.PALE, sceneFont(), x, (y + TS + 1));
+//		var pointsText = String.format("%02d", score.points());
+		var pointsText = "" + score.points();
+//		drawText(String.format("%7s", pointsText), ArcadeTheme.PALE, sceneFont(), x, (y + TS + 1));
+		drawText("" + pointsText, ArcadeTheme.PALE, sceneFont(), x, (y + TS + 1));
 		if (score.points() != 0) {
-			drawText(String.format("L%d", score.levelNumber()), ArcadeTheme.PALE, sceneFont(), x + TS * 8, y + TS + 1);
+//			drawText(String.format("L%d", score.levelNumber()), ArcadeTheme.PALE, sceneFont(), x + TS * 8, y + TS + 1);
+			drawText("L" + score.levelNumber(), ArcadeTheme.PALE, sceneFont(), x + TS * 8, y + TS + 1);
 		}
 	}
 
@@ -349,7 +352,8 @@ public abstract class GameScene2D implements GameScene {
 				if (infoVisiblePy.get() && pac.isVisible()) {
 					g.setFill(Color.WHITE);
 					g.setFont(Font.font("Monospaced", s(6)));
-					var text = String.format("%s %d", sa.currentAnimationName(), sa.currentAnimation().frameIndex());
+//					var text = String.format("%s %d", sa.currentAnimationName(), sa.currentAnimation().frameIndex());
+					var text = sa.currentAnimationName() + " " + sa.currentAnimation().frameIndex();
 					g.fillText(text, s(pac.position().x() + 8), s(pac.position().y()));
 					// indicate wish direction
 					float r = 2;
@@ -373,7 +377,8 @@ public abstract class GameScene2D implements GameScene {
 				if (infoVisiblePy.get() && ghost.isVisible()) {
 					g.setFill(Color.WHITE);
 					g.setFont(Font.font("Monospaced", s(6)));
-					var text = String.format("%s %d", sa.currentAnimationName(), sa.currentAnimation().frameIndex());
+//					var text = String.format("%s %d", sa.currentAnimationName(), sa.currentAnimation().frameIndex());
+					var text = sa.currentAnimationName() + " " + sa.currentAnimation().frameIndex();
 					g.fillText(text, s(ghost.position().x() + 8), s(ghost.position().y()));
 				}
 			}
@@ -429,7 +434,8 @@ public abstract class GameScene2D implements GameScene {
 	}
 
 	protected void drawCredit(int credit, double x, double y) {
-		drawText(String.format("CREDIT %2d", credit), ArcadeTheme.PALE, sceneFont(), x, y);
+//		drawText(String.format("CREDIT %2d", credit), ArcadeTheme.PALE, sceneFont(), x, y);
+		drawText("CREDIT " + credit, ArcadeTheme.PALE, sceneFont(), x, y);
 	}
 
 	protected void drawMidwayCopyright(double x, double y) {

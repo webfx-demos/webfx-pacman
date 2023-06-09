@@ -61,7 +61,6 @@ public class TileMap {
 	}
 
 	private void throwOutOfBounds(int row, int col) {
-		throw new IndexOutOfBoundsException(String.format("Coordinate (%d, %d) is outside of map bounds (%d rows, %d cols)",
-				row, col, numRows(), numCols()));
+		throw new IndexOutOfBoundsException("Coordinate is outside of map bounds");
 	}
 }

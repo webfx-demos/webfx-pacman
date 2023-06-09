@@ -44,47 +44,47 @@ public class Memory {
 		killedGhosts.clear();
 	}
 
-	@Override
-	public String toString() {
-
-		var foodText = "";
-		if (foodFoundTile.isPresent()) {
-			foodText = String.format("%s at %s", energizerFound ? "Energizer" : "Pellet", foodFoundTile.get());
-		}
-
-		var bonusText = "";
-		if (bonusReachedIndex != -1) {
-			bonusText = String.format("Bonus %d reached", bonusReachedIndex);
-		}
-
-		var powerText = "";
-		if (pacPowerStarts) {
-			powerText += " starts";
-		}
-		if (pacPowerActive) {
-			powerText += " active";
-		}
-		if (pacPowerFading) {
-			powerText += " fading";
-		}
-		if (pacPowerLost) {
-			powerText += " lost";
-		}
-		if (!powerText.isEmpty()) {
-			powerText = "Pac power: " + powerText;
-		}
-
-		var pacKilledText = pacKilled ? "Pac killed" : "";
-
-		var preyText = "";
-		if (!pacPrey.isEmpty()) {
-			preyText = String.format("Prey: %s", pacPrey);
-		}
-
-		var killedGhostsText = killedGhosts.isEmpty() ? "" : killedGhosts.toString();
-
-		return String.format("%s%s%s%s%s%s", foodText, bonusText, powerText, pacKilledText, preyText, killedGhostsText);
-	}
+//	@Override
+//	public String toString() {
+//
+//		var foodText = "";
+//		if (foodFoundTile.isPresent()) {
+//			foodText = String.format("%s at %s", energizerFound ? "Energizer" : "Pellet", foodFoundTile.get());
+//		}
+//
+//		var bonusText = "";
+//		if (bonusReachedIndex != -1) {
+//			bonusText = String.format("Bonus %d reached", bonusReachedIndex);
+//		}
+//
+//		var powerText = "";
+//		if (pacPowerStarts) {
+//			powerText += " starts";
+//		}
+//		if (pacPowerActive) {
+//			powerText += " active";
+//		}
+//		if (pacPowerFading) {
+//			powerText += " fading";
+//		}
+//		if (pacPowerLost) {
+//			powerText += " lost";
+//		}
+//		if (!powerText.isEmpty()) {
+//			powerText = "Pac power: " + powerText;
+//		}
+//
+//		var pacKilledText = pacKilled ? "Pac killed" : "";
+//
+//		var preyText = "";
+//		if (!pacPrey.isEmpty()) {
+//			preyText = String.format("Prey: %s", pacPrey);
+//		}
+//
+//		var killedGhostsText = killedGhosts.isEmpty() ? "" : killedGhosts.toString();
+//
+//		return String.format("%s%s%s%s%s%s", foodText, bonusText, powerText, pacKilledText, preyText, killedGhostsText);
+//	}
 
 	public boolean edibleGhostsExist() {
 		return !pacPrey.isEmpty();

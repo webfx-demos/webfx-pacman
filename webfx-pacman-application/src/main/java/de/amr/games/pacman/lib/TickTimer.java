@@ -67,11 +67,6 @@ public class TickTimer {
 		}
 	}
 
-	@Override
-	public String toString() {
-		return String.format("[%s %s tick: %s remaining: %s total: %s]", name, state, ticksToString(tick),
-				ticksToString(remaining()), ticksToString(duration));
-	}
 
 	public State state() {
 		return state;
@@ -237,5 +232,16 @@ public class TickTimer {
 
 	public long remaining() {
 		return duration == INDEFINITE ? INDEFINITE : duration - tick;
+	}
+
+	@Override
+	public String toString() {
+		return "TickTimer{" +
+				"name='" + name + '\'' +
+				", state=" + state +
+				", duration=" + duration +
+				", tick=" + tick +
+				", subscribers=" + subscribers +
+				'}';
 	}
 }

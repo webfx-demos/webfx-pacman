@@ -37,34 +37,29 @@ public class RuleBasedSteering extends Steering {
 		List<Ghost> frightenedGhosts;
 		List<Float> frightenedGhostsDistance;
 
-		@Override
-		public String toString() {
-			StringBuilder s = new StringBuilder("-- Begin autopilot info\n");
-			if (hunterAhead != null) {
-				s.append(String.format("Hunter ahead:  %s, distance: %.2g\n", hunterAhead.name(), hunterAheadDistance));
-			} else {
-				s.append("No hunter ahead\n");
-			}
-			if (hunterBehind != null) {
-				s.append(String.format("Hunter behind: %s, distance: %.2g\n", hunterBehind.name(), hunterBehindDistance));
-			} else {
-				s.append("No hunter behind\n");
-			}
-			for (int i = 0; i < frightenedGhosts.size(); ++i) {
-				Ghost ghost = frightenedGhosts.get(i);
-				s.append(String.format("Prey: %s, distance: %.2g\n", ghost.name(), frightenedGhostsDistance.get(i)));
-			}
-			if (frightenedGhosts.isEmpty()) {
-				s.append("No prey\n");
-			}
-			s.append("-- End autopilot info");
-			return s.toString();
-		}
-	}
-
-	@Override
-	public void init() {
-		// nothing to do
+//		@Override
+//		public String toString() {
+//			StringBuilder s = new StringBuilder("-- Begin autopilot info\n");
+//			if (hunterAhead != null) {
+//				s.append(String.format("Hunter ahead:  %s, distance: %.2g\n", hunterAhead.name(), hunterAheadDistance));
+//			} else {
+//				s.append("No hunter ahead\n");
+//			}
+//			if (hunterBehind != null) {
+//				s.append(String.format("Hunter behind: %s, distance: %.2g\n", hunterBehind.name(), hunterBehindDistance));
+//			} else {
+//				s.append("No hunter behind\n");
+//			}
+//			for (int i = 0; i < frightenedGhosts.size(); ++i) {
+//				Ghost ghost = frightenedGhosts.get(i);
+//				s.append(String.format("Prey: %s, distance: %.2g\n", ghost.name(), frightenedGhostsDistance.get(i)));
+//			}
+//			if (frightenedGhosts.isEmpty()) {
+//				s.append("No prey\n");
+//			}
+//			s.append("-- End autopilot info");
+//			return s.toString();
+//		}
 	}
 
 	@Override

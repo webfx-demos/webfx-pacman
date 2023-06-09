@@ -39,7 +39,7 @@ public class ResourceManager {
 			return MessageFormat.format(pattern, args);
 		} catch (Exception x) {
 			Logger.error("No text resource found for key '{}'", keyPattern);
-			return String.format("noresfound{%s}", keyPattern);
+			return "noresfound: " + keyPattern;
 		}
 	}
 
@@ -105,7 +105,7 @@ public class ResourceManager {
 	 */
 	public Font font(String relPath, double size) {
 		if (size <= 0) {
-			throw new IllegalArgumentException(String.format("Font size must be positive but is %.2f", size));
+			throw new IllegalArgumentException("Font size must be positive but is " + size);
 		}
 		var url = url(relPath);
 		var font = Font.loadFont(url.toExternalForm(), size);

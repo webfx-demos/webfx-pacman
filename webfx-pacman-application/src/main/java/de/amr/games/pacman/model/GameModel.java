@@ -10,6 +10,7 @@ import de.amr.games.pacman.event.SoundEvent;
 import de.amr.games.pacman.lib.*;
 import de.amr.games.pacman.model.world.World;
 import org.tinylog.Logger;
+import dev.webfx.platform.util.collection.Collections;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -17,6 +18,7 @@ import java.io.FileOutputStream;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
+import dev.webfx.platform.util.collection.Collections;
 
 import static de.amr.games.pacman.lib.Globals.checkLevelNumber;
 import static de.amr.games.pacman.lib.Globals.v2i;
@@ -69,7 +71,7 @@ public class GameModel {
 		{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
 	};
 	
-	public static final List<Vector2i> PACMAN_RED_ZONE = List.of(v2i(12, 14), v2i(15, 14), v2i(12, 26), v2i(15, 26));
+	public static final List<Vector2i> PACMAN_RED_ZONE = Collections.listOf(v2i(12, 14), v2i(15, 14), v2i(12, 26), v2i(15, 26));
 
 	public static final byte[][][] MS_PACMAN_MAPS =  {
 		{
@@ -268,7 +270,7 @@ public class GameModel {
 		return levelNumber <= 13 ? mazeNumberMsPacMan(levelNumber) : mazeNumberMsPacMan(levelNumber) - 2;
 	}
 	
-	private static final List<NavigationPoint> PACMAN_DEMOLEVEL_ROUTE = List.of( //
+	private static final List<NavigationPoint> PACMAN_DEMOLEVEL_ROUTE = Collections.listOf( //
 			np(12, 26), np(9, 26), np(12, 32), np(15, 32), np(24, 29), np(21, 23), np(18, 23), np(18, 20), np(18, 17),
 			np(15, 14), np(12, 14), np(9, 17), np(6, 17), np(6, 11), np(6, 8), np(6, 4), np(1, 8), np(6, 8), np(9, 8),
 			np(12, 8), np(6, 4), np(6, 8), np(6, 11), np(1, 8), np(6, 8), np(9, 8), np(12, 14), np(9, 17), np(6, 17),
@@ -278,7 +280,7 @@ public class GameModel {
 	);
 	
 	@SuppressWarnings("unused")
-	private static final List<NavigationPoint> GHOST_0_ROUTE = List.of( //
+	private static final List<NavigationPoint> GHOST_0_ROUTE = Collections.listOf( //
 			np(21, 4, Direction.DOWN), np(21, 8, Direction.DOWN), np(21, 11, Direction.RIGHT), np(26, 8, Direction.LEFT),
 			np(21, 8, Direction.DOWN), np(26, 8, Direction.UP), np(26, 8, Direction.DOWN), np(21, 11, Direction.DOWN),
 			np(21, 17, Direction.RIGHT), // enters
@@ -576,7 +578,7 @@ public class GameModel {
 
 	/** @return collected level symbols. */
 	public List<Byte> levelCounter() {
-		return Collections.unmodifiableList(levelCounter);
+		return Collections.listOf(levelCounter);
 	}
 
 	public void clearLevelCounter() {
@@ -657,7 +659,7 @@ public class GameModel {
 			p.setProperty("level", String.valueOf(highScore.levelNumber()));
 			p.setProperty("date", highScore.date().format(DateTimeFormatter.ISO_LOCAL_DATE));
 			try (var out = new FileOutputStream(file)) {
-				p.storeToXML(out, String.format("%s Hiscore", variant()));
+				p.storeToXML(out, variant() + " Hiscore");
 				Logger.info("Highscore saved to '{}' Points: {} Level: {}", file.getAbsolutePath(), highScore.points(),
 						highScore.levelNumber());
 			} catch (Exception x) {

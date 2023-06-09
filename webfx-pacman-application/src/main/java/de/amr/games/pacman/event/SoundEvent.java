@@ -33,14 +33,17 @@ public class SoundEvent extends GameEvent {
 
 	public final byte id;
 
+	@Override
+	public String toString() {
+		return "SoundEvent{" +
+				"id=" + id +
+				'}';
+	}
+
 	public SoundEvent(GameModel game, byte id) {
 		super(game, GameEvent.SOUND_EVENT, null);
 		checkNotNull(id);
 		this.id = id;
 	}
 
-	@Override
-	public String toString() {
-		return String.format("SoundEvent('%s')", id);
-	}
 }

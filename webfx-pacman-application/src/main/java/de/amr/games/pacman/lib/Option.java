@@ -43,17 +43,21 @@ public class Option<T> {
 		this.fnValueOf = fnValueOf;
 	}
 
-	@Override
-	public String toString() {
-		return String.format("[Option name=%s value=%s]", name, value);
-	}
-
 	public String getName() {
 		return name;
 	}
 
 	public T getValue() {
 		return value;
+	}
+
+	@Override
+	public String toString() {
+		return "Option{" +
+				"name='" + name + '\'' +
+				", fnValueOf=" + fnValueOf +
+				", value=" + value +
+				'}';
 	}
 
 	public void parse(String s) {
@@ -64,4 +68,6 @@ public class Option<T> {
 			Logger.error("Could not parse option '{}' from text '{}'", name, s);
 		}
 	}
+
+
 }

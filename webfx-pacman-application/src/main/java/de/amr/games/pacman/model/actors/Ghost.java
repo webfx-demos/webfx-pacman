@@ -217,7 +217,7 @@ public class Ghost extends Creature {
 			updateStateEnteringHouse();
 			break;
 		default:
-			throw new IllegalArgumentException(String.format("Unknown ghost state: '%s'", state));
+			throw new IllegalArgumentException("Unknown ghost state: " + state);
 		}
 	}
 

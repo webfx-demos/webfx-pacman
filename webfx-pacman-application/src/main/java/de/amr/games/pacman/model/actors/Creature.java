@@ -386,11 +386,13 @@ public abstract class Creature extends Entity implements AnimationDirector {
 		if (tile.y() == portal.leftTunnelEnd().y() && position.x() < (portal.leftTunnelEnd().x() - portal.depth()) * TS) {
 			placeAtTile(portal.rightTunnelEnd());
 			moveResult.teleported = true;
-			moveResult.messages.add(String.format("%s: Teleported from %s to %s", name, oldPosition, position));
+//			moveResult.messages.add(String.format("%s: Teleported from %s to %s", name, oldPosition, position));
+			moveResult.messages.add(name + " teleported from " + oldPosition + " to " + position);
 		} else if (tile.equals(portal.rightTunnelEnd().plus(portal.depth(), 0))) {
 			placeAtTile(portal.leftTunnelEnd().minus(portal.depth(), 0));
 			moveResult.teleported = true;
-			moveResult.messages.add(String.format("%s: Teleported from %s to %s", name, oldPosition, position));
+//			moveResult.messages.add(String.format("%s: Teleported from %s to %s", name, oldPosition, position));
+			moveResult.messages.add(name + " teleported from " + oldPosition + " to " +  position);
 		}
 	}
 
@@ -406,7 +408,8 @@ public abstract class Creature extends Entity implements AnimationDirector {
 			if (!aroundCorner) {
 				placeAtTile(tile()); // adjust if blocked and moving forward
 			}
-			moveResult.messages.add(String.format("Cannot move %s into tile %s", dir, touchedTile));
+//			moveResult.messages.add(String.format("Cannot move %s into tile %s", dir, touchedTile));
+			moveResult.messages.add("Cannot move " + dir + " into tile " + touchedTile);
 			return;
 		}
 
@@ -416,7 +419,8 @@ public abstract class Creature extends Entity implements AnimationDirector {
 			if (atTurnPosition) {
 				placeAtTile(tile()); // adjust if moving around corner
 			} else {
-				moveResult.messages.add(String.format("Wants to take corner towards %s but not at turn position", dir));
+//				moveResult.messages.add(String.format("Wants to take corner towards %s but not at turn position", dir));
+				moveResult.messages.add("Wants to take corner towards " + dir + " but not at turn position");
 				return;
 			}
 		}
@@ -434,6 +438,7 @@ public abstract class Creature extends Entity implements AnimationDirector {
 		newTileEntered = !tileBeforeMove.equals(tile());
 		moveResult.moved = true;
 		moveResult.tunnelEntered = !world().isTunnel(tileBeforeMove) && world().isTunnel(tile());
-		moveResult.messages.add(String.format("%5s (%.2f pixels)", dir, newVelocity.length()));
+//		moveResult.messages.add(String.format("%5s (%.2f pixels)", dir, newVelocity.length()));
+		moveResult.messages.add(dir + " (" + newVelocity.length() + " pixels)");
 	}
 }

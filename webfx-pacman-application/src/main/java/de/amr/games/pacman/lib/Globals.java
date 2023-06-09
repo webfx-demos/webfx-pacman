@@ -81,7 +81,7 @@ public class Globals {
 
 	public static double requirePositive(double value, String messageFormat) {
 		if (value < 0) {
-			throw new IllegalArgumentException(String.format(messageFormat, value));
+			throw new IllegalArgumentException(messageFormat + ":" + value);
 		}
 		return value;
 	}
@@ -137,7 +137,7 @@ public class Globals {
 
 	public static boolean inPercentOfCases(int percent) {
 		if (percent < 0 || percent > 100) {
-			throw new IllegalArgumentException(String.format("Percent value must be in range [0, 100] but is %d", percent));
+			throw new IllegalArgumentException("Percent value must be in range [0, 100] but is " + percent);
 		}
 		if (percent == 0) {
 			return false;
@@ -212,7 +212,7 @@ public class Globals {
 	 */
 	public static boolean differsAtMost(double delta, double value, double target) {
 		if (delta < 0) {
-			throw new IllegalArgumentException(String.format("Difference must not be negative but is %f", delta));
+			throw new IllegalArgumentException("Difference must not be negative but is " + delta);
 		}
 		return value >= (target - delta) && value <= (target + delta);
 	}
