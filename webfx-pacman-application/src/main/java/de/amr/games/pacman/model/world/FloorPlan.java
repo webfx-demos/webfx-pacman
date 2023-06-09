@@ -77,15 +77,15 @@ public class FloorPlan {
 		return v2i(x / resolution, y / resolution);
 	}
 
-	public void print(Writer w, boolean useSymbols) {
-		PrintWriter p = new PrintWriter(w);
-		for (int y = 0; y < sizeY(); ++y) {
-			for (int x = 0; x < sizeX(); ++x) {
-				p.print(useSymbols ? String.valueOf(symbol(get(x, y))) : get(x, y));
-			}
-			p.println();
-		}
-	}
+//	public void print(Writer w, boolean useSymbols) {
+//		PrintWriter p = new PrintWriter(w);
+//		for (int y = 0; y < sizeY(); ++y) {
+//			for (int x = 0; x < sizeX(); ++x) {
+//				p.print(useSymbols ? String.valueOf(symbol(get(x, y))) : get(x, y));
+//			}
+//			p.println();
+//		}
+//	}
 
 	private Vector2i northOf(int tileX, int tileY, int i) {
 		int dy = i / resolution == 0 ? -1 : 0;
