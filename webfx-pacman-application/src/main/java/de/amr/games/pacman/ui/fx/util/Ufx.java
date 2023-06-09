@@ -6,9 +6,7 @@ package de.amr.games.pacman.ui.fx.util;
 
 import javafx.animation.Animation;
 import javafx.animation.PauseTransition;
-import javafx.beans.binding.Bindings;
 import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.ObjectProperty;
 import javafx.scene.image.Image;
 import javafx.scene.image.PixelWriter;
 import javafx.scene.image.WritableImage;
@@ -16,7 +14,6 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.PhongMaterial;
 import javafx.util.Duration;
 
 import java.util.Map;
@@ -37,17 +34,17 @@ public class Ufx {
 		booleanProperty.set(!booleanProperty.get());
 	}
 
-	public static PhongMaterial createColorBoundMaterial(ObjectProperty<Color> colorProperty) {
-		var material = new PhongMaterial();
-		bindMaterialColorProperties(material, colorProperty);
-		return material;
-	}
-
-	public static void bindMaterialColorProperties(PhongMaterial material, ObjectProperty<Color> colorProperty) {
-		material.diffuseColorProperty().bind(colorProperty);
-		material.specularColorProperty()
-				.bind(Bindings.createObjectBinding(() -> material.getDiffuseColor().brighter(), colorProperty));
-	}
+//	public static PhongMaterial createColorBoundMaterial(ObjectProperty<Color> colorProperty) {
+//		var material = new PhongMaterial();
+//		bindMaterialColorProperties(material, colorProperty);
+//		return material;
+//	}
+//
+//	public static void bindMaterialColorProperties(PhongMaterial material, ObjectProperty<Color> colorProperty) {
+//		material.diffuseColorProperty().bind(colorProperty);
+//		material.specularColorProperty()
+//				.bind(Bindings.createObjectBinding(() -> material.getDiffuseColor().brighter(), colorProperty));
+//	}
 
 	/**
 	 * Pauses for the given number of seconds.
