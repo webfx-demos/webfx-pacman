@@ -9,7 +9,6 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.PhongMaterial;
 import javafx.scene.text.Font;
 import org.tinylog.Logger;
 
@@ -53,12 +52,12 @@ public class ResourceManager {
 		return new Background(new BackgroundFill(color, new CornerRadii(radius), Insets.EMPTY));
 	}
 
-	public static PhongMaterial coloredMaterial(Color color) {
-		checkNotNull(color);
-		var material = new PhongMaterial(color);
-		material.setSpecularColor(color.brighter());
-		return material;
-	}
+//	public static PhongMaterial coloredMaterial(Color color) {
+//		checkNotNull(color);
+//		var material = new PhongMaterial(color);
+//		material.setSpecularColor(color.brighter());
+//		return material;
+//	}
 
 	public static Color color(Color color, double opacity) {
 		checkNotNull(color);
