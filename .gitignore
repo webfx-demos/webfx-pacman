@@ -1,0 +1,6 @@
+/webfx-pacman-application/target/
+/.idea/
+/target/
+/webfx-pacman-application-gluon/target/
+/webfx-pacman-application-gwt/target/
+/webfx-pacman-application-openjfx/target/
