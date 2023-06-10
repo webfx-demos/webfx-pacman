@@ -94,11 +94,22 @@ public abstract class GameScene2D implements GameScene {
 			var scaling = nv.doubleValue() / HEIGHT_UNSCALED;
 			overlayScale.setX(scaling);
 			overlayScale.setY(scaling);
+			if (canvasScaled) {
+				updateCanvasScaledSize();
+			}
 		});
 
 		infoVisiblePy.bind(PacManGames2d.PY_SHOW_DEBUG_INFO); // should probably be elsewhere
 
 		setCanvasScaled(false);
+	}
+
+	private void updateCanvasScaledSize() {
+		double scaling = root.getHeight() / HEIGHT_UNSCALED;
+		canvas.setWidth(WIDTH_UNSCALED);
+		canvas.setHeight(HEIGHT_UNSCALED);
+		canvas.setScaleX(scaling);
+		canvas.setScaleY(scaling);
 	}
 
 	@Override
@@ -128,20 +139,29 @@ public abstract class GameScene2D implements GameScene {
 	public void setCanvasScaled(boolean scaled) {
 		canvasScaled = scaled;
 		if (scaled) {
-			canvas.scaleXProperty().bind(root.widthProperty().divide(WIDTH_UNSCALED));
-			canvas.scaleYProperty().bind(root.heightProperty().divide(HEIGHT_UNSCALED));
+//			canvas.scaleXProperty().bind(root.widthProperty().divide(WIDTH_UNSCALED));
+//			canvas.scaleYProperty().bind(root.heightProperty().divide(HEIGHT_UNSCALED));
 			canvas.widthProperty().unbind();
 			canvas.heightProperty().unbind();
-			canvas.setWidth(WIDTH_UNSCALED);
-			canvas.setHeight(HEIGHT_UNSCALED);
+			updateCanvasScaledSize();
 		} else {
-			canvas.scaleXProperty().unbind();
-			canvas.scaleYProperty().unbind();
+//			canvas.scaleXProperty().unbind();
+//			canvas.scaleYProperty().unbind();
 			canvas.setScaleX(1);
 			canvas.setScaleY(1);
 			canvas.widthProperty().bind(root.widthProperty());
 			canvas.heightProperty().bind(root.heightProperty());
 		}
+	}
+
+	@Override
+	public void setParentScene(Scene parentScene) {
+//		root.minWidthProperty().bind(parentScene.heightProperty().multiply(ASPECT_RATIO));
+		root.setMinWidth(parentScene.getHeight() * ASPECT_RATIO);
+		parentScene.heightProperty().addListener((py, ov, nv) -> root.setMinWidth(parentScene.getHeight() * ASPECT_RATIO));
+		root.minHeightProperty().bind(parentScene.heightProperty());
+//		root.maxWidthProperty().bind(parentScene.heightProperty().multiply(ASPECT_RATIO));
+		root.maxHeightProperty().bind(parentScene.heightProperty());
 	}
 
 	protected double s(double value) {
@@ -180,14 +200,6 @@ public abstract class GameScene2D implements GameScene {
 
 	public HelpMenu getHelpMenu() {
 		return helpMenu;
-	}
-
-	@Override
-	public void setParentScene(Scene parentScene) {
-		root.minWidthProperty().bind(parentScene.heightProperty().multiply(ASPECT_RATIO));
-		root.minHeightProperty().bind(parentScene.heightProperty());
-		root.maxWidthProperty().bind(parentScene.heightProperty().multiply(ASPECT_RATIO));
-		root.maxHeightProperty().bind(parentScene.heightProperty());
 	}
 
 	@Override

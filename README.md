@@ -13,6 +13,9 @@
 - Class.getResource()
 - Resource directories under src/main/resources/... have to be declared (exported) in web.xml
 - Bindings: DoubleProperty.divide(), DoubleProperty.multiply() not supported?
+- TextFlow not working
+- Border around Pane not working
+- Canvas scaling behaves differently in GWT than in OpenJFX (not sure if bug)
 
 ## Additional/new functionality needed
 - Touch event support

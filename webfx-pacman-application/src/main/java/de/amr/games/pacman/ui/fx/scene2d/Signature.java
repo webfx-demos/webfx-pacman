@@ -8,7 +8,12 @@ import javafx.animation.FadeTransition;
 import javafx.animation.Interpolator;
 import javafx.animation.SequentialTransition;
 import javafx.animation.Transition;
+import javafx.geometry.Insets;
+import javafx.geometry.VPos;
 import javafx.scene.Node;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -22,7 +27,9 @@ public class Signature {
 
 	private Text remakeText;
 	private Text nameText;
-	private final TextFlow sentence;
+	// Does not work in GWT
+//	private final TextFlow sentence;
+	private final GridPane sentence;
 	private final FadeTransition fadeIn;
 	private final FadeTransition fadeOut;
 	private final Transition animation;
@@ -36,7 +43,11 @@ public class Signature {
 		nameText.setFill(Color.gray(0.6));
 		nameText.setFont(Font.font("Serif", 9));
 
-		sentence = new TextFlow(remakeText, nameText);
+		sentence = new GridPane();
+		sentence.setHgap(2);
+		sentence.setTranslateY(2);
+		sentence.add(remakeText, 0, 0);
+		sentence.add(nameText, 1, 0);
 
 		fadeIn = new FadeTransition(Duration.seconds(5), sentence);
 		fadeIn.setFromValue(0);
