@@ -53,7 +53,7 @@ public class PacManGames2d {
 	public static final KeyCodeCombination KEY_QUIT              = just(KeyCode.Q);
 	public static final KeyCodeCombination KEY_TEST_LEVELS       = alt(KeyCode.T);
 	public static final KeyCodeCombination KEY_SELECT_VARIANT    = just(KeyCode.V);
-	public static final KeyCodeCombination KEY_PLAY_CUTSCENES    = alt(KeyCode.Z);
+	public static final KeyCodeCombination KEY_PLAY_CUTSCENES    = alt(KeyCode.C);
 
 	public static final KeyCodeCombination KEY_SHOW_HELP         = just(KeyCode.H);
 	public static final KeyCodeCombination KEY_BOOT              = just(KeyCode.F3);
