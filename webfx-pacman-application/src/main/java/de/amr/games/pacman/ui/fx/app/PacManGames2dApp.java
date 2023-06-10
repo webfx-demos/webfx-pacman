@@ -4,6 +4,7 @@ See file LICENSE in repository root directory for details.
 */
 package de.amr.games.pacman.ui.fx.app;
 
+import de.amr.games.pacman.ui.fx.PacManGames2d;
 import de.amr.games.pacman.ui.fx.rendering2d.ArcadeTheme;
 import javafx.application.Application;
 import javafx.stage.Stage;

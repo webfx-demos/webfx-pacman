@@ -3,6 +3,18 @@
 
     <exported-packages>
         <source-packages/>
+        <resource-package>de.amr.games.pacman.ui.fx.fonts</resource-package>
+        <resource-package>de.amr.games.pacman.ui.fx.graphics</resource-package>
+        <resource-package>de.amr.games.pacman.ui.fx.graphics.icons</resource-package>
+        <resource-package>de.amr.games.pacman.ui.fx.graphics.mspacman</resource-package>
+        <resource-package>de.amr.games.pacman.ui.fx.graphics.pacman</resource-package>
+        <resource-package>de.amr.games.pacman.ui.fx.sound.common</resource-package>
+        <resource-package>de.amr.games.pacman.ui.fx.sound.mspacman</resource-package>
+        <resource-package>de.amr.games.pacman.ui.fx.sound.pacman</resource-package>
+        <resource-package>de.amr.games.pacman.ui.fx.sound.voice</resource-package>
+        <!--
+        <resource-package>de.amr.games.pacman.ui.fx.texts</resource-package>
+        -->
     </exported-packages>
 
     <dependencies>

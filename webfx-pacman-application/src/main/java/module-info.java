@@ -8,6 +8,7 @@ module webfx.pacman.application {
     requires javafx.controls;
     requires javafx.graphics;
     requires javafx.media;
+    requires webfx.platform.resource;
     requires webfx.platform.util;
 
     // Exported packages
@@ -17,6 +18,7 @@ module webfx.pacman.application {
     exports de.amr.games.pacman.model;
     exports de.amr.games.pacman.model.actors;
     exports de.amr.games.pacman.model.world;
+    exports de.amr.games.pacman.ui.fx;
     exports de.amr.games.pacman.ui.fx.app;
     exports de.amr.games.pacman.ui.fx.input;
     exports de.amr.games.pacman.ui.fx.rendering2d;
@@ -26,6 +28,17 @@ module webfx.pacman.application {
     exports de.amr.games.pacman.ui.fx.scene2d;
     exports de.amr.games.pacman.ui.fx.util;
     exports org.tinylog;
+
+    // Resources packages
+    opens de.amr.games.pacman.ui.fx.fonts;
+    opens de.amr.games.pacman.ui.fx.graphics;
+    opens de.amr.games.pacman.ui.fx.graphics.icons;
+    opens de.amr.games.pacman.ui.fx.graphics.mspacman;
+    opens de.amr.games.pacman.ui.fx.graphics.pacman;
+    opens de.amr.games.pacman.ui.fx.sound.common;
+    opens de.amr.games.pacman.ui.fx.sound.mspacman;
+    opens de.amr.games.pacman.ui.fx.sound.pacman;
+    opens de.amr.games.pacman.ui.fx.sound.voice;
 
     // Provided services
     provides javafx.application.Application with de.amr.games.pacman.ui.fx.app.PacManGames2dApp;

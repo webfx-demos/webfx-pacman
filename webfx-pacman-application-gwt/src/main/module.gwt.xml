@@ -121,6 +121,7 @@
     <source path="de/amr/games/pacman/model"/>
     <source path="de/amr/games/pacman/model/actors"/>
     <source path="de/amr/games/pacman/model/world"/>
+    <source path="de/amr/games/pacman/ui/fx"/>
     <source path="de/amr/games/pacman/ui/fx/app"/>
     <source path="de/amr/games/pacman/ui/fx/input"/>
     <source path="de/amr/games/pacman/ui/fx/rendering2d"/>
@@ -130,6 +131,24 @@
     <source path="de/amr/games/pacman/ui/fx/scene2d"/>
     <source path="de/amr/games/pacman/ui/fx/util"/>
     <source path="org/tinylog"/>
+    <resource path="de/amr/games/pacman/ui/fx/fonts"/>
+    <public includes="de/amr/games/pacman/ui/fx/fonts/" path=""/>
+    <resource path="de/amr/games/pacman/ui/fx/graphics"/>
+    <public includes="de/amr/games/pacman/ui/fx/graphics/" path=""/>
+    <resource path="de/amr/games/pacman/ui/fx/graphics/icons"/>
+    <public includes="de/amr/games/pacman/ui/fx/graphics/icons/" path=""/>
+    <resource path="de/amr/games/pacman/ui/fx/graphics/mspacman"/>
+    <public includes="de/amr/games/pacman/ui/fx/graphics/mspacman/" path=""/>
+    <resource path="de/amr/games/pacman/ui/fx/graphics/pacman"/>
+    <public includes="de/amr/games/pacman/ui/fx/graphics/pacman/" path=""/>
+    <resource path="de/amr/games/pacman/ui/fx/sound/common"/>
+    <public includes="de/amr/games/pacman/ui/fx/sound/common/" path=""/>
+    <resource path="de/amr/games/pacman/ui/fx/sound/mspacman"/>
+    <public includes="de/amr/games/pacman/ui/fx/sound/mspacman/" path=""/>
+    <resource path="de/amr/games/pacman/ui/fx/sound/pacman"/>
+    <public includes="de/amr/games/pacman/ui/fx/sound/pacman/" path=""/>
+    <resource path="de/amr/games/pacman/ui/fx/sound/voice"/>
+    <public includes="de/amr/games/pacman/ui/fx/sound/voice/" path=""/>
     <!--==============================< webfx-platform-boot >===============================-->
     <source path="dev/webfx/platform/boot"/>
     <source path="dev/webfx/platform/boot/spi"/>

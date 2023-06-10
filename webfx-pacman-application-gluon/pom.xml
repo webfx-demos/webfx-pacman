@@ -77,6 +77,15 @@
                         <list>storage</list>
                     </attachList>
                     <resourcesList>
+                        <list>de/amr/games/pacman/ui/fx/fonts/[^/]+$</list>
+                        <list>de/amr/games/pacman/ui/fx/graphics/[^/]+$</list>
+                        <list>de/amr/games/pacman/ui/fx/graphics/icons/[^/]+$</list>
+                        <list>de/amr/games/pacman/ui/fx/graphics/mspacman/[^/]+$</list>
+                        <list>de/amr/games/pacman/ui/fx/graphics/pacman/[^/]+$</list>
+                        <list>de/amr/games/pacman/ui/fx/sound/common/[^/]+$</list>
+                        <list>de/amr/games/pacman/ui/fx/sound/mspacman/[^/]+$</list>
+                        <list>de/amr/games/pacman/ui/fx/sound/pacman/[^/]+$</list>
+                        <list>de/amr/games/pacman/ui/fx/sound/voice/[^/]+$</list>
                         <list>dev/webfx/platform/meta/exe/[^/]+$</list>
                         <list>images/checkbox/[^/]+$</list>
                     </resourcesList>

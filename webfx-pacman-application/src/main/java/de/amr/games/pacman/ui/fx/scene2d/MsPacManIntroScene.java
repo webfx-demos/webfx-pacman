@@ -9,7 +9,7 @@ import de.amr.games.pacman.controller.MsPacManIntro.State;
 import de.amr.games.pacman.model.GameModel;
 import de.amr.games.pacman.model.actors.GhostAnimations;
 import de.amr.games.pacman.model.actors.PacAnimations;
-import de.amr.games.pacman.ui.fx.app.PacManGames2d;
+import de.amr.games.pacman.ui.fx.PacManGames2d;
 import de.amr.games.pacman.ui.fx.app.PacManGames2dUI;
 import de.amr.games.pacman.ui.fx.input.Keyboard;
 import de.amr.games.pacman.ui.fx.rendering2d.ArcadeTheme;

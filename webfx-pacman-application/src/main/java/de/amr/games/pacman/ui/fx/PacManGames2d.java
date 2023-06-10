@@ -2,7 +2,7 @@
 Copyright (c) 2021-2023 Armin Reichert (MIT License)
 See file LICENSE in repository root directory for details.
 */
-package de.amr.games.pacman.ui.fx.app;
+package de.amr.games.pacman.ui.fx;
 
 import de.amr.games.pacman.ui.fx.util.ResourceManager;
 import javafx.beans.property.BooleanProperty;
@@ -11,8 +11,6 @@ import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCodeCombination;
-
-import java.util.ResourceBundle;
 
 import static de.amr.games.pacman.ui.fx.util.Ufx.alt;
 import static de.amr.games.pacman.ui.fx.util.Ufx.just;

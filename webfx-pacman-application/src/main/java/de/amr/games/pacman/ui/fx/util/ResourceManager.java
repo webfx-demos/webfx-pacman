@@ -13,8 +13,7 @@ import javafx.scene.text.Font;
 import org.tinylog.Logger;
 
 import java.net.URL;
-import java.text.MessageFormat;
-import java.util.ResourceBundle;
+import dev.webfx.platform.resource.Resource;
 
 import static de.amr.games.pacman.lib.Globals.checkNotNull;
 
@@ -62,12 +61,13 @@ public class ResourceManager {
 	 * @param path path of resource
 	 * @return URL of resource addressed by this path
 	 */
-	public URL url(String path) {
+	private String url(String path) {
 		checkNotNull(path);
 		if (path.startsWith("/")) {
-			return callerClass.getResource(path);
+			path = rootDir + path;
 		}
-		return callerClass.getResource(rootDir + path);
+		return Resource.toUrl(path, callerClass);
+//		return callerClass.getResource(rootDir + path);
 	}
 
 	/**
@@ -75,7 +75,7 @@ public class ResourceManager {
 	 * @return audio clip from resource addressed by this path
 	 */
 	public AudioClip audioClip(String relPath) {
-		return new AudioClip(url(relPath).toExternalForm());
+		return new AudioClip(url(relPath));
 	}
 
 	/**
@@ -88,7 +88,7 @@ public class ResourceManager {
 			throw new IllegalArgumentException("Font size must be positive but is " + size);
 		}
 		var url = url(relPath);
-		var font = Font.loadFont(url.toExternalForm(), size);
+		var font = Font.loadFont(url, size);
 		if (font == null) {
 			Logger.error("Font with URL '{}' could not be loaded", url);
 			return Font.font(Font.getDefault().getFamily(), size);
@@ -102,7 +102,7 @@ public class ResourceManager {
 	 */
 	public Image image(String relPath) {
 		var url = url(relPath);
-		return new Image(url.toExternalForm());
+		return new Image(url);
 	}
 
 	/**

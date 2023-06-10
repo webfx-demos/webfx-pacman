@@ -8,7 +8,7 @@ import de.amr.games.pacman.lib.Score;
 import de.amr.games.pacman.model.IllegalGameVariantException;
 import de.amr.games.pacman.model.actors.*;
 import de.amr.games.pacman.model.world.World;
-import de.amr.games.pacman.ui.fx.app.PacManGames2d;
+import de.amr.games.pacman.ui.fx.PacManGames2d;
 import de.amr.games.pacman.ui.fx.app.PacManGames2dUI;
 import de.amr.games.pacman.ui.fx.rendering2d.ArcadeTheme;
 import de.amr.games.pacman.ui.fx.rendering2d.SpriteAnimations;
