@@ -8,7 +8,7 @@
 - Map.of() -> 
 - File access -> Local store API
 - Console logging
-- ResourceBundle support
+- ResourceBundle support (removed all usages, no multilingual support is needed in this app)
 - Class::isInstance, Class::cast in stream filter
 - Class.getResource()
 
