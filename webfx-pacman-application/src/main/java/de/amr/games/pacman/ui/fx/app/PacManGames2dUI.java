@@ -35,7 +35,6 @@ import org.tinylog.Logger;
 
 import static de.amr.games.pacman.controller.GameState.INTRO;
 import static de.amr.games.pacman.lib.Globals.checkNotNull;
-import static de.amr.games.pacman.ui.fx.util.ResourceManager.fmtMessage;
 
 /**
  * 2D-only user interface for Pac-Man and Ms. Pac-Man games. No dashboard, no picture-in-picture view.
@@ -157,7 +156,7 @@ public class PacManGames2dUI implements GameEventListener {
 	}
 
 	protected void configureHelpMenus() {
-		helpMenuFactory = new HelpMenuFactory(PacManGames2d.TEXTS);
+		helpMenuFactory = new HelpMenuFactory();
 		helpMenuFactory.setFont(theme.font("font.monospaced", 12));
 	}
 
@@ -169,20 +168,12 @@ public class PacManGames2dUI implements GameEventListener {
 	protected void updateStage() {
 		switch (game().variant()) {
 		case MS_PACMAN: {
-			String messageKey = "app.title.ms_pacman";
-			if (clock != null && clock.isPaused()) {
-				messageKey = "app.title.ms_pacman.paused";
-			}
-			stage.setTitle(ResourceManager.fmtMessage(PacManGames2d.TEXTS, messageKey, ""));
+			stage.setTitle("Ms. Pac-Man (WebFX)");
 			stage.getIcons().setAll(theme.image("mspacman.icon"));
 			break;
 		}
 		case PACMAN: {
-			String messageKey = "app.title.pacman";
-			if (clock != null && clock.isPaused()) {
-				messageKey = "app.title.pacman.paused";
-			}
-			stage.setTitle(ResourceManager.fmtMessage(PacManGames2d.TEXTS, messageKey, ""));
+			stage.setTitle("Pac-Man (WebFX)");
 			stage.getIcons().setAll(theme.image("pacman.icon"));
 			break;
 		}
@@ -433,7 +424,7 @@ public class PacManGames2dUI implements GameEventListener {
 	public void toggleAutopilot() {
 		GameController.it().toggleAutoControlled();
 		var auto = GameController.it().isAutoControlled();
-		String message = fmtMessage(PacManGames2d.TEXTS, auto ? "autopilot_on" : "autopilot_off");
+		String message = auto ? "Autopilot ON" : "Autopilot OFF";
 		showFlashMessage(message);
 		soundHandler.playVoice(auto ? "voice.autopilot.on" : "voice.autopilot.off");
 	}
@@ -441,7 +432,7 @@ public class PacManGames2dUI implements GameEventListener {
 	public void toggleImmunity() {
 		game().setImmune(!game().isImmune());
 		var immune = game().isImmune();
-		String message = fmtMessage(PacManGames2d.TEXTS, immune ? "player_immunity_on" : "player_immunity_off");
+		String message = immune ? "Immunity ON" : "Immunity OFF";
 		showFlashMessage(message);
 		soundHandler.playVoice(immune ? "voice.immunity.on" : "voice.immunity.off");
 	}
@@ -456,7 +447,7 @@ public class PacManGames2dUI implements GameEventListener {
 	public void cheatAddLives() {
 		int newLivesCount = game().lives() + 3;
 		game().setLives(newLivesCount);
-		showFlashMessage(fmtMessage(PacManGames2d.TEXTS, "cheat_add_lives", newLivesCount));
+		showFlashMessage("You have " + newLivesCount + " lives now");
 	}
 
 	public void cheatEatAllPellets() {

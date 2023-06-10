@@ -14,7 +14,9 @@ import javafx.scene.input.KeyCodeCombination;
 
 import java.util.ResourceBundle;
 
-import static de.amr.games.pacman.ui.fx.util.Ufx.*;
+import static de.amr.games.pacman.ui.fx.util.Ufx.alt;
+import static de.amr.games.pacman.ui.fx.util.Ufx.just;
+import static de.amr.games.pacman.ui.fx.util.Ufx.shift;
 
 /**
  * @author Armin Reichert
@@ -22,7 +24,6 @@ import static de.amr.games.pacman.ui.fx.util.Ufx.*;
 public class PacManGames2d {
 
 	public static final ResourceManager MGR = new ResourceManager("/de/amr/games/pacman/ui/fx/", PacManGames2d.class);
-	public static final ResourceBundle TEXTS = ResourceBundle.getBundle("de.amr.games.pacman.ui.fx.texts.messages");
 
 	//@formatter:off
 	public static final BooleanProperty    PY_SHOW_DEBUG_INFO    = new SimpleBooleanProperty(false);

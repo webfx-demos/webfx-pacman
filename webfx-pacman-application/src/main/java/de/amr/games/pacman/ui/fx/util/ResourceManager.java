@@ -23,25 +23,6 @@ import static de.amr.games.pacman.lib.Globals.checkNotNull;
  */
 public class ResourceManager {
 
-	/**
-	 * Builds a resource key from the given key pattern and the arguments and returns the corresponding text from the
-	 * resource bundle.
-	 * 
-	 * @param bundle     resource bundle
-	 * @param keyPattern pattern for creating final resource bundle key
-	 * @param args       arguments merged into key pattern
-	 * @return text for composed key or string indicating missing text
-	 */
-	public static String fmtMessage(ResourceBundle bundle, String keyPattern, Object... args) {
-		try {
-			var pattern = bundle.getString(keyPattern);
-			return MessageFormat.format(pattern, args);
-		} catch (Exception x) {
-			Logger.error("No text resource found for key '{}'", keyPattern);
-			return "noresfound: " + keyPattern;
-		}
-	}
-
 	public static Background coloredBackground(Color color) {
 		checkNotNull(color);
 		return new Background(new BackgroundFill(color, CornerRadii.EMPTY, Insets.EMPTY));

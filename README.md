@@ -10,7 +10,7 @@
 - Console logging
 - ResourceBundle support
 - Class::isInstance, Class::cast in stream filter
-
+- Class.getResource()
 
 ## Additional functionality
 - Touch event support

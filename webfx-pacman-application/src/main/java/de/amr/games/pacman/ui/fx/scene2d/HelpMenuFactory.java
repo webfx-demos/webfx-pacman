@@ -18,14 +18,32 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 
 /**
  * @author Armin Reichert
  */
 public class HelpMenuFactory {
+
+	private static final Map<String, String> TEXTS = new HashMap<>();
+
+	static {
+		TEXTS.put("help.add_credit", "ADD CREDIT");
+		TEXTS.put("help.autopilot_on", "AUTOPILOT ON");
+		TEXTS.put("help.cursor_left", "CURSOR LEFT");
+		TEXTS.put("help.cursor_right", "CURSOR RIGHT");
+		TEXTS.put("help.cursor_up", "CURSOR UP");
+		TEXTS.put("help.cursor_down", "CURSOR DOWN");
+		TEXTS.put("help.immunity_on", "IMMUNITY ON");
+		TEXTS.put("help.move_left", "MOVE LEFT");
+		TEXTS.put("help.move_right", "MOVE RIGHT");
+		TEXTS.put("help.move_up", "MOVE UP");
+		TEXTS.put("help.move_down", "MOVE DOWN");
+		TEXTS.put("help.ms_pacman", "MS. PAC-MAN");
+		TEXTS.put("help.pacman", "PAC-MAN");
+		TEXTS.put("help.show_intro", "SHOW INTRO");
+		TEXTS.put("help.start_game", "START GAME");
+	}
 
 	private static class Menu {
 		private final List<Node> column0 = new ArrayList<>();
@@ -41,11 +59,9 @@ public class HelpMenuFactory {
 		}
 	}
 
-	private final ResourceBundle translations;
 	private Font font;
 
-	public HelpMenuFactory(ResourceBundle translations) {
-		this.translations = translations;
+	public HelpMenuFactory() {
 		this.font = Font.font("Sans", 12);
 	}
 
@@ -127,7 +143,7 @@ public class HelpMenuFactory {
 	}
 
 	private String tt(String key) {
-		return translations.getString(key);
+		return TEXTS.get(key);
 	}
 
 	private Label label(String s) {
