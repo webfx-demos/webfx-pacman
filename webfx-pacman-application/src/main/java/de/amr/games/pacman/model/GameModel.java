@@ -12,13 +12,8 @@ import de.amr.games.pacman.model.world.World;
 import org.tinylog.Logger;
 import dev.webfx.platform.util.collection.Collections;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.*;
-import dev.webfx.platform.util.collection.Collections;
 
 import static de.amr.games.pacman.lib.Globals.checkLevelNumber;
 import static de.amr.games.pacman.lib.Globals.v2i;
@@ -617,55 +612,56 @@ public class GameModel {
 		}
 	}
 
-	private static File highscoreFile(GameVariant variant) {
-		switch (variant) {
-		case PACMAN:
-			return new File(System.getProperty("user.home"), "highscore-pacman.xml");
-		case MS_PACMAN:
-			return new File(System.getProperty("user.home"), "highscore-ms_pacman.xml");
-		default:
-			throw new IllegalGameVariantException(variant);
-		}
-	}
+//	private static File highscoreFile(GameVariant variant) {
+//		switch (variant) {
+//		case PACMAN:
+//			return new File(System.getProperty("user.home"), "highscore-pacman.xml");
+//		case MS_PACMAN:
+//			return new File(System.getProperty("user.home"), "highscore-ms_pacman.xml");
+//		default:
+//			throw new IllegalGameVariantException(variant);
+//		}
+//	}
 
-	private static void loadHighscore(Score score, File file) {
-		try (var in = new FileInputStream(file)) {
-			var props = new Properties();
-			props.loadFromXML(in);
-			var points = Integer.parseInt(props.getProperty("points"));
-			var levelNumber = Integer.parseInt(props.getProperty("level"));
-			var date = LocalDate.parse(props.getProperty("date"), DateTimeFormatter.ISO_LOCAL_DATE);
-			score.setPoints(points);
-			score.setLevelNumber(levelNumber);
-			score.setDate(date);
-			Logger.info("Highscore loaded. File: '{}' Points: {} Level: {}", file.getAbsolutePath(), score.points(),
-					score.levelNumber());
-		} catch (Exception x) {
-			Logger.info("Highscore could not be loaded. File '{}' Reason: {}", file, x.getMessage());
-		}
-	}
+//	private static void loadHighscore(Score score, File file) {
+//		try (var in = new FileInputStream(file)) {
+//			var props = new Properties();
+//			props.loadFromXML(in);
+//			var points = Integer.parseInt(props.getProperty("points"));
+//			var levelNumber = Integer.parseInt(props.getProperty("level"));
+//			var date = LocalDate.parse(props.getProperty("date"), DateTimeFormatter.ISO_LOCAL_DATE);
+//			score.setPoints(points);
+//			score.setLevelNumber(levelNumber);
+//			score.setDate(date);
+//			Logger.info("Highscore loaded. File: '{}' Points: {} Level: {}", file.getAbsolutePath(), score.points(),
+//					score.levelNumber());
+//		} catch (Exception x) {
+//			Logger.info("Highscore could not be loaded. File '{}' Reason: {}", file, x.getMessage());
+//		}
+//	}
 
-	public void loadHighscore() {
-		loadHighscore(highScore, highscoreFile(variant()));
+	public void loadHighscore()
+	{
+//		loadHighscore(highScore, highscoreFile(variant()));
 	}
 
 	public void saveNewHighscore() {
-		var file = highscoreFile(variant());
-		var savedHiscore = new Score();
-		loadHighscore(savedHiscore, file);
-		if (highScore.points() > savedHiscore.points()) {
-			var p = new Properties();
-			p.setProperty("points", String.valueOf(highScore.points()));
-			p.setProperty("level", String.valueOf(highScore.levelNumber()));
-			p.setProperty("date", highScore.date().format(DateTimeFormatter.ISO_LOCAL_DATE));
-			try (var out = new FileOutputStream(file)) {
-				p.storeToXML(out, variant() + " Hiscore");
-				Logger.info("Highscore saved to '{}' Points: {} Level: {}", file.getAbsolutePath(), highScore.points(),
-						highScore.levelNumber());
-			} catch (Exception x) {
-				Logger.error("Highscore could not be saved to '{}': {}", file, x.getMessage());
-			}
-		}
+//		var file = highscoreFile(variant());
+//		var savedHiscore = new Score();
+//		loadHighscore(savedHiscore, file);
+//		if (highScore.points() > savedHiscore.points()) {
+//			var p = new Properties();
+//			p.setProperty("points", String.valueOf(highScore.points()));
+//			p.setProperty("level", String.valueOf(highScore.levelNumber()));
+//			p.setProperty("date", highScore.date().format(DateTimeFormatter.ISO_LOCAL_DATE));
+//			try (var out = new FileOutputStream(file)) {
+//				p.storeToXML(out, variant() + " Hiscore");
+//				Logger.info("Highscore saved to '{}' Points: {} Level: {}", file.getAbsolutePath(), highScore.points(),
+//						highScore.levelNumber());
+//			} catch (Exception x) {
+//				Logger.error("Highscore could not be saved to '{}': {}", file, x.getMessage());
+//			}
+//		}
 	}
 
 	/** @return number of coins inserted. */
