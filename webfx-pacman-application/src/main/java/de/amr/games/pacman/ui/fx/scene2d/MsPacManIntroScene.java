@@ -16,6 +16,7 @@ import de.amr.games.pacman.ui.fx.rendering2d.ArcadeTheme;
 import de.amr.games.pacman.ui.fx.rendering2d.mspacman.GhostAnimationsMsPacManGame;
 import de.amr.games.pacman.ui.fx.rendering2d.mspacman.PacAnimationsMsPacManGame;
 import de.amr.games.pacman.ui.fx.rendering2d.mspacman.SpritesheetMsPacManGame;
+import dev.webfx.platform.useragent.UserAgent;
 
 /**
  * Intro scene of the Ms. Pac-Man game.
@@ -44,7 +45,8 @@ public class MsPacManIntroScene extends GameScene2D {
 		intro = new MsPacManIntro();
 		intro.addStateChangeListener((oldState, newState) -> {
 			if (oldState == MsPacManIntro.State.START) {
-				signature.show(t(5.5), t(32.0));
+				//TODO GWT-issue
+				signature.show(t(5.5), UserAgent.isBrowser() ? t(33.0) : t(32));
 			}
 		});
 

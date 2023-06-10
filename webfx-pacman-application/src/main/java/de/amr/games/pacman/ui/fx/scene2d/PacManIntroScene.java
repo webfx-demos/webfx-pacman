@@ -13,7 +13,7 @@ import de.amr.games.pacman.ui.fx.rendering2d.ArcadeTheme;
 import de.amr.games.pacman.ui.fx.rendering2d.pacman.GhostAnimationsPacManGame;
 import de.amr.games.pacman.ui.fx.rendering2d.pacman.PacAnimationsPacManGame;
 import de.amr.games.pacman.ui.fx.rendering2d.pacman.SpritesheetPacManGame;
-
+import dev.webfx.platform.useragent.UserAgent;
 import static de.amr.games.pacman.lib.Globals.TS;
 
 /**
@@ -51,7 +51,8 @@ public class PacManIntroScene extends GameScene2D {
 		intro = new PacManIntro();
 		intro.addStateChangeListener((oldState, newState) -> {
 			if (oldState == PacManIntro.State.SHOWING_POINTS) {
-				signature.show(t(5.5), t(32.0));
+				// TODO GWT-issue
+				signature.show(t(5.5), UserAgent.isBrowser()? t(32.5) : t(32));
 			}
 		});
 		ic = intro.context();

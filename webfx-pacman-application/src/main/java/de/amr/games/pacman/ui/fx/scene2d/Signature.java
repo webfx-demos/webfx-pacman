@@ -45,7 +45,6 @@ public class Signature {
 
 		sentence = new GridPane();
 		sentence.setHgap(2);
-		sentence.setTranslateY(2);
 		sentence.add(remakeText, 0, 0);
 		sentence.add(nameText, 1, 0);
 

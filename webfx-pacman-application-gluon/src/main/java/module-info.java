@@ -11,6 +11,7 @@ module webfx.pacman.application.gluon {
     requires webfx.platform.resource.gluon;
     requires webfx.platform.scheduler.java;
     requires webfx.platform.shutdown.gluon;
+    requires webfx.platform.useragent.gluon;
 
     // Meta Resource package
     opens dev.webfx.platform.meta.exe;
