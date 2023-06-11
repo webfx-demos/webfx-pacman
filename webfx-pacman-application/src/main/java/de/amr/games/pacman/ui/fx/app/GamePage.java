@@ -7,6 +7,7 @@ package de.amr.games.pacman.ui.fx.app;
 import de.amr.games.pacman.controller.GameController;
 import de.amr.games.pacman.controller.GameState;
 import de.amr.games.pacman.model.GameVariant;
+import de.amr.games.pacman.model.IllegalGameVariantException;
 import de.amr.games.pacman.ui.fx.PacManGames2d;
 import de.amr.games.pacman.ui.fx.input.Keyboard;
 import de.amr.games.pacman.ui.fx.rendering2d.ArcadeTheme;
@@ -97,13 +98,7 @@ public class GamePage {
 		var scene2D = (GameScene2D) gameScene;
 		scene2D.setCanvasScaled(canvasScaled);
 		scene2D.setRoundedCorners(false);
-		boolean playScene = false;
-		if (ui.game().variant() == GameVariant.MS_PACMAN) {
-			playScene = gameScene == ui.configMsPacMan.playScene() || gameScene == ui.configMsPacMan.playScene3D();
-		} else {
-			playScene = gameScene == ui.configPacMan.playScene() || gameScene == ui.configPacMan.playScene3D();
-		}
-		if (playScene) {
+		if (isPlayScene(scene2D, ui.game().variant())) {
 			sceneFrame.setPadding(new Insets(0, 12, 0, 12));
 			root.addEventHandler(KeyEvent.KEY_PRESSED, ui.keyboardPlayerSteering);
 		} else {
@@ -114,6 +109,15 @@ public class GamePage {
 		sceneFrame.setCenter(scene2D.root());
 		root.getChildren().set(1, sceneFrame);
 		root.requestFocus();
+	}
+
+	private boolean isPlayScene(GameScene gameScene, GameVariant gameVariant) {
+		if (gameVariant == GameVariant.MS_PACMAN) {
+			return gameScene == ui.configMsPacMan.playScene();
+		} else if (gameVariant == GameVariant.MS_PACMAN) {
+			return gameScene == ui.configPacMan.playScene();
+		}
+		throw new IllegalGameVariantException(gameVariant);
 	}
 
 	private boolean isHelpAvailable(GameScene gameScene) {
