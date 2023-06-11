@@ -80,8 +80,8 @@ public class GamePage {
 		var scene2D = (GameScene2D) gameScene;
 		scene2D.setCanvasScaled(canvasScaled);
 		scene2D.setRoundedCorners(false);
-		if (isPlayScene(scene2D, ui.game().variant())) {
-			sceneContainer.setPadding(new Insets(0, 12, 0, 12));
+		if (isPlayScene(scene2D)) {
+			sceneContainer.setPadding(new Insets(0, 20, 0, 20));
 			root.addEventHandler(KeyEvent.KEY_PRESSED, ui.keyboardPlayerSteering);
 		} else {
 			sceneContainer.setPadding(new Insets(0));
@@ -93,7 +93,8 @@ public class GamePage {
 		root.requestFocus();
 	}
 
-	private boolean isPlayScene(GameScene gameScene, GameVariant gameVariant) {
+	private boolean isPlayScene(GameScene gameScene) {
+		var gameVariant = ui.game().variant();
 		if (gameVariant == GameVariant.MS_PACMAN) {
 			return gameScene == ui.configMsPacMan.playScene();
 		} else if (gameVariant == GameVariant.PACMAN) {

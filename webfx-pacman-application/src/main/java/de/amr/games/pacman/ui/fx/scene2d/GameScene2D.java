@@ -136,6 +136,10 @@ public abstract class GameScene2D implements GameScene {
 		return canvasScaled;
 	}
 
+	public double currentScaling() {
+		return root.getHeight() / HEIGHT_UNSCALED;
+	}
+
 	public void setCanvasScaled(boolean scaled) {
 		canvasScaled = scaled;
 		if (scaled) {
