@@ -20,11 +20,13 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
+import javafx.scene.canvas.Canvas;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 
 /**
  * @author Armin Reichert
@@ -38,7 +40,8 @@ public class GamePage {
 	protected final PacManGames2dUI ui;
 	protected final StackPane root;
 	protected final FlashMessageView flashMessageView = new FlashMessageView();
-	protected final BorderPane sceneBackPanel;
+	//protected final BorderPane sceneBackPanel;
+	protected final Rectangle roundedRect;
 	protected final BorderPane sceneFrame;
 	protected final Pane helpButton;
 	protected boolean canvasScaled = false;
@@ -52,13 +55,16 @@ public class GamePage {
 				new CornerRadii(10), new BorderWidths(FRAME_THICKNESS), null);
 
 		sceneFrame = new BorderPane();
+		sceneFrame.setBackground(ResourceManager.coloredBackground(Color.BLACK));
 		sceneFrame.setMaxSize(1, 1); // gets resized with content
 		sceneFrame.setScaleX(0.9);
 		sceneFrame.setScaleY(0.9);
-		sceneFrame.setBorder(new Border(roundedBorderStroke));
 
-		sceneBackPanel = new BorderPane();
-		sceneBackPanel.setBackground(ResourceManager.coloredBackground(Color.BLACK));
+		//TODO GWT-issue
+//		sceneFrame.setBorder(new Border(roundedBorderStroke));
+
+//		sceneBackPanel = new BorderPane();
+//		sceneBackPanel.setBackground(ResourceManager.coloredBackground(Color.BLACK));
 
 		helpButton = new VBox(createHelpButtonIcon(ui.game().variant()));
 		helpButton.setPadding(new Insets(4));
@@ -70,12 +76,44 @@ public class GamePage {
 			}
 		});
 
-		sceneFrame.setCenter(new StackPane(sceneBackPanel, helpButton));
+		roundedRect = new Rectangle();
+		roundedRect.widthProperty().bind(sceneFrame.widthProperty());
+		roundedRect.heightProperty().bind(sceneFrame.heightProperty());
+		roundedRect.setArcHeight(30);
+		roundedRect.setArcWidth(30);
+		roundedRect.setFill(ArcadeTheme.PALE);
+		roundedRect.setScaleX(0.95);
+		roundedRect.setScaleY(0.95);
+
+		sceneFrame.setCenter(new StackPane(/*sceneBackPanel,*/ helpButton));
 		StackPane.setAlignment(helpButton, Pos.TOP_RIGHT);
 
-		root = new StackPane(sceneFrame, flashMessageView);
+		root = new StackPane(roundedRect, sceneFrame, flashMessageView);
 		root.setBackground(ui.theme().background("wallpaper.background"));
 		root.setOnKeyPressed(this::handleKeyPressed);
+	}
+
+	public void setGameScene(GameScene gameScene) {
+		var scene2D = (GameScene2D) gameScene;
+		scene2D.setCanvasScaled(canvasScaled);
+		scene2D.setRoundedCorners(false);
+		boolean playScene = false;
+		if (ui.game().variant() == GameVariant.MS_PACMAN) {
+			playScene = gameScene == ui.configMsPacMan.playScene() || gameScene == ui.configMsPacMan.playScene3D();
+		} else {
+			playScene = gameScene == ui.configPacMan.playScene() || gameScene == ui.configPacMan.playScene3D();
+		}
+		if (playScene) {
+			sceneFrame.setPadding(new Insets(0, 12, 0, 12));
+			root.addEventHandler(KeyEvent.KEY_PRESSED, ui.keyboardPlayerSteering);
+		} else {
+			sceneFrame.setPadding(new Insets(0));
+			root.removeEventHandler(KeyEvent.KEY_PRESSED, ui.keyboardPlayerSteering);
+		}
+		updateHelpButton(gameScene);
+		sceneFrame.setCenter(scene2D.root());
+		root.getChildren().set(1, sceneFrame);
+		root.requestFocus();
 	}
 
 	private boolean isHelpAvailable(GameScene gameScene) {
@@ -102,36 +140,6 @@ public class GamePage {
 		} else {
 			helpButton.setVisible(false); // or gray out etc.
 		}
-	}
-
-	public void setGameScene(GameScene gameScene) {
-		if (gameScene instanceof GameScene2D) {
-			var scene2D = (GameScene2D) gameScene;
-			scene2D.setCanvasScaled(canvasScaled);
-			scene2D.setRoundedCorners(false);
-			sceneBackPanel.setCenter(scene2D.root());
-			if (gameScene instanceof PlayScene2D) {
-				sceneBackPanel.setPadding(new Insets(0, 12, 0, 12));
-			} else {
-				sceneBackPanel.setPadding(new Insets(0));
-			}
-			root.getChildren().set(0, sceneFrame);
-		} else {
-			root.getChildren().set(0, gameScene.root());
-		}
-		boolean playScene = false;
-		if (ui.game().variant() == GameVariant.MS_PACMAN) {
-			playScene = gameScene == ui.configMsPacMan.playScene() || gameScene == ui.configMsPacMan.playScene3D();
-		} else {
-			playScene = gameScene == ui.configPacMan.playScene() || gameScene == ui.configPacMan.playScene3D();
-		}
-		if (playScene) {
-			root.addEventHandler(KeyEvent.KEY_PRESSED, ui.keyboardPlayerSteering);
-		} else {
-			root.removeEventHandler(KeyEvent.KEY_PRESSED, ui.keyboardPlayerSteering);
-		}
-		updateHelpButton(gameScene);
-		root.requestFocus();
 	}
 
 	public Pane root() {
