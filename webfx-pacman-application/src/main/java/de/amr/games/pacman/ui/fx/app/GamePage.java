@@ -13,7 +13,6 @@ import de.amr.games.pacman.ui.fx.input.Keyboard;
 import de.amr.games.pacman.ui.fx.rendering2d.ArcadeTheme;
 import de.amr.games.pacman.ui.fx.scene.GameScene;
 import de.amr.games.pacman.ui.fx.scene2d.GameScene2D;
-import de.amr.games.pacman.ui.fx.scene2d.PlayScene2D;
 import de.amr.games.pacman.ui.fx.util.FlashMessageView;
 import de.amr.games.pacman.ui.fx.util.ResourceManager;
 import de.amr.games.pacman.ui.fx.util.Ufx;
@@ -21,7 +20,6 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
-import javafx.scene.canvas.Canvas;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
@@ -41,31 +39,18 @@ public class GamePage {
 	protected final PacManGames2dUI ui;
 	protected final StackPane root;
 	protected final FlashMessageView flashMessageView = new FlashMessageView();
-	//protected final BorderPane sceneBackPanel;
-	protected final Rectangle roundedRect;
-	protected final BorderPane sceneFrame;
+	protected final BorderPane sceneContainer;
 	protected final Pane helpButton;
 	protected boolean canvasScaled = false;
 
 	public GamePage(PacManGames2dUI ui) {
 		this.ui = ui;
 
-		var roundedBorderStroke = new BorderStroke( //
-				FRAME_COLOR, FRAME_COLOR, FRAME_COLOR, FRAME_COLOR, //
-				BorderStrokeStyle.SOLID, BorderStrokeStyle.SOLID, BorderStrokeStyle.SOLID, BorderStrokeStyle.SOLID, //
-				new CornerRadii(10), new BorderWidths(FRAME_THICKNESS), null);
-
-		sceneFrame = new BorderPane();
-		sceneFrame.setBackground(ResourceManager.coloredBackground(Color.BLACK));
-		sceneFrame.setMaxSize(1, 1); // gets resized with content
-		sceneFrame.setScaleX(0.9);
-		sceneFrame.setScaleY(0.9);
-
-		//TODO GWT-issue
-//		sceneFrame.setBorder(new Border(roundedBorderStroke));
-
-//		sceneBackPanel = new BorderPane();
-//		sceneBackPanel.setBackground(ResourceManager.coloredBackground(Color.BLACK));
+		sceneContainer = new BorderPane();
+		sceneContainer.setBackground(ResourceManager.coloredBackground(Color.BLACK));
+		sceneContainer.setMaxSize(1, 1); // gets resized with content
+		sceneContainer.setScaleX(0.9);
+		sceneContainer.setScaleY(0.9);
 
 		helpButton = new VBox(createHelpButtonIcon(ui.game().variant()));
 		helpButton.setPadding(new Insets(4));
@@ -77,19 +62,16 @@ public class GamePage {
 			}
 		});
 
-		roundedRect = new Rectangle();
-		roundedRect.widthProperty().bind(sceneFrame.widthProperty());
-		roundedRect.heightProperty().bind(sceneFrame.heightProperty());
+		var roundedRect = new Rectangle();
+		roundedRect.widthProperty().bind(sceneContainer.widthProperty());
+		roundedRect.heightProperty().bind(sceneContainer.heightProperty());
 		roundedRect.setArcHeight(30);
 		roundedRect.setArcWidth(30);
 		roundedRect.setFill(ArcadeTheme.PALE);
 		roundedRect.setScaleX(0.95);
 		roundedRect.setScaleY(0.95);
 
-		sceneFrame.setCenter(new StackPane(/*sceneBackPanel,*/ helpButton));
-		StackPane.setAlignment(helpButton, Pos.TOP_RIGHT);
-
-		root = new StackPane(roundedRect, sceneFrame, flashMessageView);
+		root = new StackPane(roundedRect, sceneContainer, flashMessageView);
 		root.setBackground(ui.theme().background("wallpaper.background"));
 		root.setOnKeyPressed(this::handleKeyPressed);
 	}
@@ -99,15 +81,15 @@ public class GamePage {
 		scene2D.setCanvasScaled(canvasScaled);
 		scene2D.setRoundedCorners(false);
 		if (isPlayScene(scene2D, ui.game().variant())) {
-			sceneFrame.setPadding(new Insets(0, 12, 0, 12));
+			sceneContainer.setPadding(new Insets(0, 12, 0, 12));
 			root.addEventHandler(KeyEvent.KEY_PRESSED, ui.keyboardPlayerSteering);
 		} else {
-			sceneFrame.setPadding(new Insets(0));
+			sceneContainer.setPadding(new Insets(0));
 			root.removeEventHandler(KeyEvent.KEY_PRESSED, ui.keyboardPlayerSteering);
 		}
 		updateHelpButton(gameScene);
-		sceneFrame.setCenter(scene2D.root());
-		root.getChildren().set(1, sceneFrame);
+		sceneContainer.setCenter(new StackPane(scene2D.root(), helpButton));
+		StackPane.setAlignment(helpButton, Pos.TOP_RIGHT);
 		root.requestFocus();
 	}
 
