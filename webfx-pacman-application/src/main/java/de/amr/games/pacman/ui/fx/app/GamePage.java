@@ -114,7 +114,7 @@ public class GamePage {
 	private boolean isPlayScene(GameScene gameScene, GameVariant gameVariant) {
 		if (gameVariant == GameVariant.MS_PACMAN) {
 			return gameScene == ui.configMsPacMan.playScene();
-		} else if (gameVariant == GameVariant.MS_PACMAN) {
+		} else if (gameVariant == GameVariant.PACMAN) {
 			return gameScene == ui.configPacMan.playScene();
 		}
 		throw new IllegalGameVariantException(gameVariant);
