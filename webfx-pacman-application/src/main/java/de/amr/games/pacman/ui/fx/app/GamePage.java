@@ -78,7 +78,6 @@ public class GamePage {
 
 	public void setGameScene(GameScene gameScene) {
 		var scene2D = (GameScene2D) gameScene;
-		scene2D.setCanvasScaled(canvasScaled);
 		scene2D.setRoundedCorners(false);
 		if (isPlayScene(scene2D)) {
 			sceneContainer.setPadding(new Insets(0, 20, 0, 20));
@@ -204,16 +203,7 @@ public class GamePage {
 			ui.startLevelTestMode();
 		} else if (Keyboard.pressed(PacManGames2d.KEY_FULLSCREEN)) {
 			ui.stage.setFullScreen(true);
-		} else if (Keyboard.pressed(PacManGames2d.KEY_CANVAS_SCALED)) {
-			toggleCanvasScaled(ui.currentGameScene);
 		}
 	}
 
-	private void toggleCanvasScaled(GameScene gameScene) {
-		if (gameScene instanceof GameScene2D) {
-			canvasScaled = !canvasScaled;
-			((GameScene2D) gameScene).setCanvasScaled(canvasScaled);
-			ui.showFlashMessage(canvasScaled ? "Canvas SCALED" : "Canvas UNSCALED");
-		}
-	}
 }

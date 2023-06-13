@@ -66,7 +66,6 @@ public abstract class GameScene2D implements GameScene {
 	private boolean creditVisible;
 	private boolean roundedCorners = true;
 	private Color wallpaperColor = Color.BLACK;
-	private boolean canvasScaled;
 
 	protected GameScene2D(PacManGames2dUI ui) {
 		this.ui = ui;
@@ -94,22 +93,12 @@ public abstract class GameScene2D implements GameScene {
 			var scaling = nv.doubleValue() / HEIGHT_UNSCALED;
 			overlayScale.setX(scaling);
 			overlayScale.setY(scaling);
-			if (canvasScaled) {
-				updateCanvasScaledSize();
-			}
 		});
 
 		infoVisiblePy.bind(PacManGames2d.PY_SHOW_DEBUG_INFO); // should probably be elsewhere
 
-		setCanvasScaled(false);
-	}
-
-	private void updateCanvasScaledSize() {
-		double scaling = root.getHeight() / HEIGHT_UNSCALED;
-		canvas.setWidth(WIDTH_UNSCALED);
-		canvas.setHeight(HEIGHT_UNSCALED);
-		canvas.setScaleX(scaling);
-		canvas.setScaleY(scaling);
+		canvas.widthProperty().bind(root.widthProperty());
+		canvas.heightProperty().bind(root.heightProperty());
 	}
 
 	@Override
@@ -132,30 +121,8 @@ public abstract class GameScene2D implements GameScene {
 		this.scoreVisible = scoreVisible;
 	}
 
-	public boolean isCanvasScaled() {
-		return canvasScaled;
-	}
-
 	public double currentScaling() {
 		return root.getHeight() / HEIGHT_UNSCALED;
-	}
-
-	public void setCanvasScaled(boolean scaled) {
-		canvasScaled = scaled;
-		if (scaled) {
-//			canvas.scaleXProperty().bind(root.widthProperty().divide(WIDTH_UNSCALED));
-//			canvas.scaleYProperty().bind(root.heightProperty().divide(HEIGHT_UNSCALED));
-			canvas.widthProperty().unbind();
-			canvas.heightProperty().unbind();
-			updateCanvasScaledSize();
-		} else {
-//			canvas.scaleXProperty().unbind();
-//			canvas.scaleYProperty().unbind();
-			canvas.setScaleX(1);
-			canvas.setScaleY(1);
-			canvas.widthProperty().bind(root.widthProperty());
-			canvas.heightProperty().bind(root.heightProperty());
-		}
 	}
 
 	@Override
@@ -169,7 +136,7 @@ public abstract class GameScene2D implements GameScene {
 	}
 
 	protected double s(double value) {
-		return canvasScaled ? value : value * root.getHeight() / HEIGHT_UNSCALED;
+		return value * currentScaling();
 	}
 
 	protected Font sceneFont() {
