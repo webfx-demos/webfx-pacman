@@ -26,6 +26,7 @@ import de.amr.games.pacman.ui.fx.scene2d.*;
 import de.amr.games.pacman.ui.fx.util.*;
 import javafx.scene.Scene;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.StackPane;
 import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.stage.Screen;
@@ -52,7 +53,7 @@ public class PacManGames2dUI implements GameEventListener {
 	protected Stage stage;
 	protected Scene scene;
 	protected StartPage startPage;
-	protected GamePage gamePage;
+	protected MinGamePage gamePage;
 	protected HelpMenuFactory helpMenuFactory;
 	protected KeyboardSteering keyboardPlayerSteering;
 	protected SoundHandler soundHandler;
@@ -144,12 +145,12 @@ public class PacManGames2dUI implements GameEventListener {
 	}
 
 	protected void createGamePage() {
-		gamePage = new GamePage(this);
+		gamePage = new MinGamePage(this);
 	}
 
 	protected void showGamePage() {
 		reboot();
-		scene.setRoot(gamePage.root());
+		scene.setRoot(new StackPane(gamePage.root(), gamePage.flashMessageView));
 		gamePage.root().requestFocus();
 		clock.start();
 		updateStage();

@@ -62,16 +62,7 @@ public class GamePage {
 			}
 		});
 
-		var roundedRect = new Rectangle();
-		roundedRect.widthProperty().bind(sceneContainer.widthProperty());
-		roundedRect.heightProperty().bind(sceneContainer.heightProperty());
-		roundedRect.setArcHeight(30);
-		roundedRect.setArcWidth(30);
-		roundedRect.setFill(ArcadeTheme.PALE);
-		roundedRect.setScaleX(0.95);
-		roundedRect.setScaleY(0.95);
-
-		root = new StackPane(roundedRect, sceneContainer, flashMessageView);
+		root = new StackPane(sceneContainer, flashMessageView);
 		root.setBackground(ui.theme().background("wallpaper.background"));
 		root.setOnKeyPressed(this::handleKeyPressed);
 	}

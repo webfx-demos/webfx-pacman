@@ -57,8 +57,8 @@ public abstract class GameScene2D implements GameScene {
 	public final BooleanProperty infoVisiblePy = new SimpleBooleanProperty(this, "infoVisible", false);
 
 	private final BorderPane root;
-	protected final Canvas canvas;
-	protected final GraphicsContext g;
+	protected Canvas canvas;
+	protected GraphicsContext g;
 	protected final Pane overlay;
 	private final Scale overlayScale = new Scale();
 	private final HelpMenu helpMenu;
@@ -66,11 +66,10 @@ public abstract class GameScene2D implements GameScene {
 	private boolean creditVisible;
 	private boolean roundedCorners = true;
 	private Color wallpaperColor = Color.BLACK;
+	protected double scaling = 1;
 
 	protected GameScene2D(PacManGames2dUI ui) {
 		this.ui = ui;
-		canvas = new Canvas(WIDTH_UNSCALED, HEIGHT_UNSCALED);
-		g = canvas.getGraphicsContext2D();
 
 		helpMenu = new HelpMenu();
 		helpMenu.setTranslateX(10);
@@ -80,7 +79,7 @@ public abstract class GameScene2D implements GameScene {
 		overlay.getChildren().add(helpMenu);
 		overlay.getTransforms().add(overlayScale);
 
-		var layers = new StackPane(canvas, overlay);
+		var layers = new StackPane(overlay);
 
 		root = new BorderPane(layers);
 		root.setMinWidth(WIDTH_UNSCALED);
@@ -96,9 +95,11 @@ public abstract class GameScene2D implements GameScene {
 		});
 
 		infoVisiblePy.bind(PacManGames2d.PY_SHOW_DEBUG_INFO); // should probably be elsewhere
+	}
 
-		canvas.widthProperty().bind(root.widthProperty());
-		canvas.heightProperty().bind(root.heightProperty());
+	public void setCanvas(Canvas canvas) {
+		this.canvas = canvas;
+		this.g = canvas.getGraphicsContext2D();
 	}
 
 	@Override
@@ -121,22 +122,18 @@ public abstract class GameScene2D implements GameScene {
 		this.scoreVisible = scoreVisible;
 	}
 
-	public double currentScaling() {
-		return root.getHeight() / HEIGHT_UNSCALED;
-	}
-
 	@Override
 	public void setParentScene(Scene parentScene) {
-//		root.minWidthProperty().bind(parentScene.heightProperty().multiply(ASPECT_RATIO));
-		root.setMinWidth(parentScene.getHeight() * ASPECT_RATIO);
-		parentScene.heightProperty().addListener((py, ov, nv) -> root.setMinWidth(parentScene.getHeight() * ASPECT_RATIO));
-		root.minHeightProperty().bind(parentScene.heightProperty());
-//		root.maxWidthProperty().bind(parentScene.heightProperty().multiply(ASPECT_RATIO));
-		root.maxHeightProperty().bind(parentScene.heightProperty());
+	}
+
+	public void setScaling(double scaling) {
+		this.scaling = scaling;
+		canvas.setWidth(WIDTH_UNSCALED * scaling);
+		canvas.setHeight(HEIGHT_UNSCALED * scaling);
 	}
 
 	protected double s(double value) {
-		return value * currentScaling();
+		return value * scaling;
 	}
 
 	protected Font sceneFont() {
