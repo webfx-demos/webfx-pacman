@@ -27,7 +27,7 @@ public class MinGamePage {
     private Canvas canvas = new Canvas();
 
     private GameScene2D gameScene;
-    private double scaling = 2.0;
+    private double scaling = 1.0;
 
     public MinGamePage(PacManGames2dUI ui) {
         this.ui = ui;

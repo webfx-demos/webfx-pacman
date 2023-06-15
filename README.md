@@ -1,6 +1,6 @@
 # webfx-pacman
 
-## Issues (GWT only?)
+## Issues/workarounds (GWT only?)
 - TinyLog library, how to include?
 - String.format()
 - String.isBlank()
@@ -14,8 +14,9 @@
 - Resource directories under src/main/resources/... have to be declared (exported) in web.xml
 - Bindings: DoubleProperty.divide(), DoubleProperty.multiply() not supported?
 - TextFlow not working
-- Border around Pane not working
+- Border around Pane not working (?)
 - Canvas scaling behaves differently in GWT than in OpenJFX (not sure if bug)
+- Avoid timezone error messages in GWT
 
 ## Additional/new functionality needed
 - Touch event support
