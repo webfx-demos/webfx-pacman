@@ -62,10 +62,21 @@ public class MinGamePage {
     void setGameScene(GameScene scene) {
         gameScene = (GameScene2D)  scene;
         gameScene.setCanvas(canvas);
-        gameScene.setScaling(scaling);
-        rootPane.setMaxSize(WIDTH * scaling * 1.2, HEIGHT * scaling * 1.1);
+        scale(scaling);
         root.addEventHandler(KeyEvent.KEY_PRESSED, ui.keyboardPlayerSteering);
         root.requestFocus();
+    }
+
+    public void scale(double scaling) {
+        this.scaling = scaling;
+        if (gameScene != null) {
+            gameScene.setScaling(scaling);
+        }
+        rootPane.setMaxSize(WIDTH * scaling * 1.2, HEIGHT * scaling * 1.1);
+    }
+
+    public double getScaling() {
+        return scaling;
     }
 
     public FlashMessageView flashMessageView() {
