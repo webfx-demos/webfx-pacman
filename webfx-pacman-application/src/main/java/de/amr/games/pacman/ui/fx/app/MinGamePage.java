@@ -2,6 +2,7 @@ package de.amr.games.pacman.ui.fx.app;
 
 import de.amr.games.pacman.controller.GameController;
 import de.amr.games.pacman.controller.GameState;
+import de.amr.games.pacman.model.GameVariant;
 import de.amr.games.pacman.ui.fx.PacManGames2d;
 import de.amr.games.pacman.ui.fx.input.Keyboard;
 import de.amr.games.pacman.ui.fx.scene.GameScene;
@@ -12,8 +13,10 @@ import de.amr.games.pacman.ui.fx.util.Ufx;
 import javafx.scene.Parent;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import org.tinylog.Logger;
 
 public class MinGamePage {
 
@@ -40,6 +43,22 @@ public class MinGamePage {
         root.setBackground(ui.theme().background("wallpaper.background"));
         root.setCenter(rootPane);
         root.setOnKeyPressed(this::handleKeyPressed);
+
+        canvas.setOnMouseClicked(this::handleMouseClickOnCanvas);
+    }
+
+    private void handleMouseClickOnCanvas(MouseEvent mouseEvent) {
+        var config = ui.game().variant() == GameVariant.MS_PACMAN ? ui.configMsPacMan : ui.configPacMan;
+        if (gameScene == config.introScene()
+                || gameScene == config.creditScene() && ui.game().credit() == 0
+                || gameScene == config.playScene() && ui.game().level().get().isDemoLevel()) {
+            // simulate key press "5" (add credit)
+            ui.addCredit();
+        } else if (gameScene == config.creditScene() /* credit > 0 */) {
+            // simulate key press "1" (start game)
+            ui.startGame();
+        }
+
     }
 
     public void update() {

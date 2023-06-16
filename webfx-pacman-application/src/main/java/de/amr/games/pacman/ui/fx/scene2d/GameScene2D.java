@@ -16,8 +16,10 @@ import de.amr.games.pacman.ui.fx.rendering2d.mspacman.ClapperBoardAnimation;
 import de.amr.games.pacman.ui.fx.rendering2d.mspacman.SpritesheetMsPacManGame;
 import de.amr.games.pacman.ui.fx.rendering2d.pacman.SpritesheetPacManGame;
 import de.amr.games.pacman.ui.fx.scene.GameScene;
+import de.amr.games.pacman.ui.fx.util.ResourceManager;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
+import javafx.geometry.Insets;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -82,12 +84,7 @@ public abstract class GameScene2D implements GameScene {
 		var layers = new StackPane(overlay);
 
 		root = new BorderPane(layers);
-		root.setMinWidth(WIDTH_UNSCALED);
-		root.setMinHeight(HEIGHT_UNSCALED);
-		root.setMaxWidth(WIDTH_UNSCALED);
-		root.setMaxHeight(HEIGHT_UNSCALED);
-
-		// always scale overlay pane to cover subscene
+//		// always scale overlay pane to cover subscene
 		root.heightProperty().addListener((py, ov, nv) -> {
 			var scaling = nv.doubleValue() / HEIGHT_UNSCALED;
 			overlayScale.setX(scaling);
@@ -100,6 +97,12 @@ public abstract class GameScene2D implements GameScene {
 	public void setCanvas(Canvas canvas) {
 		this.canvas = canvas;
 		this.g = canvas.getGraphicsContext2D();
+	}
+
+	public void setScaling(double scaling) {
+		this.scaling = scaling;
+		canvas.setWidth(WIDTH_UNSCALED * scaling);
+		canvas.setHeight(HEIGHT_UNSCALED * scaling);
 	}
 
 	@Override
@@ -124,12 +127,6 @@ public abstract class GameScene2D implements GameScene {
 
 	@Override
 	public void setParentScene(Scene parentScene) {
-	}
-
-	public void setScaling(double scaling) {
-		this.scaling = scaling;
-		canvas.setWidth(WIDTH_UNSCALED * scaling);
-		canvas.setHeight(HEIGHT_UNSCALED * scaling);
 	}
 
 	protected double s(double value) {

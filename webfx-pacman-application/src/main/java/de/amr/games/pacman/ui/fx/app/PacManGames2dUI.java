@@ -149,7 +149,7 @@ public class PacManGames2dUI implements GameEventListener {
 		scene.heightProperty().addListener((py, ov, nv) -> {
 			double ratio = nv.doubleValue() / MinGamePage.HEIGHT;
 			double scaling = ratio * 0.85;
-			if (scaling >= 2.0) {
+			if (scaling >= 2.0) { //TODO fixme
 				//gamePage.scale(scaling);
 				Logger.info("Scaled game page to {}", scaling);
 			} else {

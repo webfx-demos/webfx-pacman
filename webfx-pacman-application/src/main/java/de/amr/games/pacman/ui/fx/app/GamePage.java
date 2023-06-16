@@ -41,7 +41,6 @@ public class GamePage {
 	protected final FlashMessageView flashMessageView = new FlashMessageView();
 	protected final BorderPane sceneContainer;
 	protected final Pane helpButton;
-	protected boolean canvasScaled = false;
 
 	public GamePage(PacManGames2dUI ui) {
 		this.ui = ui;
