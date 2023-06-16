@@ -144,17 +144,14 @@ public class PacManGames2dUI implements GameEventListener {
 
 	protected void createGamePage() {
 		gamePage = new MinGamePage(this);
-		scene.heightProperty().addListener((py, ov, nv) -> {
-			double ratio = nv.doubleValue() / MinGamePage.HEIGHT;
-			double scaling = ratio * 0.85;
-			if (scaling >= 2.0) { //TODO fixme
-				//gamePage.scale(scaling);
-				Logger.info("Scaled game page to {}", scaling);
-			} else {
-				Logger.info("Cannot scale below 2, tried {}", scaling);
-			}
-		});
-		gamePage.scale(scene.getHeight() / MinGamePage.HEIGHT * 0.85);
+		scene.heightProperty().addListener((py, ov, nv) -> scale(nv.doubleValue()));
+		scale(scene.getHeight());
+	}
+
+	private void scale(double sceneHeight) {
+		double ratio = sceneHeight / MinGamePage.HEIGHT;
+		ratio = 0.5 * Math.floor(ratio * 2); // scale in discrete steps
+		gamePage.scale(ratio * 0.88);
 	}
 
 	protected void showGamePage() {

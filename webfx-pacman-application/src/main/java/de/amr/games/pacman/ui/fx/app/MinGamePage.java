@@ -43,8 +43,8 @@ public class MinGamePage {
 
         root.setBackground(ui.theme().background("wallpaper.background"));
         root.setCenter(rootPane);
-        root.setOnKeyPressed(this::handleKeyPressed);
 
+        root.setOnKeyPressed(this::handleKeyPressed);
         canvas.setOnMouseClicked(this::handleMouseClickOnCanvas);
         new PacMouseSteering(this, canvas, () -> ui.game().level().map(GameLevel::pac).orElse(null));
     }
