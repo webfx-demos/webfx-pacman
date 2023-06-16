@@ -150,7 +150,7 @@ public class PacManGames2dUI implements GameEventListener {
 			double ratio = nv.doubleValue() / MinGamePage.HEIGHT;
 			double scaling = ratio * 0.85;
 			if (scaling >= 2.0) {
-				gamePage.scale(scaling);
+				//gamePage.scale(scaling);
 				Logger.info("Scaled game page to {}", scaling);
 			} else {
 				Logger.info("Cannot scale below 2, tried {}", scaling);

@@ -34,7 +34,7 @@ public class MinGamePage {
 
         rootPane.setBackground(ResourceManager.coloredBackground(Color.gray(0.0)));
         rootPane.setBorder(new Border(new BorderStroke(Color.WHITE, BorderStrokeStyle.SOLID,
-                new CornerRadii(20), new BorderWidths(20))));
+                new CornerRadii(20), new BorderWidths(10))));
         rootPane.setCenter(canvas);
 
         root.setBackground(ui.theme().background("wallpaper.background"));
@@ -72,7 +72,10 @@ public class MinGamePage {
         if (gameScene != null) {
             gameScene.setScaling(scaling);
         }
-        rootPane.setMaxSize(WIDTH * scaling * 1.2, HEIGHT * scaling * 1.1);
+        double w = WIDTH * scaling + 80;
+        double h = HEIGHT * scaling + 30;
+        rootPane.setMinSize(w, h);
+        rootPane.setMaxSize(w, h);
     }
 
     public double getScaling() {
