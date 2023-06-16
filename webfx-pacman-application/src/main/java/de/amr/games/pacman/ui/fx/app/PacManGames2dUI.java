@@ -108,7 +108,6 @@ public class PacManGames2dUI implements GameEventListener {
 	}
 
 	protected void configureGameScenes() {
-		//@formatter:off
 		configMsPacMan = new GameSceneConfiguration(
 			new BootScene(this),
 			new MsPacManIntroScene(this),
@@ -129,7 +128,6 @@ public class PacManGames2dUI implements GameEventListener {
 			new PacManCutscene2(this),
 			new PacManCutscene3(this)
 		);
-  	//@formatter:on
 	}
 
 	protected void createStartPage() {

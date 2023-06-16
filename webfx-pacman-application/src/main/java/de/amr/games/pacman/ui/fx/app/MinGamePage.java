@@ -2,8 +2,10 @@ package de.amr.games.pacman.ui.fx.app;
 
 import de.amr.games.pacman.controller.GameController;
 import de.amr.games.pacman.controller.GameState;
+import de.amr.games.pacman.model.GameLevel;
 import de.amr.games.pacman.model.GameVariant;
 import de.amr.games.pacman.ui.fx.PacManGames2d;
+import de.amr.games.pacman.ui.fx.input.PacMouseSteering;
 import de.amr.games.pacman.ui.fx.input.Keyboard;
 import de.amr.games.pacman.ui.fx.scene.GameScene;
 import de.amr.games.pacman.ui.fx.scene2d.GameScene2D;
@@ -16,7 +18,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import org.tinylog.Logger;
 
 public class MinGamePage {
 
@@ -45,6 +46,7 @@ public class MinGamePage {
         root.setOnKeyPressed(this::handleKeyPressed);
 
         canvas.setOnMouseClicked(this::handleMouseClickOnCanvas);
+        new PacMouseSteering(this, canvas, () -> ui.game().level().map(GameLevel::pac).orElse(null));
     }
 
     private void handleMouseClickOnCanvas(MouseEvent mouseEvent) {
@@ -103,6 +105,10 @@ public class MinGamePage {
 
     public FlashMessageView flashMessageView() {
         return flashMessageView;
+    }
+
+    public Canvas getCanvas() {
+        return canvas;
     }
 
     protected void handleKeyPressed(KeyEvent keyEvent) {
