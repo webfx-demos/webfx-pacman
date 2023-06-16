@@ -20,6 +20,7 @@
 - What is the line `DeviceSceneUtil.onFontsAndImagesLoaded(() -> {} , GameAssets.Manager.getLoadedImages());` good for?
 
 ## Additional/new functionality needed
-- Touch event support
-- Load/save highscore (local storage API)
-- [x] Initial game variant selection based on URL (HTTP domain) 
+- [x] Touch/mouse control of Pac-Man
+- [ ] Load/save highscore (local storage API)
+- [x] Initial game variant selection based on URL (HTTP domain)
+- [x] Discrete "scaling" (resizing) of canvas
