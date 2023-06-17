@@ -10,6 +10,7 @@ module webfx.pacman.application {
     requires javafx.media;
     requires webfx.platform.console;
     requires webfx.platform.resource;
+    requires webfx.platform.storage;
     requires webfx.platform.useragent;
     requires webfx.platform.util;
     requires webfx.platform.windowlocation;
