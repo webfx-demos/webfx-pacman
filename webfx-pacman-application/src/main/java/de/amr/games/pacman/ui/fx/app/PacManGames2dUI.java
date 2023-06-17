@@ -53,7 +53,7 @@ public class PacManGames2dUI implements GameEventListener {
 	protected Stage stage;
 	protected Scene scene;
 	protected StartPage startPage;
-	protected MinGamePage gamePage;
+	protected GamePage gamePage;
 	protected HelpMenuFactory helpMenuFactory;
 	protected KeyboardSteering keyboardPlayerSteering;
 	protected SoundHandler soundHandler;
@@ -143,14 +143,14 @@ public class PacManGames2dUI implements GameEventListener {
 	}
 
 	protected void createGamePage() {
-		gamePage = new MinGamePage(this);
+		gamePage = new GamePage(this);
 		scene.heightProperty().addListener((py, ov, nv) -> scale(nv.doubleValue()));
 		scale(scene.getHeight());
 	}
 
 	private void scale(double sceneHeight) {
-		double ratio = sceneHeight / MinGamePage.HEIGHT;
-		ratio = 0.5 * Math.floor(ratio * 2); // scale in discrete steps
+		double ratio = sceneHeight / GamePage.MAZE_HEIGHT;
+		ratio = 0.25 * Math.floor(ratio * 4); // scale in discrete steps
 		gamePage.scale(ratio * 0.88);
 	}
 

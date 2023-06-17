@@ -25,7 +25,7 @@ package de.amr.games.pacman.ui.fx.input;
 
 import de.amr.games.pacman.lib.Direction;
 import de.amr.games.pacman.model.actors.Pac;
-import de.amr.games.pacman.ui.fx.app.MinGamePage;
+import de.amr.games.pacman.ui.fx.app.GamePage;
 import javafx.scene.Node;
 import org.tinylog.Logger;
 
@@ -39,7 +39,7 @@ public class PacMouseSteering {
     private Supplier<Pac> pacSupplier;
     private boolean alternateIntermediateDirection;
 
-    public PacMouseSteering(MinGamePage page, Node node, Supplier<Pac> pacSupplier) {
+    public PacMouseSteering(GamePage page, Node node, Supplier<Pac> pacSupplier) {
         this.pacSupplier = pacSupplier;
         node.setOnMouseDragged(event -> {
             Logger.info("Dragged: {}", event);
