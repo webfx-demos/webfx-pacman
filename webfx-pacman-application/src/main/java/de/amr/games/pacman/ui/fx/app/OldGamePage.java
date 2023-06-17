@@ -56,7 +56,7 @@ public class OldGamePage {
 		helpButton.setCursor(Cursor.HAND);
 		helpButton.setOnMouseClicked(e -> {
 			if (e.getClickCount() == 1 && e.getButton() == MouseButton.PRIMARY) {
-				ui.showHelp();
+				//ui.showHelp();
 			}
 		});
 
@@ -161,7 +161,7 @@ public class OldGamePage {
 
 	protected void handleKeyboardInput() {
 		if (Keyboard.pressed(PacManGames2d.KEY_SHOW_HELP)) {
-			ui.showHelp();
+			//ui.showHelp();
 		} else if (Keyboard.pressed(PacManGames2d.KEY_AUTOPILOT)) {
 			ui.toggleAutopilot();
 		} else if (Keyboard.pressed(PacManGames2d.KEY_BOOT)) {

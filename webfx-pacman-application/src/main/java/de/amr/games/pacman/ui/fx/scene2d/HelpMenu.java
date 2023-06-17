@@ -8,6 +8,7 @@ import de.amr.games.pacman.controller.GameController;
 import de.amr.games.pacman.controller.GameState;
 import javafx.animation.Animation.Status;
 import javafx.animation.FadeTransition;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
@@ -17,7 +18,7 @@ import static de.amr.games.pacman.lib.Globals.oneOf;
 /**
  * @author Armin Reichert
  */
-public class HelpMenu extends VBox {
+public class HelpMenu extends BorderPane {
 
 	private final FadeTransition fadingTransition;
 
@@ -46,11 +47,7 @@ public class HelpMenu extends VBox {
 				menu = game.level().get().isDemoLevel() ? menus.menuDemoLevel() : menus.menuPlaying();
 			}
 		}
-		if (menu == null) {
-			getChildren().clear();
-		} else {
-			getChildren().setAll(menu);
-		}
+		setCenter(menu);
 		setOpacity(1);
 		if (fadingTransition.getStatus() == Status.RUNNING) {
 			fadingTransition.playFromStart();

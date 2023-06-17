@@ -25,3 +25,4 @@
 - [x] Initial game variant selection based on URL (HTTP domain)
 - [x] Discrete "scaling" (resizing) of canvas
 - [ ] Help menus
+- [ ] Signature/copyright

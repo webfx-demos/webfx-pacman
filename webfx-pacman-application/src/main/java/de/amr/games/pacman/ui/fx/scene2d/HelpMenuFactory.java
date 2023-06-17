@@ -62,7 +62,7 @@ public class HelpMenuFactory {
 	private Font font;
 
 	public HelpMenuFactory() {
-		this.font = Font.font("Sans", 12);
+		this.font = Font.font("Sans", 24);
 	}
 
 	public Pane menuIntro() {

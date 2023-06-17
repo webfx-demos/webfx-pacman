@@ -164,7 +164,7 @@ public class PacManGames2dUI implements GameEventListener {
 
 	protected void configureHelpMenus() {
 		helpMenuFactory = new HelpMenuFactory();
-		helpMenuFactory.setFont(theme.font("font.monospaced", 12));
+		helpMenuFactory.setFont(theme.font("font.monospaced", 24));
 	}
 
 	protected void configurePacSteering() {
@@ -286,13 +286,6 @@ public class PacManGames2dUI implements GameEventListener {
 	@Override
 	public void onSoundEvent(SoundEvent e) {
 		soundHandler.onSoundEvent(e);
-	}
-
-	public void showHelp() {
-		if (currentGameScene instanceof GameScene2D) {
-			var scene2D = (GameScene2D) currentGameScene;
-			scene2D.getHelpMenu().show(helpMenuFactory, MENU_OPEN_TIME);
-		}
 	}
 
 	public void showFlashMessage(String message, Object... args) {

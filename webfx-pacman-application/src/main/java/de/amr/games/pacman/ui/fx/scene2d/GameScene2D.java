@@ -27,6 +27,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -58,12 +59,8 @@ public abstract class GameScene2D implements GameScene {
 
 	public final BooleanProperty infoVisiblePy = new SimpleBooleanProperty(this, "infoVisible", false);
 
-	private final BorderPane root;
 	protected Canvas canvas;
 	protected GraphicsContext g;
-	protected final Pane overlay;
-	private final Scale overlayScale = new Scale();
-	private final HelpMenu helpMenu;
 	private boolean scoreVisible;
 	private boolean creditVisible;
 	private boolean roundedCorners = true;
@@ -72,25 +69,6 @@ public abstract class GameScene2D implements GameScene {
 
 	protected GameScene2D(PacManGames2dUI ui) {
 		this.ui = ui;
-
-		helpMenu = new HelpMenu();
-		helpMenu.setTranslateX(10);
-		helpMenu.setTranslateY(HEIGHT_UNSCALED * 0.2);
-
-		overlay = new Pane();
-		overlay.getChildren().add(helpMenu);
-		overlay.getTransforms().add(overlayScale);
-
-		var layers = new StackPane(overlay);
-
-		root = new BorderPane(layers);
-//		// always scale overlay pane to cover subscene
-		root.heightProperty().addListener((py, ov, nv) -> {
-			var scaling = nv.doubleValue() / HEIGHT_UNSCALED;
-			overlayScale.setX(scaling);
-			overlayScale.setY(scaling);
-		});
-
 		infoVisiblePy.bind(PacManGames2d.PY_SHOW_DEBUG_INFO); // should probably be elsewhere
 	}
 
@@ -150,21 +128,13 @@ public abstract class GameScene2D implements GameScene {
 		return ui;
 	}
 
-	@Override
-	public BorderPane root() {
-		return root;
-	}
-
 	public Canvas getCanvas() {
 		return canvas;
 	}
 
-	public Pane getOverlay() {
-		return overlay;
-	}
-
-	public HelpMenu getHelpMenu() {
-		return helpMenu;
+	@Override
+	public Region root() {
+		return null;
 	}
 
 	@Override

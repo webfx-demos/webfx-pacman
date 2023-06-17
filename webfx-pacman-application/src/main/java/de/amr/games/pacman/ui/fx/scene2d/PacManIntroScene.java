@@ -35,7 +35,6 @@ public class PacManIntroScene extends GameScene2D {
 	public PacManIntroScene(PacManGames2dUI ui) {
 		super(ui);
 		signature = new Signature();
-		overlay.getChildren().add(signature.root());
 	}
 
 	@Override
