@@ -23,22 +23,19 @@ import org.tinylog.Logger;
 
 public class GamePage {
 
-    static final double MAZE_WIDTH = 28 * 8;
-    static final double MAZE_HEIGHT = 36 * 8;
-
     protected final PacManGames2dUI ui;
     protected final FlashMessageView flashMessageView = new FlashMessageView();
     private BorderPane root = new BorderPane();
     private BorderPane rootPane = new BorderPane();
     private Canvas canvas = new Canvas();
 
-    private GameScene2D gameScene;
+    private GameScene2D gameScene2D;
     private double scaling = 1.0;
 
     public GamePage(PacManGames2dUI ui) {
         this.ui = ui;
 
-        rootPane.setBackground(ResourceManager.coloredBackground(Color.gray(0.0)));
+        rootPane.setBackground(ResourceManager.coloredBackground(Color.BLACK));
         rootPane.setCenter(canvas);
         setRootPaneBorder(ArcadeTheme.PALE, 10, 20);
 
@@ -57,27 +54,26 @@ public class GamePage {
 
     private void handleMouseClickOnCanvas(MouseEvent mouseEvent) {
         var config = ui.game().variant() == GameVariant.MS_PACMAN ? ui.configMsPacMan : ui.configPacMan;
-        if (gameScene == config.introScene()
-                || gameScene == config.creditScene() && ui.game().credit() == 0
-                || gameScene == config.playScene() && ui.game().level().get().isDemoLevel()) {
+        if (gameScene2D == config.introScene()
+                || gameScene2D == config.creditScene() && ui.game().credit() == 0
+                || gameScene2D == config.playScene() && ui.game().level().get().isDemoLevel()) {
             // simulate key press "5" (add credit)
             ui.addCredit();
-        } else if (gameScene == config.creditScene() /* credit > 0 */) {
+        } else if (gameScene2D == config.creditScene() /* credit > 0 */) {
             // simulate key press "1" (start game)
             ui.startGame();
         }
-
     }
 
     public void update() {
-        if (gameScene != null) {
-            gameScene.update();
+        if (gameScene2D != null) {
+            gameScene2D.update();
         }
     }
 
     public void render() {
-        if (gameScene != null) {
-            gameScene.render();
+        if (gameScene2D != null) {
+            gameScene2D.render();
         }
         flashMessageView.update();
     }
@@ -86,27 +82,31 @@ public class GamePage {
         return root;
     }
 
-    void setGameScene(GameScene scene) {
-        gameScene = (GameScene2D)  scene;
-        gameScene.setCanvas(canvas);
+    public void setGameScene(GameScene gameScene) {
+        gameScene2D = (GameScene2D) gameScene;
+        gameScene2D.setCanvas(canvas);
         scale(scaling);
+        //TODO not sure if needed
+        root.removeEventHandler(KeyEvent.KEY_PRESSED, ui.keyboardPlayerSteering);
         root.addEventHandler(KeyEvent.KEY_PRESSED, ui.keyboardPlayerSteering);
         root.requestFocus();
     }
 
     public void scale(double scaling) {
         this.scaling = scaling;
-        if (gameScene != null) {
-            gameScene.setScaling(scaling);
+        if (gameScene2D != null) {
+            gameScene2D.setScaling(scaling);
         }
-        double w = MAZE_WIDTH * scaling + 60;
-        double h = MAZE_HEIGHT * scaling + 30;
+
+        double w = Math.round( (GameScene2D.WIDTH_UNSCALED  + 30) * scaling );
+        double h = Math.round( (GameScene2D.HEIGHT_UNSCALED + 15) * scaling );
         rootPane.setMinSize(w, h);
         rootPane.setMaxSize(w, h);
 
-        double borderWidth = Math.max(4, Math.ceil(h / 75));
-        Logger.info("Resize game page. height: {} border: {}", h, borderWidth);
-        setRootPaneBorder(ArcadeTheme.PALE, borderWidth, 20);
+        double borderWidth = Math.max(5, Math.ceil(h / 60));
+        double cornerRadius = Math.ceil(15 * scaling);
+        Logger.info("Resize game page: scaling: {} height: {} border: {}", scaling, h, borderWidth);
+        setRootPaneBorder(ArcadeTheme.PALE, borderWidth, cornerRadius);
     }
 
     public double getScaling() {

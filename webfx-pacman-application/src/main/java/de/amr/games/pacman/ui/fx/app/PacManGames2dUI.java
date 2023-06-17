@@ -149,9 +149,9 @@ public class PacManGames2dUI implements GameEventListener {
 	}
 
 	private void scale(double sceneHeight) {
-		double ratio = sceneHeight / GamePage.MAZE_HEIGHT;
-		ratio = 0.25 * Math.floor(ratio * 4); // scale in discrete steps
-		gamePage.scale(ratio * 0.88);
+		double ratio = sceneHeight / GameScene2D.HEIGHT_UNSCALED;
+		double s = 0.90 * (0.25 * Math.floor(ratio * 4)); // scale in discrete steps
+		gamePage.scale(s);
 	}
 
 	protected void showGamePage() {

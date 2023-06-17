@@ -38,7 +38,7 @@ import java.util.List;
 import static de.amr.games.pacman.lib.Globals.*;
 
 /**
- * Base class of all 2D scenes. Each 2D scene has its own canvas.
+ * Base class of all 2D scenes.
  * 
  * @author Armin Reichert
  */
