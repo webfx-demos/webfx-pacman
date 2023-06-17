@@ -7,6 +7,7 @@ import de.amr.games.pacman.model.GameVariant;
 import de.amr.games.pacman.ui.fx.PacManGames2d;
 import de.amr.games.pacman.ui.fx.input.PacMouseSteering;
 import de.amr.games.pacman.ui.fx.input.Keyboard;
+import de.amr.games.pacman.ui.fx.rendering2d.ArcadeTheme;
 import de.amr.games.pacman.ui.fx.scene.GameScene;
 import de.amr.games.pacman.ui.fx.scene2d.GameScene2D;
 import de.amr.games.pacman.ui.fx.util.FlashMessageView;
@@ -18,6 +19,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import org.tinylog.Logger;
 
 public class GamePage {
 
@@ -37,9 +39,8 @@ public class GamePage {
         this.ui = ui;
 
         rootPane.setBackground(ResourceManager.coloredBackground(Color.gray(0.0)));
-        rootPane.setBorder(new Border(new BorderStroke(Color.WHITE, BorderStrokeStyle.SOLID,
-                new CornerRadii(20), new BorderWidths(10))));
         rootPane.setCenter(canvas);
+        setRootPaneBorder(ArcadeTheme.PALE, 10, 20);
 
         root.setBackground(ui.theme().background("wallpaper.background"));
         root.setCenter(rootPane);
@@ -47,6 +48,11 @@ public class GamePage {
         root.setOnKeyPressed(this::handleKeyPressed);
         canvas.setOnMouseClicked(this::handleMouseClickOnCanvas);
         new PacMouseSteering(this, canvas, () -> ui.game().level().map(GameLevel::pac).orElse(null));
+    }
+
+    private void setRootPaneBorder(Color color, double width, double cornerRadius) {
+        rootPane.setBorder(new Border(new BorderStroke(color, BorderStrokeStyle.SOLID,
+                new CornerRadii(cornerRadius), new BorderWidths(width))));
     }
 
     private void handleMouseClickOnCanvas(MouseEvent mouseEvent) {
@@ -97,6 +103,10 @@ public class GamePage {
         double h = MAZE_HEIGHT * scaling + 30;
         rootPane.setMinSize(w, h);
         rootPane.setMaxSize(w, h);
+
+        double borderWidth = Math.max(4, Math.ceil(h / 75));
+        Logger.info("Resize game page. height: {} border: {}", h, borderWidth);
+        setRootPaneBorder(ArcadeTheme.PALE, borderWidth, 20);
     }
 
     public double getScaling() {
