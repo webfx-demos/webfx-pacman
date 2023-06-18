@@ -28,6 +28,8 @@ import org.tinylog.Logger;
 
 public class GamePage {
 
+    public static final Duration MENU_FADING_DELAY = Duration.seconds(1.5);
+
     private final PacManGames2dUI ui;
     private final FlashMessageView flashMessageView = new FlashMessageView();
     private final StackPane root = new StackPane();
@@ -83,7 +85,7 @@ public class GamePage {
 
     private void showHelpMenu() {
         helpMenuFactory.setFont(ui.theme().font("font.monospaced", 14 * scaling));
-        helpMenu.show(helpMenuFactory, Duration.seconds(1.5));
+        helpMenu.show(helpMenuFactory, MENU_FADING_DELAY);
         helpMenu.setTranslateX(10 * scaling);
         helpMenu.setTranslateY(30 * scaling);
     }

@@ -44,8 +44,6 @@ import static de.amr.games.pacman.lib.Globals.checkNotNull;
  */
 public class PacManGames2dUI implements GameEventListener {
 
-	public static final Duration MENU_OPEN_TIME = Duration.seconds(2);
-
 	protected GameSceneConfiguration configMsPacMan;
 	protected GameSceneConfiguration configPacMan;
 	protected GameClock clock;

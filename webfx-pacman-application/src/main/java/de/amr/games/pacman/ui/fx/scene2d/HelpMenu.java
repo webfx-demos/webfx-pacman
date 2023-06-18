@@ -32,9 +32,9 @@ public class HelpMenu extends BorderPane {
 	 * Makes the help root visible for given duration and then plays the close animation.
 	 * 
 	 * @param menus        available menu collection
-	 * @param openDuration duration the menu stays open
+	 * @param fadingDelay duration before menu starts fading out
 	 */
-	public void show(HelpMenuFactory menus, Duration openDuration) {
+	public void show(HelpMenuFactory menus, Duration fadingDelay) {
 		var game = GameController.it().game();
 		var gameState = GameController.it().state();
 		Pane menu = null;
@@ -52,7 +52,7 @@ public class HelpMenu extends BorderPane {
 		if (fadingTransition.getStatus() == Status.RUNNING) {
 			fadingTransition.playFromStart();
 		}
-		fadingTransition.setDelay(openDuration);
+		fadingTransition.setDelay(fadingDelay);
 		fadingTransition.play();
 	}
 }
