@@ -42,7 +42,7 @@ public class PacMouseSteering {
     public PacMouseSteering(GamePage page, Node node, Supplier<Pac> pacSupplier) {
         this.pacSupplier = pacSupplier;
         node.setOnMouseDragged(event -> {
-            Logger.info("Dragged: {}", event);
+            Logger.trace("Dragged: {}", event);
             Pac pac = pacSupplier.get();
             if (pac != null) {
                 double x = event.getX() / page.getScaling();
@@ -50,7 +50,7 @@ public class PacMouseSteering {
                 var dir = computeDirection(pac, x, y);
                 if (dir != null) {
                     pac.setWishDir(dir);
-                    Logger.info("Pac should move {}", dir);
+                    Logger.trace("Pac should move {}", dir);
                 }
             }
         });

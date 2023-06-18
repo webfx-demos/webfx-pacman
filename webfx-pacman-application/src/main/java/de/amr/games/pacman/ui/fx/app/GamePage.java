@@ -68,7 +68,7 @@ public class GamePage {
         popupLayer.setOnMouseClicked(this::handleMouseClick);
         popupLayer.getChildren().addAll(helpButton, helpMenu);
 
-        layoutPane.setOnKeyPressed(this::handleKeyPressed);
+        root.setOnKeyPressed(this::handleKeyPressed);
         new PacMouseSteering(this, popupLayer, () -> ui.game().level().map(GameLevel::pac).orElse(null));
 
         //layoutPane.setBorder(roundedBorder(Color.YELLOW, 10, 3));
@@ -83,6 +83,7 @@ public class GamePage {
     }
 
     private void handleMouseClick(MouseEvent mouseEvent) {
+        root.requestFocus();
         if (mouseEvent.isConsumed()) {
             return;
         }
@@ -143,11 +144,11 @@ public class GamePage {
         gameScene2D.setCanvas(canvas);
         scale(scaling);
         if (isPlayScene(gameScene)) {
-            layoutPane.addEventHandler(KeyEvent.KEY_PRESSED, ui.keyboardPlayerSteering);
+            root.addEventHandler(KeyEvent.KEY_PRESSED, ui.keyboardPlayerSteering);
         } else {
-            layoutPane.removeEventHandler(KeyEvent.KEY_PRESSED, ui.keyboardPlayerSteering);
+            root.removeEventHandler(KeyEvent.KEY_PRESSED, ui.keyboardPlayerSteering);
         }
-        layoutPane.requestFocus();
+        root.requestFocus();
         updateHelpButton();
     }
 
