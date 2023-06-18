@@ -44,7 +44,7 @@ public class GamePage {
     public GamePage(PacManGames2dUI ui) {
         this.ui = ui;
 
-        root.getChildren().addAll(layoutPane, popupLayer);
+        root.getChildren().addAll(layoutPane, popupLayer, flashMessageView);
 
         //TODO in desktop version, corners are solid black, should be transparent
         rootPane.setBackground(ResourceManager.coloredBackground(Color.BLACK));
