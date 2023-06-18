@@ -9,6 +9,7 @@ import de.amr.games.pacman.ui.fx.input.PacMouseSteering;
 import de.amr.games.pacman.ui.fx.input.Keyboard;
 import de.amr.games.pacman.ui.fx.rendering2d.ArcadeTheme;
 import de.amr.games.pacman.ui.fx.scene.GameScene;
+import de.amr.games.pacman.ui.fx.scene.GameSceneConfiguration;
 import de.amr.games.pacman.ui.fx.scene2d.GameScene2D;
 import de.amr.games.pacman.ui.fx.scene2d.HelpMenu;
 import de.amr.games.pacman.ui.fx.scene2d.HelpMenuFactory;
@@ -17,7 +18,6 @@ import de.amr.games.pacman.ui.fx.util.ResourceManager;
 import de.amr.games.pacman.ui.fx.util.Ufx;
 import javafx.scene.Parent;
 import javafx.scene.canvas.Canvas;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
@@ -26,20 +26,17 @@ import javafx.scene.paint.Color;
 import javafx.util.Duration;
 import org.tinylog.Logger;
 
-
 public class GamePage {
 
-    protected final PacManGames2dUI ui;
-    protected final FlashMessageView flashMessageView = new FlashMessageView();
-    private StackPane root = new StackPane();
-
-    private BorderPane layoutPane = new BorderPane();
-    private BorderPane rootPane = new BorderPane();
-    private Canvas canvas = new Canvas();
-
-    private Pane popupLayer = new Pane();
-    private HelpMenuFactory helpMenuFactory = new HelpMenuFactory();
-    private HelpMenu helpMenu = new HelpMenu();
+    private final PacManGames2dUI ui;
+    private final FlashMessageView flashMessageView = new FlashMessageView();
+    private final StackPane root = new StackPane();
+    private final BorderPane layoutPane = new BorderPane();
+    private final BorderPane rootPane = new BorderPane();
+    private final Canvas canvas = new Canvas();
+    private final Pane popupLayer = new Pane();
+    private final HelpMenuFactory helpMenuFactory = new HelpMenuFactory();
+    private final HelpMenu helpMenu = new HelpMenu();
 
     private GameScene2D gameScene2D;
     private double scaling = 1.0;
@@ -49,15 +46,16 @@ public class GamePage {
 
         root.getChildren().addAll(layoutPane, popupLayer);
 
+        //TODO in desktop version, corners are solid black, should be transparent
         rootPane.setBackground(ResourceManager.coloredBackground(Color.BLACK));
+        rootPane.setBorder(roundedBorder(ArcadeTheme.PALE, 20, 10));
         rootPane.setCenter(canvas);
-        setRootPaneBorder(ArcadeTheme.PALE, 10, 20);
 
         layoutPane.setBackground(ui.theme().background("wallpaper.background"));
+        //layoutPane.setBorder(roundedBorder(Color.YELLOW, 10, 1));
         layoutPane.setCenter(rootPane);
 
-//        popupLayer.setBorder(new Border(new BorderStroke(Color.WHITE, BorderStrokeStyle.SOLID,
-//                new CornerRadii(5), new BorderWidths(1))));
+        //popupLayer.setBorder(roundedBorder(Color.WHITE, 5, 1));
         popupLayer.setOnMouseClicked(this::handleMouseClick);
         popupLayer.getChildren().add(helpMenu);
 
@@ -65,22 +63,20 @@ public class GamePage {
         new PacMouseSteering(this, canvas, () -> ui.game().level().map(GameLevel::pac).orElse(null));
     }
 
-    private void setRootPaneBorder(Color color, double width, double cornerRadius) {
-        rootPane.setBorder(new Border(new BorderStroke(color, BorderStrokeStyle.SOLID,
-                new CornerRadii(cornerRadius), new BorderWidths(width))));
+    private static Border roundedBorder(Color color, double cornerRadius, double width) {
+        return new Border(
+            new BorderStroke(color, BorderStrokeStyle.SOLID, new CornerRadii(cornerRadius), new BorderWidths(width)));
     }
 
     private void handleMouseClick(MouseEvent mouseEvent) {
         if (mouseEvent.getButton() == MouseButton.PRIMARY) {
-            var config = ui.game().variant() == GameVariant.MS_PACMAN ? ui.configMsPacMan : ui.configPacMan;
+            var config = sceneConfiguration();
             if (gameScene2D == config.introScene()
                     || gameScene2D == config.creditScene() && ui.game().credit() == 0
                     || gameScene2D == config.playScene() && ui.game().level().get().isDemoLevel()) {
-                // simulate key press "5" (add credit)
-                ui.addCredit();
+                ui.addCredit(); // simulate key press "5" (add credit)
             } else if (gameScene2D == config.creditScene() /* credit > 0 */) {
-                // simulate key press "1" (start game)
-                ui.startGame();
+                ui.startGame(); // simulate key press "1" (start game)
             }
         }
     }
@@ -113,10 +109,21 @@ public class GamePage {
         gameScene2D = (GameScene2D) gameScene;
         gameScene2D.setCanvas(canvas);
         scale(scaling);
-        //TODO not sure if needed
-        layoutPane.removeEventHandler(KeyEvent.KEY_PRESSED, ui.keyboardPlayerSteering);
-        layoutPane.addEventHandler(KeyEvent.KEY_PRESSED, ui.keyboardPlayerSteering);
+        if (isPlayScene(gameScene)) {
+            layoutPane.addEventHandler(KeyEvent.KEY_PRESSED, ui.keyboardPlayerSteering);
+        } else {
+            layoutPane.removeEventHandler(KeyEvent.KEY_PRESSED, ui.keyboardPlayerSteering);
+        }
         layoutPane.requestFocus();
+    }
+
+    private boolean isPlayScene(GameScene gameScene) {
+        var config = sceneConfiguration();
+        return gameScene == config.playScene();
+    }
+
+    private GameSceneConfiguration sceneConfiguration() {
+        return ui.game().variant() == GameVariant.MS_PACMAN ? ui.configMsPacMan : ui.configPacMan;
     }
 
     public void scale(double scaling) {
@@ -124,17 +131,15 @@ public class GamePage {
         if (gameScene2D != null) {
             gameScene2D.setScaling(scaling);
         }
-
         double w = Math.round( (GameScene2D.WIDTH_UNSCALED  + 30) * scaling );
         double h = Math.round( (GameScene2D.HEIGHT_UNSCALED + 15) * scaling );
         rootPane.setMinSize(w, h);
         rootPane.setMaxSize(w, h);
-
         popupLayer.setMaxSize(w, h);
 
         double borderWidth = Math.max(5, Math.ceil(h / 60));
         double cornerRadius = Math.ceil(15 * scaling);
-        setRootPaneBorder(ArcadeTheme.PALE, borderWidth, cornerRadius);
+        rootPane.setBorder(roundedBorder(ArcadeTheme.PALE, cornerRadius, borderWidth));
 
         Logger.info("Scaled game page: scaling: {} height: {} border: {}", scaling, h, borderWidth);
     }
