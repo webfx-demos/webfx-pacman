@@ -150,7 +150,7 @@ public abstract class GameScene2D implements GameScene {
 		drawSceneBackground();
 		if (isScoreVisible()) {
 			drawScore(game().score(), "SCORE", t(1), t(1));
-			drawScore(game().highScore(), "HIGH SCORE", t(16), t(1));
+			drawScore(game().highScore(), "HIGH SCORE", t(14), t(1));
 		}
 		if (isCreditVisible()) {
 			drawCredit(game().credit(), t(2), t(36) - 1);
