@@ -29,24 +29,12 @@ public class HelpMenu extends BorderPane {
 	}
 
 	/**
-	 * Makes the help root visible for given duration and then plays the close animation.
+	 * Makes the menu visible for given duration and then plays the close animation.
 	 * 
-	 * @param menus        available menu collection
+	 * @param menu        menu pane
 	 * @param fadingDelay duration before menu starts fading out
 	 */
-	public void show(HelpMenuFactory menus, Duration fadingDelay) {
-		var game = GameController.it().game();
-		var gameState = GameController.it().state();
-		Pane menu = null;
-		if (gameState == GameState.INTRO) {
-			menu = menus.menuIntro();
-		} else if (gameState == GameState.CREDIT) {
-			menu = menus.menuCredit();
-		} else if (oneOf(gameState, GameState.READY, GameState.HUNTING, GameState.PACMAN_DYING, GameState.GHOST_DYING)) {
-			if (game.level().isPresent()) {
-				menu = game.level().get().isDemoLevel() ? menus.menuDemoLevel() : menus.menuPlaying();
-			}
-		}
+	public void show(Pane menu, Duration fadingDelay) {
 		setCenter(menu);
 		setOpacity(1);
 		if (fadingTransition.getStatus() == Status.RUNNING) {
