@@ -77,7 +77,7 @@ public class GamePage {
         //layoutPane.setBorder(roundedBorder(Color.YELLOW, 10, 3));
         //popupLayer.setBorder(roundedBorder(Color.GREEN, 10, 3));
 
-        scale(scaling);
+        //scale(scaling);
     }
 
     private static Border roundedBorder(Color color, double cornerRadius, double width) {
