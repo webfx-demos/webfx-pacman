@@ -13,6 +13,7 @@ import de.amr.games.pacman.ui.fx.scene.GameSceneConfiguration;
 import de.amr.games.pacman.ui.fx.scene2d.GameScene2D;
 import de.amr.games.pacman.ui.fx.scene2d.HelpMenu;
 import de.amr.games.pacman.ui.fx.scene2d.HelpMenuFactory;
+import de.amr.games.pacman.ui.fx.scene2d.Signature;
 import de.amr.games.pacman.ui.fx.util.FlashMessageView;
 import de.amr.games.pacman.ui.fx.util.ResourceManager;
 import de.amr.games.pacman.ui.fx.util.Ufx;
@@ -25,6 +26,7 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.util.Duration;
 import org.tinylog.Logger;
 
@@ -44,6 +46,7 @@ public class GamePage {
     private final HelpMenuFactory helpMenuFactory = new HelpMenuFactory();
     private final HelpMenu helpMenu = new HelpMenu();
     private final Pane helpButton = new Pane();
+    private final Signature signature = new Signature();
 
     private GameScene2D gameScene2D;
     private double scaling = 1.0;
@@ -66,7 +69,7 @@ public class GamePage {
         helpButton.setVisible(false);
 
         popupLayer.setOnMouseClicked(this::handleMouseClick);
-        popupLayer.getChildren().addAll(helpButton, helpMenu);
+        popupLayer.getChildren().addAll(helpButton, helpMenu, signature.root());
 
         root.setOnKeyPressed(this::handleKeyPressed);
         new PacMouseSteering(this, popupLayer, () -> ui.game().level().map(GameLevel::pac).orElse(null));
@@ -150,6 +153,20 @@ public class GamePage {
         }
         root.requestFocus();
         updateHelpButton();
+        if (gameScene == sceneConfiguration().introScene()) {
+            signature.setMadeByFont(Font.font("Helvetica", 10*scaling ));
+            signature.setNameFont(ui.theme().font("font.handwriting", 8*scaling ));
+            if (ui.game().variant() == GameVariant.MS_PACMAN) {
+                signature.root().setTranslateX(50 * scaling);
+                signature.root().setTranslateY(40 * scaling);
+            } else {
+                signature.root().setTranslateX(50 * scaling);
+                signature.root().setTranslateY(25 * scaling);
+            }
+            signature.showAfterSeconds(3);
+        } else {
+            signature.hide();
+        }
     }
 
     private boolean isPlayScene(GameScene gameScene) {

@@ -8,16 +8,11 @@ import javafx.animation.FadeTransition;
 import javafx.animation.Interpolator;
 import javafx.animation.SequentialTransition;
 import javafx.animation.Transition;
-import javafx.geometry.Insets;
-import javafx.geometry.VPos;
 import javafx.scene.Node;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import javafx.scene.text.TextFlow;
 import javafx.util.Duration;
 
 /**
@@ -37,11 +32,11 @@ public class Signature {
 	public Signature() {
 		remakeText = new Text("Remake (2023) by ");
 		remakeText.setFill(Color.gray(0.6));
-		remakeText.setFont(Font.font("Helvetica", 9));
+		remakeText.setFont(Font.font("Helvetica", 14));
 
 		nameText = new Text("Armin Reichert");
 		nameText.setFill(Color.gray(0.6));
-		nameText.setFont(Font.font("Serif", 9));
+		nameText.setFont(Font.font("Serif", 14));
 
 		sentence = new GridPane();
 		sentence.setHgap(2);
@@ -64,13 +59,19 @@ public class Signature {
 		nameText.setFont(font);
 	}
 
+	public void setMadeByFont(Font font)
+	{
+		remakeText.setFont(font);
+	}
+
 	public Node root() {
 		return sentence;
 	}
 
-	public void show(double x, double y) {
-		sentence.setTranslateX(x);
-		sentence.setTranslateY(y);
+	public void showAfterSeconds(double afterSeconds) {
+		if (afterSeconds > 0) {
+			animation.setDelay(Duration.seconds(afterSeconds));
+		}
 		animation.play();
 	}
 

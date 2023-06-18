@@ -30,11 +30,9 @@ public class PacManIntroScene extends GameScene2D {
 
 	private PacManIntro intro;
 	private PacManIntro.Context ic;
-	private Signature signature;
 
 	public PacManIntroScene(PacManGames2dUI ui) {
 		super(ui);
-		signature = new Signature();
 	}
 
 	@Override
@@ -44,16 +42,7 @@ public class PacManIntroScene extends GameScene2D {
 		setCreditVisible(true);
 		setScoreVisible(true);
 
-		signature.setNameFont(ui().theme().font("font.handwriting", 9));
-		signature.hide();
-
 		intro = new PacManIntro();
-		intro.addStateChangeListener((oldState, newState) -> {
-			if (oldState == PacManIntro.State.SHOWING_POINTS) {
-				// TODO GWT-issue
-				signature.show(t(5.5), UserAgent.isBrowser()? t(32.5) : t(32));
-			}
-		});
 		ic = intro.context();
 
 		ic.pacMan.setAnimations(new PacAnimationsPacManGame(ic.pacMan, ss));
@@ -71,7 +60,6 @@ public class PacManIntroScene extends GameScene2D {
 	@Override
 	public void end() {
 		ui().soundHandler().stopVoice();
-		signature.hide();
 	}
 
 	@Override

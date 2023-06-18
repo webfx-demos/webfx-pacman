@@ -28,7 +28,6 @@ import dev.webfx.platform.useragent.UserAgent;
 public class MsPacManIntroScene extends GameScene2D {
 
 	private MsPacManIntro intro;
-	private final Signature signature = new Signature();
 
 	public MsPacManIntroScene(PacManGames2dUI ui) {
 		super(ui);
@@ -42,12 +41,6 @@ public class MsPacManIntroScene extends GameScene2D {
 		setScoreVisible(true);
 
 		intro = new MsPacManIntro();
-		intro.addStateChangeListener((oldState, newState) -> {
-			if (oldState == MsPacManIntro.State.START) {
-				//TODO GWT-issue
-				signature.show(t(5.5), UserAgent.isBrowser() ? t(33.0) : t(32));
-			}
-		});
 
 		var msPacMan = intro.context().msPacMan;
 		msPacMan.setAnimations(new PacAnimationsMsPacManGame(msPacMan, ss));
@@ -56,9 +49,6 @@ public class MsPacManIntroScene extends GameScene2D {
 			ghost.setAnimations(new GhostAnimationsMsPacManGame(ghost, ss));
 			ghost.selectAnimation(GhostAnimations.GHOST_NORMAL);
 		});
-
-		signature.setNameFont(ui().theme().font("font.handwriting", 9));
-		signature.hide();
 
 		intro.changeState(MsPacManIntro.State.START);
 	}
