@@ -24,5 +24,5 @@
 - [x] Load/save highscore (local storage API)
 - [x] Initial game variant selection based on URL (HTTP domain)
 - [x] Discrete "scaling" (resizing) of canvas
-- [ ] Help menus
-- [ ] Signature/copyright
+- [x] Help menus
+- [x] Signature/copyright

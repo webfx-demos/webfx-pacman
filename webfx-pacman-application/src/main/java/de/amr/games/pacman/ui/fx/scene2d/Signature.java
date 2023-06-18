@@ -8,6 +8,7 @@ import javafx.animation.FadeTransition;
 import javafx.animation.Interpolator;
 import javafx.animation.SequentialTransition;
 import javafx.animation.Transition;
+import javafx.geometry.VPos;
 import javafx.scene.Node;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
@@ -30,7 +31,7 @@ public class Signature {
 	private final Transition animation;
 
 	public Signature() {
-		remakeText = new Text("Remake (2023) by ");
+		remakeText = new Text("Remake (2023) by  ");
 		remakeText.setFill(Color.gray(0.6));
 		remakeText.setFont(Font.font("Helvetica", 14));
 
@@ -39,9 +40,11 @@ public class Signature {
 		nameText.setFont(Font.font("Serif", 14));
 
 		sentence = new GridPane();
-		sentence.setHgap(2);
+		sentence.setHgap(4); // no effect in GWT
 		sentence.add(remakeText, 0, 0);
+		GridPane.setValignment(remakeText, VPos.BASELINE);
 		sentence.add(nameText, 1, 0);
+		GridPane.setValignment(nameText, VPos.BASELINE);
 
 		fadeIn = new FadeTransition(Duration.seconds(5), sentence);
 		fadeIn.setFromValue(0);

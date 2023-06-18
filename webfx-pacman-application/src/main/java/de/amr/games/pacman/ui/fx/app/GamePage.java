@@ -161,7 +161,7 @@ public class GamePage {
                 signature.root().setTranslateY(40 * scaling);
             } else {
                 signature.root().setTranslateX(50 * scaling);
-                signature.root().setTranslateY(25 * scaling);
+                signature.root().setTranslateY(28 * scaling);
             }
             signature.showAfterSeconds(3);
         } else {
