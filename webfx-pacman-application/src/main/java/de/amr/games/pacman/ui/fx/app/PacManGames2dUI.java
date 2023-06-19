@@ -26,12 +26,10 @@ import de.amr.games.pacman.ui.fx.scene2d.*;
 import de.amr.games.pacman.ui.fx.util.*;
 import javafx.scene.Scene;
 import javafx.scene.layout.Region;
-import javafx.scene.layout.StackPane;
 import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 import org.tinylog.Logger;
 
 import static de.amr.games.pacman.controller.GameState.INTRO;
@@ -56,6 +54,7 @@ public class PacManGames2dUI implements GameEventListener {
 	protected KeyboardSteering keyboardPlayerSteering;
 	protected SoundHandler soundHandler;
 	protected GameScene currentGameScene;
+	protected boolean onStartPage;
 
 	public void init(Stage stage, Settings settings, Theme theme) {
 		checkNotNull(stage);
@@ -77,6 +76,10 @@ public class PacManGames2dUI implements GameEventListener {
 		double height = screenSize.getHeight() * 0.8;
 		double width = height * 4.0 / 3.0;
 		scene = new Scene(new Region(), width, height, Color.BLACK);
+		scene.heightProperty().addListener((py, ov, nv) -> {
+			if (!onStartPage) {
+				resizeGamePage(nv.doubleValue());
+			}});
 
 		configureGameScenes();
 		createStartPage();
@@ -88,8 +91,6 @@ public class PacManGames2dUI implements GameEventListener {
 
 		stage.setScene(scene);
 		stage.setFullScreen(settings.fullScreen);
-		stage.setMinWidth(330);
-		stage.setMinHeight(400);
 		stage.centerOnScreen();
 		stage.show();
 
@@ -138,19 +139,18 @@ public class PacManGames2dUI implements GameEventListener {
 		scene.setRoot(startPage.root());
 		startPage.root().requestFocus();
 		updateStage();
+		onStartPage = true;
 	}
 
 	protected void createGamePage() {
 		gamePage = new GamePage(this);
-		scene.heightProperty().addListener((py, ov, nv) -> scale(nv.doubleValue()));
-		scale(scene.getHeight());
 	}
 
-	private void scale(double sceneHeight) {
+	private void resizeGamePage(double sceneHeight) {
 		double ratio = sceneHeight / GameScene2D.HEIGHT_UNSCALED;
-		double s = ratio * 0.9;
-		s = Math.floor(s * 10) / 10;
-		gamePage.scale(s);
+		double s = ratio * 0.9; // use at most 90% of available height
+		s = Math.floor(s * 10) / 10; // round scaling factor to first decimal digit
+		gamePage.resize(s);
 	}
 
 	protected void showGamePage() {
@@ -158,7 +158,9 @@ public class PacManGames2dUI implements GameEventListener {
 		scene.setRoot(gamePage.root());
 		gamePage.root().requestFocus();
 		clock.start();
+		resizeGamePage(scene.getHeight());
 		updateStage();
+		onStartPage = false;
 	}
 
 	protected void configureHelpMenus() {
@@ -366,22 +368,6 @@ public class PacManGames2dUI implements GameEventListener {
 		GameController.it().addCredit();
 	}
 
-	public void enterLevel(int newLevelNumber) {
-		if (GameController.it().state() == GameState.CHANGING_TO_NEXT_LEVEL) {
-			return;
-		}
-		game().level().ifPresent(level -> {
-			if (newLevelNumber > level.number()) {
-				for (int n = level.number(); n < newLevelNumber - 1; ++n) {
-					game().nextLevel();
-				}
-				GameController.it().changeState(GameState.CHANGING_TO_NEXT_LEVEL);
-			} else if (newLevelNumber < level.number()) {
-				// not implemented
-			}
-		});
-	}
-
 	public void togglePaused() {
 		Ufx.toggle(clock.pausedPy);
 		if (clock.pausedPy.get()) {
@@ -435,13 +421,6 @@ public class PacManGames2dUI implements GameEventListener {
 		String message = immune ? "Immunity ON" : "Immunity OFF";
 		showFlashMessage(message);
 		soundHandler.playVoice(immune ? "voice.immunity.on" : "voice.immunity.off");
-	}
-
-	public void startLevelTestMode() {
-		if (GameController.it().state() == GameState.INTRO) {
-			GameController.it().restart(GameState.LEVEL_TEST);
-			showFlashMessage("Level TEST MODE");
-		}
 	}
 
 	public void cheatAddLives() {
