@@ -387,6 +387,7 @@ public class PacManGames2dUI implements GameEventListener {
 		if (clock.pausedPy.get()) {
 			theme.audioClips().forEach(AudioClip::stop);
 		}
+		showFlashMessage(clock.isPaused() ? "Game PAUSED" : "Game RESUMED");
 	}
 
 	public void oneSimulationStep() {

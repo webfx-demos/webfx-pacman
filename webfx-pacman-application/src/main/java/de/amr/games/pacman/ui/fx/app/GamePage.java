@@ -15,7 +15,6 @@ import de.amr.games.pacman.ui.fx.scene2d.HelpMenu;
 import de.amr.games.pacman.ui.fx.scene2d.HelpMenuFactory;
 import de.amr.games.pacman.ui.fx.util.FlashMessageView;
 import de.amr.games.pacman.ui.fx.util.ResourceManager;
-import de.amr.games.pacman.ui.fx.util.Ufx;
 import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.canvas.Canvas;
@@ -167,24 +166,25 @@ public class GamePage {
     }
 
     public void scale(double scaling) {
+        if (scaling < 0.8) {
+            Logger.info("Cannot scale down further");
+            return;
+        }
+
         this.scaling = scaling;
 
         double w = Math.round( (GameScene2D.WIDTH_UNSCALED  + 30) * scaling );
         double h = Math.round( (GameScene2D.HEIGHT_UNSCALED + 15) * scaling );
 
-        if (h < 80) {
-            Logger.info("Cannot scale down further");
-            return;
-        }
-
-        rootPane.setMinSize(w, h);
+        rootPane.setMinSize (w, h);
         rootPane.setPrefSize(w, h);
-        rootPane.setMaxSize(w, h);
-        popupLayer.setMinSize(w, h);
-        popupLayer.setPrefSize(w, h);
-        popupLayer.setMaxSize(w, h);
+        rootPane.setMaxSize (w, h);
 
-        double borderWidth = Math.max(5, Math.ceil(h / 60));
+        popupLayer.setMinSize (w, h);
+        popupLayer.setPrefSize(w, h);
+        popupLayer.setMaxSize (w, h);
+
+        double borderWidth  = Math.max(5, Math.ceil(h / 60));
         double cornerRadius = Math.ceil(15 * scaling);
         rootPane.setBorder(roundedBorder(ArcadeTheme.PALE, cornerRadius, borderWidth));
 
@@ -230,10 +230,6 @@ public class GamePage {
         return flashMessageView;
     }
 
-    public Canvas getCanvas() {
-        return canvas;
-    }
-
     protected void handleKeyPressed(KeyEvent keyEvent) {
         Keyboard.accept(keyEvent);
         handleKeyboardInput();
@@ -244,24 +240,25 @@ public class GamePage {
     }
 
     protected void handleKeyboardInput() {
+        var gameState = GameController.it().state();
         if (Keyboard.pressed(PacManGames2d.KEY_SHOW_HELP)) {
             showHelpMenu();
         } else if (Keyboard.pressed(PacManGames2d.KEY_AUTOPILOT)) {
             ui.toggleAutopilot();
         } else if (Keyboard.pressed(PacManGames2d.KEY_BOOT)) {
-            if (GameController.it().state() != GameState.BOOT) {
+            if (gameState != GameState.BOOT) {
                 ui.reboot();
             }
         } else if (Keyboard.pressed(PacManGames2d.KEY_DEBUG_INFO)) {
-            Ufx.toggle(PacManGames2d.PY_SHOW_DEBUG_INFO);
-        } else if (Keyboard.pressed(PacManGames2d.KEY_IMMUNITIY)) {
+//            Ufx.toggle(PacManGames2d.PY_SHOW_DEBUG_INFO);
+        } else if (Keyboard.pressed(PacManGames2d.KEY_IMMUNITY)) {
             ui.toggleImmunity();
         } else if (Keyboard.pressed(PacManGames2d.KEY_PAUSE)) {
             ui.togglePaused();
         } else if (Keyboard.pressed(PacManGames2d.KEY_PAUSE_STEP) || Keyboard.pressed(PacManGames2d.KEY_SINGLE_STEP)) {
             ui.oneSimulationStep();
         } else if (Keyboard.pressed(PacManGames2d.KEY_TEN_STEPS)) {
-            ui.tenSimulationSteps();
+//            ui.tenSimulationSteps();
         } else if (Keyboard.pressed(PacManGames2d.KEY_SIMULATION_FASTER)) {
             ui.changeSimulationSpeed(5);
         } else if (Keyboard.pressed(PacManGames2d.KEY_SIMULATION_SLOWER)) {
@@ -269,11 +266,11 @@ public class GamePage {
         } else if (Keyboard.pressed(PacManGames2d.KEY_SIMULATION_NORMAL)) {
             ui.resetSimulationSpeed();
         } else if (Keyboard.pressed(PacManGames2d.KEY_QUIT)) {
-            if (GameController.it().state() != GameState.BOOT && GameController.it().state() != GameState.INTRO) {
+            if (gameState != GameState.BOOT && gameState != GameState.INTRO) {
                 ui.restartIntro();
             }
         } else if (Keyboard.pressed(PacManGames2d.KEY_TEST_LEVELS)) {
-            ui.startLevelTestMode();
+//            ui.startLevelTestMode();
         } else if (Keyboard.pressed(PacManGames2d.KEY_FULLSCREEN)) {
             ui.stage.setFullScreen(true);
         }

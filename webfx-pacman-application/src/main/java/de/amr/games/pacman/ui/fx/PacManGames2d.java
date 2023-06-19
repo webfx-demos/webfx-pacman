@@ -6,9 +6,7 @@ package de.amr.games.pacman.ui.fx;
 
 import de.amr.games.pacman.ui.fx.util.ResourceManager;
 import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCodeCombination;
 
@@ -25,8 +23,6 @@ public class PacManGames2d {
 
 	//@formatter:off
 	public static final BooleanProperty    PY_SHOW_DEBUG_INFO    = new SimpleBooleanProperty(false);
-	public static final BooleanProperty    PY_CANVAS_SCALED      = new SimpleBooleanProperty(false);
-	public static final IntegerProperty    PY_SIMULATION_STEPS   = new SimpleIntegerProperty(1);
 
 	public static final KeyCodeCombination KEY_CHEAT_EAT_ALL     = alt(KeyCode.E);
 	public static final KeyCodeCombination KEY_CHEAT_ADD_LIVES   = alt(KeyCode.L);
@@ -35,14 +31,14 @@ public class PacManGames2d {
 
 	public static final KeyCodeCombination KEY_AUTOPILOT         = alt(KeyCode.A);
 	public static final KeyCodeCombination KEY_DEBUG_INFO        = alt(KeyCode.D);
-	public static final KeyCodeCombination KEY_IMMUNITIY         = alt(KeyCode.I);
+	public static final KeyCodeCombination KEY_IMMUNITY          = alt(KeyCode.I);
 
 	public static final KeyCodeCombination KEY_PAUSE             = just(KeyCode.P);
 	public static final KeyCodeCombination KEY_PAUSE_STEP        = shift(KeyCode.P);
 	public static final KeyCodeCombination KEY_SINGLE_STEP       = just(KeyCode.SPACE);
 	public static final KeyCodeCombination KEY_TEN_STEPS         = shift(KeyCode.SPACE);
-	public static final KeyCodeCombination KEY_SIMULATION_FASTER = alt(KeyCode.PLUS);
-	public static final KeyCodeCombination KEY_SIMULATION_SLOWER = alt(KeyCode.MINUS);
+	public static final KeyCodeCombination KEY_SIMULATION_FASTER = alt(KeyCode.F);
+	public static final KeyCodeCombination KEY_SIMULATION_SLOWER = alt(KeyCode.S);
 	public static final KeyCodeCombination KEY_SIMULATION_NORMAL = alt(KeyCode.DIGIT0);
 
 	public static final KeyCodeCombination KEY_START_GAME        = just(KeyCode.DIGIT1);
@@ -58,6 +54,5 @@ public class PacManGames2d {
 	public static final KeyCodeCombination KEY_SHOW_HELP         = just(KeyCode.H);
 	public static final KeyCodeCombination KEY_BOOT              = just(KeyCode.F3);
 	public static final KeyCodeCombination KEY_FULLSCREEN        = just(KeyCode.F11);
-	public static final KeyCodeCombination KEY_CANVAS_SCALED     = just(KeyCode.F12);
 	//@formatter:on
 }
