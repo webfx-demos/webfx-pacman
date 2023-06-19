@@ -205,6 +205,7 @@ public class GamePage {
         var icon = new ImageView(ui.theme().image(key));
         icon.setFitHeight(size);
         icon.setFitWidth(size);
+        helpButton.setMaxSize(size, size);
         helpButton.getChildren().setAll(icon);
         helpButton.setCursor(Cursor.HAND);
         helpButton.setTranslateX(popupLayer.getWidth() - 20 * scaling);
