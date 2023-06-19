@@ -20,11 +20,24 @@ import static javafx.scene.layout.BackgroundSize.AUTO;
  * @author Armin Reichert
  */
 public class StartPage {
-
 	private final PacManGames2dUI ui;
-	private final StackPane root;
-	private final BorderPane content;
+	private final StackPane root = new StackPane();
+	private final BorderPane content = new BorderPane();
 	private BorderPane playButton;
+
+	public StartPage(PacManGames2dUI ui) {
+		this.ui = ui;
+
+		createPlayButton();
+
+		content.setBottom(playButton);
+		playButton.setTranslateY(-10);
+		BorderPane.setAlignment(playButton, Pos.CENTER);
+
+		root.getChildren().add(content);
+		root.setOnKeyPressed(this::handleKeyPressed);
+		root.setBackground(ResourceManager.coloredBackground(Color.BLACK));
+	}
 
 	// TODO This should be a real button but it seems WebFX/GWT has issues with graphic buttons
 	private void createPlayButton() {
@@ -47,18 +60,6 @@ public class StartPage {
 				ui.showGamePage();
 			}
 		});
-	}
-
-	public StartPage(PacManGames2dUI ui) {
-		this.ui = ui;
-		createPlayButton();
-		content = new BorderPane();
-		content.setBottom(playButton);
-		BorderPane.setAlignment(playButton, Pos.CENTER);
-		playButton.setTranslateY(-10);
-		root = new StackPane(content);
-		root.setOnKeyPressed(this::handleKeyPressed);
-		root.setBackground(ResourceManager.coloredBackground(Color.BLACK));
 	}
 
 	public StackPane root() {
