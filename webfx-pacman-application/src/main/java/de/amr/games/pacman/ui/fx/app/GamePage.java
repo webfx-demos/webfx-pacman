@@ -30,6 +30,9 @@ import org.tinylog.Logger;
 
 import static de.amr.games.pacman.lib.Globals.oneOf;
 
+/**
+ * @author Armin Reichert
+ */
 public class GamePage {
 
     public static final Duration MENU_FADING_DELAY = Duration.seconds(1.5);
