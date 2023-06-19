@@ -13,7 +13,6 @@ import de.amr.games.pacman.ui.fx.scene.GameSceneConfiguration;
 import de.amr.games.pacman.ui.fx.scene2d.GameScene2D;
 import de.amr.games.pacman.ui.fx.scene2d.HelpMenu;
 import de.amr.games.pacman.ui.fx.scene2d.HelpMenuFactory;
-import de.amr.games.pacman.ui.fx.scene2d.Signature;
 import de.amr.games.pacman.ui.fx.util.FlashMessageView;
 import de.amr.games.pacman.ui.fx.util.ResourceManager;
 import de.amr.games.pacman.ui.fx.util.Ufx;
@@ -76,8 +75,6 @@ public class GamePage {
 
         //layoutPane.setBorder(roundedBorder(Color.YELLOW, 10, 3));
         //popupLayer.setBorder(roundedBorder(Color.GREEN, 10, 3));
-
-        //scale(scaling);
     }
 
     private static Border roundedBorder(Color color, double cornerRadius, double width) {
@@ -154,15 +151,6 @@ public class GamePage {
         root.requestFocus();
         updateHelpButton();
         if (gameScene == sceneConfiguration().introScene()) {
-            signature.setMadeByFont(Font.font("Helvetica", 10*scaling ));
-            signature.setNameFont(ui.theme().font("font.handwriting", 8*scaling ));
-            if (ui.game().variant() == GameVariant.MS_PACMAN) {
-                signature.root().setTranslateX(50 * scaling);
-                signature.root().setTranslateY(40 * scaling);
-            } else {
-                signature.root().setTranslateX(50 * scaling);
-                signature.root().setTranslateY(28 * scaling);
-            }
             signature.showAfterSeconds(3);
         } else {
             signature.hide();
@@ -176,19 +164,6 @@ public class GamePage {
 
     private GameSceneConfiguration sceneConfiguration() {
         return ui.game().variant() == GameVariant.MS_PACMAN ? ui.configMsPacMan : ui.configPacMan;
-    }
-
-    private void updateHelpButton() {
-        double size = Math.ceil(10 * scaling);
-        String key = ui.game().variant() == GameVariant.MS_PACMAN ? "mspacman.helpButton.icon" : "pacman.helpButton.icon";
-        var icon = new ImageView(ui.theme().image(key));
-        icon.setFitHeight(size);
-        icon.setFitWidth(size);
-        helpButton.getChildren().setAll(icon);
-        helpButton.setCursor(Cursor.HAND);
-        helpButton.setTranslateX(popupLayer.getWidth() - 20 * scaling);
-        helpButton.setTranslateY(8 * scaling);
-        helpButton.setVisible(sceneConfiguration().bootScene() != gameScene2D);
     }
 
     public void scale(double scaling) {
@@ -217,7 +192,34 @@ public class GamePage {
             gameScene2D.setScaling(scaling);
         }
         updateHelpButton();
+        updateSignature();
+
         Logger.info("Scaled game page: scaling: {} height: {} border: {}", scaling, h, borderWidth);
+    }
+
+    private void updateHelpButton() {
+        double size = Math.ceil(10 * scaling);
+        String key = ui.game().variant() == GameVariant.MS_PACMAN ? "mspacman.helpButton.icon" : "pacman.helpButton.icon";
+        var icon = new ImageView(ui.theme().image(key));
+        icon.setFitHeight(size);
+        icon.setFitWidth(size);
+        helpButton.getChildren().setAll(icon);
+        helpButton.setCursor(Cursor.HAND);
+        helpButton.setTranslateX(popupLayer.getWidth() - 20 * scaling);
+        helpButton.setTranslateY(8 * scaling);
+        helpButton.setVisible(sceneConfiguration().bootScene() != gameScene2D);
+    }
+
+    private void updateSignature() {
+        signature.setMadeByFont(Font.font("Helvetica", 10* scaling));
+        signature.setNameFont(ui.theme().font("font.handwriting", 8* scaling));
+        if (ui.game().variant() == GameVariant.MS_PACMAN) {
+            signature.root().setTranslateX(50 * scaling);
+            signature.root().setTranslateY(40 * scaling);
+        } else {
+            signature.root().setTranslateX(50 * scaling);
+            signature.root().setTranslateY(28 * scaling);
+        }
     }
 
     public double getScaling() {
