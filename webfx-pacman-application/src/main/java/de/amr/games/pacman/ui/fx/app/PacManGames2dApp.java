@@ -7,10 +7,12 @@ package de.amr.games.pacman.ui.fx.app;
 import de.amr.games.pacman.model.GameVariant;
 import de.amr.games.pacman.ui.fx.PacManGames2d;
 import de.amr.games.pacman.ui.fx.rendering2d.ArcadeTheme;
+import de.amr.games.pacman.ui.fx.util.ResourceManager;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import org.tinylog.Logger;
 import dev.webfx.platform.windowlocation.WindowLocation;
+import dev.webfx.kit.util.scene.DeviceSceneUtil;
 
 import java.util.Locale;
 import java.util.Optional;
@@ -19,7 +21,6 @@ import java.util.Optional;
  * @author Armin Reichert
  */
 public class PacManGames2dApp extends Application {
-
 	private PacManGames2dUI ui;
 	protected final Settings settings = new Settings();
 
@@ -36,6 +37,10 @@ public class PacManGames2dApp extends Application {
 		ui = new PacManGames2dUI();
 		settings.variant = getGameVariantFromHostname().orElse(GameVariant.MS_PACMAN);
 		ui.init(stage, settings, new ArcadeTheme(PacManGames2d.MGR));
+		//TODO What is this good for?
+		DeviceSceneUtil.onFontsAndImagesLoaded(() -> {
+			Logger.info("{} images loaded", PacManGames2d.MGR.numLoadedImages());
+		}, PacManGames2d.MGR.getLoadedImages());
 		Logger.info("Game started. {} Hz language={}", ui.clock().targetFrameratePy.get(), Locale.getDefault());
 	}
 

@@ -114,6 +114,8 @@
     <!--=================================< webfx-kit-util >=================================-->
     <source path="dev/webfx/kit/util/properties"/>
     <source path="dev/webfx/kit/util/properties/conversion"/>
+    <!--==============================< webfx-kit-util-scene >==============================-->
+    <source path="dev/webfx/kit/util/scene"/>
     <!--============================< webfx-pacman-application >============================-->
     <source path="de/amr/games/pacman/controller"/>
     <source path="de/amr/games/pacman/event"/>
@@ -167,6 +169,12 @@
     <source path="emul/java/util/regex"/>
     <!--==============================< webfx-platform-meta >===============================-->
     <source path="dev/webfx/platform/meta"/>
+    <!--===============================< webfx-platform-os >================================-->
+    <source path="dev/webfx/platform/os"/>
+    <source path="dev/webfx/platform/os/spi"/>
+    <source path="dev/webfx/platform/os/spi/impl"/>
+    <!--=============================< webfx-platform-os-gwt >==============================-->
+    <source path="dev/webfx/platform/os/spi/impl/gwt"/>
     <!--============================< webfx-platform-resource >=============================-->
     <source path="dev/webfx/platform/resource"/>
     <source path="dev/webfx/platform/resource/spi"/>

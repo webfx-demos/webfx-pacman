@@ -161,6 +161,13 @@
         </dependency>
 
         <dependency>
+            <groupId>dev.webfx</groupId>
+            <artifactId>webfx-kit-util-scene</artifactId>
+            <version>0.1.0-SNAPSHOT</version>
+            <classifier>sources</classifier>
+        </dependency>
+
+        <dependency>
             <groupId>de.amr</groupId>
             <artifactId>webfx-pacman-application</artifactId>
             <version>1.0</version>
@@ -205,6 +212,20 @@
         <dependency>
             <groupId>dev.webfx</groupId>
             <artifactId>webfx-platform-meta</artifactId>
+            <version>0.1.0-SNAPSHOT</version>
+            <classifier>sources</classifier>
+        </dependency>
+
+        <dependency>
+            <groupId>dev.webfx</groupId>
+            <artifactId>webfx-platform-os</artifactId>
+            <version>0.1.0-SNAPSHOT</version>
+            <classifier>sources</classifier>
+        </dependency>
+
+        <dependency>
+            <groupId>dev.webfx</groupId>
+            <artifactId>webfx-platform-os-gwt</artifactId>
             <version>0.1.0-SNAPSHOT</version>
             <classifier>sources</classifier>
         </dependency>

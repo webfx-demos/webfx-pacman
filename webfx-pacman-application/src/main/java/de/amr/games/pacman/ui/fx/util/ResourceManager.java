@@ -12,7 +12,9 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import org.tinylog.Logger;
 
-import java.net.URL;
+import java.util.HashSet;
+import java.util.Set;
+
 import dev.webfx.platform.resource.Resource;
 
 import static de.amr.games.pacman.lib.Globals.checkNotNull;
@@ -21,6 +23,16 @@ import static de.amr.games.pacman.lib.Globals.checkNotNull;
  * @author Armin Reichert
  */
 public class ResourceManager {
+
+	private final Set<Image> imagesLoaded = new HashSet<>();
+
+	public Image[] getLoadedImages() {
+		return imagesLoaded.toArray(new Image[0]);
+	}
+
+	public int numLoadedImages() {
+		return imagesLoaded.size();
+	}
 
 	public static Background coloredBackground(Color color) {
 		checkNotNull(color);
@@ -31,13 +43,6 @@ public class ResourceManager {
 		checkNotNull(color);
 		return new Background(new BackgroundFill(color, new CornerRadii(radius), Insets.EMPTY));
 	}
-
-//	public static PhongMaterial coloredMaterial(Color color) {
-//		checkNotNull(color);
-//		var material = new PhongMaterial(color);
-//		material.setSpecularColor(color.brighter());
-//		return material;
-//	}
 
 	public static Color color(Color color, double opacity) {
 		checkNotNull(color);
@@ -102,7 +107,9 @@ public class ResourceManager {
 	 */
 	public Image image(String relPath) {
 		var url = url(relPath);
-		return new Image(url);
+		var image = new Image(url);
+		imagesLoaded.add(image);
+		return image;
 	}
 
 	/**
