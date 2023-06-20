@@ -37,8 +37,11 @@ import static de.amr.games.pacman.lib.Globals.oneOf;
  */
 public class GamePage {
 
-    public static final Duration MENU_FADING_DELAY = Duration.seconds(1.5);
+    private static final Color  BORDER_COLOR         = ArcadeTheme.PALE;
+    private static final double BORDER_WIDTH         = 10;
+    private static final double BORDER_CORNER_RADIUS = 20;
 
+    private static final Duration MENU_FADING_DELAY = Duration.seconds(1.5);
 
     private final PacManGames2dUI ui;
     private final FlashMessageView flashMessageView = new FlashMessageView();
@@ -62,7 +65,7 @@ public class GamePage {
 
         //TODO in desktop version, corners are black, in GWT they are transparent (bug?) what is wanted here
         rootPane.setBackground(ResourceManager.coloredBackground(Color.BLACK));
-        rootPane.setBorder(ResourceManager.roundedBorder(ArcadeTheme.PALE, 20, 10));
+        rootPane.setBorder(ResourceManager.roundedBorder(BORDER_COLOR, BORDER_CORNER_RADIUS, BORDER_WIDTH));
         rootPane.setCenter(canvas);
         rootPane.heightProperty().addListener((py, ov, nv) -> resize(scaling));
 
