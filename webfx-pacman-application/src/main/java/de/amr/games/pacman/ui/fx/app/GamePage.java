@@ -11,6 +11,7 @@ import de.amr.games.pacman.ui.fx.rendering2d.ArcadeTheme;
 import de.amr.games.pacman.ui.fx.scene.GameScene;
 import de.amr.games.pacman.ui.fx.scene.GameSceneConfiguration;
 import de.amr.games.pacman.ui.fx.scene2d.GameScene2D;
+import de.amr.games.pacman.ui.fx.scene2d.HelpButton;
 import de.amr.games.pacman.ui.fx.scene2d.HelpMenu;
 import de.amr.games.pacman.ui.fx.scene2d.HelpMenuFactory;
 import de.amr.games.pacman.ui.fx.util.FlashMessageView;
@@ -48,7 +49,7 @@ public class GamePage {
     private final Pane popupLayer = new Pane();
     private final HelpMenuFactory helpMenuFactory = new HelpMenuFactory();
     private final HelpMenu helpMenu = new HelpMenu();
-    private final Pane helpButton = new Pane();
+    private final HelpButton helpButton = new HelpButton();
     private final Signature signature = new Signature();
 
     private GameScene2D gameScene2D;
@@ -67,8 +68,6 @@ public class GamePage {
 
         layoutPane.setBackground(ui.theme().background("wallpaper.background"));
         layoutPane.setCenter(rootPane);
-
-        helpButton.setVisible(false);
 
         popupLayer.getChildren().addAll(helpButton, helpMenu, signature.root());
 
@@ -210,14 +209,8 @@ public class GamePage {
     }
 
     private void updateHelpButton() {
-        double size = Math.ceil(10 * scaling);
         String key = ui.game().variant() == GameVariant.MS_PACMAN ? "mspacman.helpButton.icon" : "pacman.helpButton.icon";
-        var icon = new ImageView(ui.theme().image(key));
-        icon.setFitHeight(size);
-        icon.setFitWidth(size);
-        helpButton.setMaxSize(size, size);
-        helpButton.getChildren().setAll(icon);
-        helpButton.setCursor(Cursor.HAND);
+        helpButton.setImage(ui.theme().image(key), Math.ceil(10 * scaling));
         helpButton.setTranslateX(popupLayer.getWidth() - 20 * scaling);
         helpButton.setTranslateY(8 * scaling);
         helpButton.setVisible(sceneConfiguration().bootScene() != gameScene2D);
