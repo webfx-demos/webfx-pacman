@@ -118,19 +118,18 @@ public class GamePage {
     }
 
     private Pane currentHelpMenu() {
-        var game = ui.game();
         var gameState = GameController.it().state();
-        Pane menu = null;
         if (gameState == GameState.INTRO) {
-            menu = helpMenuFactory.menuIntro();
-        } else if (gameState == GameState.CREDIT) {
-            menu = helpMenuFactory.menuCredit();
-        } else if (oneOf(gameState, GameState.READY, GameState.HUNTING, GameState.PACMAN_DYING, GameState.GHOST_DYING)) {
-            if (game.level().isPresent()) {
-                menu = game.level().get().isDemoLevel() ? helpMenuFactory.menuDemoLevel() : helpMenuFactory.menuPlaying();
-            }
+            return helpMenuFactory.menuIntro();
         }
-        return menu;
+        if (gameState == GameState.CREDIT) {
+            return helpMenuFactory.menuCredit();
+        }
+        if (ui.game().level().isPresent()
+                && oneOf(gameState, GameState.READY, GameState.HUNTING, GameState.PACMAN_DYING, GameState.GHOST_DYING)) {
+                return ui.game().level().get().isDemoLevel() ? helpMenuFactory.menuDemoLevel() : helpMenuFactory.menuPlaying();
+        }
+        return null;
     }
 
     public void update() {
