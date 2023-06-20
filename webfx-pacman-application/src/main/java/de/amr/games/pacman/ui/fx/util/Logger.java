@@ -1,4 +1,4 @@
-package org.tinylog;
+package de.amr.games.pacman.ui.fx.util;
 
 import dev.webfx.platform.console.Console;
 

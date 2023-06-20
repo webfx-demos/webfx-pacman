@@ -12,7 +12,7 @@ import javafx.animation.Animation.Status;
 import javafx.animation.PauseTransition;
 import javafx.scene.media.AudioClip;
 import javafx.util.Duration;
-import org.tinylog.Logger;
+import de.amr.games.pacman.ui.fx.util.Logger;
 
 import java.util.stream.IntStream;
 import java.util.stream.Stream;

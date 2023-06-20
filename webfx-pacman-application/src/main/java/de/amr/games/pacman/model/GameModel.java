@@ -11,7 +11,7 @@ import de.amr.games.pacman.lib.*;
 import de.amr.games.pacman.model.world.World;
 import dev.webfx.platform.util.collection.Collections;
 import dev.webfx.platform.storage.LocalStorage;
-import org.tinylog.Logger;
+import de.amr.games.pacman.ui.fx.util.Logger;
 import java.time.LocalDate;
 import java.util.*;
 

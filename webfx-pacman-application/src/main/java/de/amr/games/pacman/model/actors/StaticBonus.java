@@ -9,7 +9,7 @@ import de.amr.games.pacman.event.GameEvent;
 import de.amr.games.pacman.event.SoundEvent;
 import de.amr.games.pacman.model.GameLevel;
 import de.amr.games.pacman.model.GameModel;
-import org.tinylog.Logger;
+import de.amr.games.pacman.ui.fx.util.Logger;
 
 /**
  * Bonus that appears at a static position.

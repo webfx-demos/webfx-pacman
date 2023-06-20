@@ -5,7 +5,7 @@ See file LICENSE in repository root directory for details.
 package de.amr.games.pacman.model;
 
 import de.amr.games.pacman.model.actors.Ghost;
-import org.tinylog.Logger;
+import de.amr.games.pacman.ui.fx.util.Logger;
 
 import java.util.Optional;
 import java.util.stream.Stream;

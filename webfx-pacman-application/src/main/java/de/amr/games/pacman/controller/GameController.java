@@ -13,7 +13,7 @@ import de.amr.games.pacman.lib.RuleBasedSteering;
 import de.amr.games.pacman.lib.Vector2i;
 import de.amr.games.pacman.model.GameModel;
 import de.amr.games.pacman.model.GameVariant;
-import org.tinylog.Logger;
+import de.amr.games.pacman.ui.fx.util.Logger;
 
 import java.util.ArrayList;
 import java.util.Collection;

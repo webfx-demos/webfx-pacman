@@ -27,7 +27,7 @@ import de.amr.games.pacman.lib.Direction;
 import de.amr.games.pacman.model.actors.Pac;
 import de.amr.games.pacman.ui.fx.app.GamePage;
 import javafx.scene.Node;
-import org.tinylog.Logger;
+import de.amr.games.pacman.ui.fx.util.Logger;
 
 import java.util.function.Supplier;
 

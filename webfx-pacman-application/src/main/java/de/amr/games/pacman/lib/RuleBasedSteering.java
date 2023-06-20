@@ -8,7 +8,7 @@ import de.amr.games.pacman.controller.Steering;
 import de.amr.games.pacman.model.GameLevel;
 import de.amr.games.pacman.model.actors.*;
 import de.amr.games.pacman.model.world.World;
-import org.tinylog.Logger;
+import de.amr.games.pacman.ui.fx.util.Logger;
 
 import java.util.ArrayList;
 import java.util.Collection;

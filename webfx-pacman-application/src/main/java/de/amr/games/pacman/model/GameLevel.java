@@ -13,7 +13,7 @@ import de.amr.games.pacman.lib.TickTimer;
 import de.amr.games.pacman.lib.Vector2i;
 import de.amr.games.pacman.model.actors.*;
 import de.amr.games.pacman.model.world.World;
-import org.tinylog.Logger;
+import de.amr.games.pacman.ui.fx.util.Logger;
 
 import java.util.Collections;
 import java.util.List;

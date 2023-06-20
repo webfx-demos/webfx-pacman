@@ -10,7 +10,6 @@ import javafx.scene.layout.*;
 import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import org.tinylog.Logger;
 
 import java.util.HashSet;
 import java.util.Set;

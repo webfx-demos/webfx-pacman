@@ -12,7 +12,7 @@ import de.amr.games.pacman.model.GameModel;
 import de.amr.games.pacman.model.world.House;
 import de.amr.games.pacman.model.world.Portal;
 import de.amr.games.pacman.model.world.World;
-import org.tinylog.Logger;
+import de.amr.games.pacman.ui.fx.util.Logger;
 
 import java.util.List;
 import java.util.Optional;

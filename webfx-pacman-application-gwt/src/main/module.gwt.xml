@@ -132,7 +132,6 @@
     <source path="de/amr/games/pacman/ui/fx/scene"/>
     <source path="de/amr/games/pacman/ui/fx/scene2d"/>
     <source path="de/amr/games/pacman/ui/fx/util"/>
-    <source path="org/tinylog"/>
     <resource path="de/amr/games/pacman/ui/fx/fonts"/>
     <public includes="de/amr/games/pacman/ui/fx/fonts/" path=""/>
     <resource path="de/amr/games/pacman/ui/fx/graphics"/>

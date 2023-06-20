@@ -13,7 +13,6 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.util.Duration;
-import org.tinylog.Logger;
 
 /**
  * Game clock with modifiable frame rate.

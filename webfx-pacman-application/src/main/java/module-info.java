@@ -32,7 +32,6 @@ module webfx.pacman.application {
     exports de.amr.games.pacman.ui.fx.scene;
     exports de.amr.games.pacman.ui.fx.scene2d;
     exports de.amr.games.pacman.ui.fx.util;
-    exports org.tinylog;
 
     // Resources packages
     opens de.amr.games.pacman.ui.fx.fonts;
