@@ -30,6 +30,9 @@ import de.amr.games.pacman.ui.fx.util.Logger;
 
 import static de.amr.games.pacman.lib.Globals.oneOf;
 
+/**
+ * @author Armin Reichert
+ */
 public class GamePage {
 
     public static final Duration MENU_FADING_DELAY = Duration.seconds(1.5);
@@ -58,7 +61,7 @@ public class GamePage {
         rootPane.setBackground(ResourceManager.coloredBackground(Color.BLACK));
         rootPane.setBorder(roundedBorder(ArcadeTheme.PALE, 20, 10));
         rootPane.setCenter(canvas);
-        rootPane.heightProperty().addListener((py, ov, nv) -> scale(scaling));
+        rootPane.heightProperty().addListener((py, ov, nv) -> resize(scaling));
 
         layoutPane.setBackground(ui.theme().background("wallpaper.background"));
         layoutPane.setCenter(rootPane);
@@ -141,7 +144,7 @@ public class GamePage {
     public void setGameScene(GameScene gameScene) {
         gameScene2D = (GameScene2D) gameScene;
         gameScene2D.setCanvas(canvas);
-        scale(scaling);
+        resize(scaling);
         if (isPlayScene(gameScene)) {
             root.addEventHandler(KeyEvent.KEY_PRESSED, ui.keyboardPlayerSteering);
         } else {
@@ -165,14 +168,13 @@ public class GamePage {
         return ui.game().variant() == GameVariant.MS_PACMAN ? ui.configMsPacMan : ui.configPacMan;
     }
 
-    public void scale(double scaling) {
+    public void resize(double scaling) {
         if (scaling < 0.8) {
             Logger.info("Cannot scale down further");
             return;
         }
 
         this.scaling = scaling;
-
         double w = Math.round( (GameScene2D.WIDTH_UNSCALED  + 30) * scaling );
         double h = Math.round( (GameScene2D.HEIGHT_UNSCALED + 15) * scaling );
 
@@ -194,7 +196,7 @@ public class GamePage {
         updateHelpButton();
         updateSignature();
 
-        Logger.info("Scaled game page: scaling: {} height: {} border: {}", scaling, h, borderWidth);
+        Logger.info("Resized game page: scaling: {} height: {} border: {}", scaling, h, borderWidth);
     }
 
     private void updateHelpButton() {
@@ -203,6 +205,7 @@ public class GamePage {
         var icon = new ImageView(ui.theme().image(key));
         icon.setFitHeight(size);
         icon.setFitWidth(size);
+        helpButton.setMaxSize(size, size);
         helpButton.getChildren().setAll(icon);
         helpButton.setCursor(Cursor.HAND);
         helpButton.setTranslateX(popupLayer.getWidth() - 20 * scaling);

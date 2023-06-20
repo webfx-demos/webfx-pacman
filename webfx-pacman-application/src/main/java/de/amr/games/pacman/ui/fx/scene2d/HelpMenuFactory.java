@@ -28,21 +28,21 @@ public class HelpMenuFactory {
 	private static final Map<String, String> TEXTS = new HashMap<>();
 
 	static {
-		TEXTS.put("help.add_credit", "ADD CREDIT");
-		TEXTS.put("help.autopilot_on", "AUTOPILOT ON");
-		TEXTS.put("help.cursor_left", "CURSOR LEFT");
-		TEXTS.put("help.cursor_right", "CURSOR RIGHT");
-		TEXTS.put("help.cursor_up", "CURSOR UP");
-		TEXTS.put("help.cursor_down", "CURSOR DOWN");
-		TEXTS.put("help.immunity_on", "IMMUNITY ON");
-		TEXTS.put("help.move_left", "MOVE LEFT");
-		TEXTS.put("help.move_right", "MOVE RIGHT");
-		TEXTS.put("help.move_up", "MOVE UP");
-		TEXTS.put("help.move_down", "MOVE DOWN");
-		TEXTS.put("help.ms_pacman", "MS. PAC-MAN");
-		TEXTS.put("help.pacman", "PAC-MAN");
-		TEXTS.put("help.show_intro", "SHOW INTRO");
-		TEXTS.put("help.start_game", "START GAME");
+		TEXTS.put("help.add_credit",       "INSERT COIN");
+		TEXTS.put("help.autopilot_on",     "AUTOPILOT ON");
+		TEXTS.put("help.cursor_left",      "CURSOR LEFT");
+		TEXTS.put("help.cursor_right",     "CURSOR RIGHT");
+		TEXTS.put("help.cursor_up",        "CURSOR UP");
+		TEXTS.put("help.cursor_down",      "CURSOR DOWN");
+		TEXTS.put("help.immunity_on",      "IMMUNITY ON");
+		TEXTS.put("help.move_left",        "MOVE LEFT");
+		TEXTS.put("help.move_right",       "MOVE RIGHT");
+		TEXTS.put("help.move_up",          "MOVE UP");
+		TEXTS.put("help.move_down",        "MOVE DOWN");
+		TEXTS.put("help.ms_pacman",        "MS. PAC-MAN");
+		TEXTS.put("help.pacman",           "PAC-MAN");
+		TEXTS.put("help.show_intro",       "SHOW INTRO");
+		TEXTS.put("help.start_game",       "START GAME");
 	}
 
 	private static class Menu {
@@ -105,7 +105,7 @@ public class HelpMenuFactory {
 
 	private Pane createPane(Menu menu) {
 		var grid = new GridPane();
-		grid.setHgap(10);
+		grid.setHgap(20);
 		grid.setVgap(10);
 		for (int row = 0; row < menu.column0.size(); ++row) {
 			grid.add(menu.column0.get(row), 0, row);
@@ -125,16 +125,10 @@ public class HelpMenuFactory {
 
 		var pane = new BorderPane(grid);
 		pane.setPadding(new Insets(10));
-		switch (GameController.it().game().variant()) {
-		case MS_PACMAN:
-			pane.setBackground(ResourceManager.coloredBackground(Color.rgb(255, 0, 0, 0.9)));
-			break;
-		case PACMAN:
-			pane.setBackground(ResourceManager.coloredBackground(Color.rgb(33, 33, 255, 0.9)));
-			break;
-		default:
-			throw new IllegalGameVariantException(GameController.it().game().variant());
-		}
+		var bgColor = GameController.it().game().variant() == GameVariant.MS_PACMAN
+				? Color.rgb(255, 0, 0, 0.8)
+				: Color.rgb(33, 33, 255, 0.8);
+		pane.setBackground(ResourceManager.coloredRoundedBackground(bgColor, 10));
 		return pane;
 	}
 
