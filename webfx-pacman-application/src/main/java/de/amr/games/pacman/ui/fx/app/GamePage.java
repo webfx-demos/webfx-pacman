@@ -214,8 +214,8 @@ public class GamePage {
     }
 
     private void updateSignature() {
-        signature.setMadeByFont(Font.font("Helvetica", 10* scaling));
-        signature.setNameFont(ui.theme().font("font.handwriting", 8* scaling));
+        signature.setMadeByFont(Font.font("Helvetica", Math.floor(10 * scaling)));
+        signature.setNameFont(ui.theme().font("font.handwriting", Math.floor(12 * scaling)));
         if (ui.game().variant() == GameVariant.MS_PACMAN) {
             signature.root().setTranslateX(50 * scaling);
             signature.root().setTranslateY(40 * scaling);
