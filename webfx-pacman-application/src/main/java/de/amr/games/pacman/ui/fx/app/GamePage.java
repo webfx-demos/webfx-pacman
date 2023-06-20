@@ -18,14 +18,14 @@ import de.amr.games.pacman.ui.fx.util.FlashMessageView;
 import de.amr.games.pacman.ui.fx.util.Logger;
 import de.amr.games.pacman.ui.fx.util.ResourceManager;
 import de.amr.games.pacman.ui.fx.util.Ufx;
-import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.canvas.Canvas;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.*;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.util.Duration;
@@ -69,7 +69,7 @@ public class GamePage {
         layoutPane.setBackground(ui.theme().background("wallpaper.background"));
         layoutPane.setCenter(rootPane);
 
-        popupLayer.getChildren().addAll(helpButton, helpMenu, signature.root());
+        popupLayer.getChildren().addAll(helpButton, signature.root(), helpMenu);
 
         helpButton.setOnMouseClicked(e -> {
             Logger.info("Mouse clicked: {}", e);
@@ -82,8 +82,8 @@ public class GamePage {
         new PacMouseSteering(this, popupLayer, () -> ui.game().level().map(GameLevel::pac).orElse(null));
 
         // For debugging draw borders
-        PacManGames2d.PY_SHOW_DEBUG_INFO.addListener((py, ov, nv) -> {
-            if (nv.booleanValue()) {
+        PacManGames2d.PY_SHOW_DEBUG_INFO.addListener((py, ov, debug) -> {
+            if (debug) {
                 root.setBorder(ResourceManager.border(Color.RED, 3));
                 layoutPane.setBorder(ResourceManager.border(Color.YELLOW, 3));
                 popupLayer.setBorder(ResourceManager.border(Color.GREENYELLOW, 3));
@@ -154,23 +154,18 @@ public class GamePage {
         gameScene2D = (GameScene2D) gameScene;
         gameScene2D.setCanvas(canvas);
         resize(scaling);
-        if (isPlayScene(gameScene)) {
+        if (gameScene == sceneConfiguration().playScene()) {
             root.addEventHandler(KeyEvent.KEY_PRESSED, ui.keyboardPlayerSteering);
         } else {
             root.removeEventHandler(KeyEvent.KEY_PRESSED, ui.keyboardPlayerSteering);
         }
-        root.requestFocus();
         updateHelpButton();
         if (gameScene == sceneConfiguration().introScene()) {
             signature.showAfterSeconds(3);
         } else {
             signature.hide();
         }
-    }
-
-    private boolean isPlayScene(GameScene gameScene) {
-        var config = sceneConfiguration();
-        return gameScene == config.playScene();
+        root.requestFocus();
     }
 
     private GameSceneConfiguration sceneConfiguration() {
