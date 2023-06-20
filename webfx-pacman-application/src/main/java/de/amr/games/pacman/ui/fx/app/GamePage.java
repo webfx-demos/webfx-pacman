@@ -16,6 +16,7 @@ import de.amr.games.pacman.ui.fx.scene2d.HelpMenuFactory;
 import de.amr.games.pacman.ui.fx.util.FlashMessageView;
 import de.amr.games.pacman.ui.fx.util.Logger;
 import de.amr.games.pacman.ui.fx.util.ResourceManager;
+import de.amr.games.pacman.ui.fx.util.Ufx;
 import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.canvas.Canvas;
@@ -36,6 +37,7 @@ import static de.amr.games.pacman.lib.Globals.oneOf;
 public class GamePage {
 
     public static final Duration MENU_FADING_DELAY = Duration.seconds(1.5);
+
 
     private final PacManGames2dUI ui;
     private final FlashMessageView flashMessageView = new FlashMessageView();
@@ -59,45 +61,53 @@ public class GamePage {
 
         //TODO in desktop version, corners are black, in GWT they are transparent (bug?) what is wanted here
         rootPane.setBackground(ResourceManager.coloredBackground(Color.BLACK));
-        rootPane.setBorder(roundedBorder(ArcadeTheme.PALE, 20, 10));
+        rootPane.setBorder(ResourceManager.roundedBorder(ArcadeTheme.PALE, 20, 10));
         rootPane.setCenter(canvas);
         rootPane.heightProperty().addListener((py, ov, nv) -> resize(scaling));
 
         layoutPane.setBackground(ui.theme().background("wallpaper.background"));
         layoutPane.setCenter(rootPane);
 
-        helpButton.setOnMouseClicked(e -> { e.consume(); showHelpMenu(); });
         helpButton.setVisible(false);
 
-        popupLayer.setOnMouseClicked(this::handleMouseClick);
         popupLayer.getChildren().addAll(helpButton, helpMenu, signature.root());
 
+        helpButton.setOnMouseClicked(e -> {
+            Logger.info("Mouse clicked: {}", e);
+            e.consume();
+            Logger.info("Mouse event consumed");
+            showHelpMenu();
+        });
         root.setOnKeyPressed(this::handleKeyPressed);
+        popupLayer.setOnMouseClicked(this::handleMouseClick);
         new PacMouseSteering(this, popupLayer, () -> ui.game().level().map(GameLevel::pac).orElse(null));
 
-        //layoutPane.setBorder(roundedBorder(Color.YELLOW, 10, 3));
-        //popupLayer.setBorder(roundedBorder(Color.GREEN, 10, 3));
-    }
-
-    private static Border roundedBorder(Color color, double cornerRadius, double width) {
-        return new Border(
-            new BorderStroke(color, BorderStrokeStyle.SOLID, new CornerRadii(cornerRadius), new BorderWidths(width)));
+        // For debugging draw borders
+        PacManGames2d.PY_SHOW_DEBUG_INFO.addListener((py, ov, nv) -> {
+            if (nv.booleanValue()) {
+                root.setBorder(ResourceManager.border(Color.RED, 3));
+                layoutPane.setBorder(ResourceManager.border(Color.YELLOW, 3));
+                popupLayer.setBorder(ResourceManager.border(Color.GREENYELLOW, 3));
+            } else {
+                root.setBorder(null);
+                layoutPane.setBorder(null);
+                popupLayer.setBorder(null);
+            }
+        });
     }
 
     private void handleMouseClick(MouseEvent mouseEvent) {
-        root.requestFocus();
-        if (mouseEvent.isConsumed()) {
-            return;
+        Logger.info("Mouse clicked: {}", mouseEvent);
+        if (mouseEvent.getButton() != MouseButton.PRIMARY) {
+            Logger.info("Ignored: Not primary mouse button");
         }
-        if (mouseEvent.getButton() == MouseButton.PRIMARY) {
-            var config = sceneConfiguration();
-            if (gameScene2D == config.introScene()
-                    || gameScene2D == config.creditScene() && ui.game().credit() == 0
-                    || gameScene2D == config.playScene() && ui.game().level().get().isDemoLevel()) {
-                ui.addCredit(); // simulate key press "5" (add credit)
-            } else if (gameScene2D == config.creditScene() /* credit > 0 */) {
-                ui.startGame(); // simulate key press "1" (start game)
-            }
+        var config = sceneConfiguration();
+        if (gameScene2D == config.introScene()
+                || gameScene2D == config.creditScene() && ui.game().credit() == 0
+                || gameScene2D == config.playScene() && ui.game().level().get().isDemoLevel()) {
+            ui.addCredit(); // simulate key press "5" (add credit)
+        } else if (gameScene2D == config.creditScene() /* credit > 0 */) {
+            ui.startGame(); // simulate key press "1" (start game)
         }
     }
 
@@ -188,7 +198,7 @@ public class GamePage {
 
         double borderWidth  = Math.max(5, Math.ceil(h / 60));
         double cornerRadius = Math.ceil(15 * scaling);
-        rootPane.setBorder(roundedBorder(ArcadeTheme.PALE, cornerRadius, borderWidth));
+        rootPane.setBorder(ResourceManager.roundedBorder(ArcadeTheme.PALE, cornerRadius, borderWidth));
 
         if (gameScene2D != null) {
             gameScene2D.setScaling(scaling);
@@ -253,7 +263,7 @@ public class GamePage {
                 ui.reboot();
             }
         } else if (Keyboard.pressed(PacManGames2d.KEY_DEBUG_INFO)) {
-//            Ufx.toggle(PacManGames2d.PY_SHOW_DEBUG_INFO);
+            Ufx.toggle(PacManGames2d.PY_SHOW_DEBUG_INFO);
         } else if (Keyboard.pressed(PacManGames2d.KEY_IMMUNITY)) {
             ui.toggleImmunity();
         } else if (Keyboard.pressed(PacManGames2d.KEY_PAUSE)) {

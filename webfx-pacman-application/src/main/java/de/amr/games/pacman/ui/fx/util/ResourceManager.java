@@ -42,6 +42,15 @@ public class ResourceManager {
 		return new Background(new BackgroundFill(color, new CornerRadii(radius), Insets.EMPTY));
 	}
 
+	public static Border roundedBorder(Color color, double cornerRadius, double width) {
+		return new Border(
+				new BorderStroke(color, BorderStrokeStyle.SOLID, new CornerRadii(cornerRadius), new BorderWidths(width)));
+	}
+
+	public static Border border(Color color, double width) {
+		return new Border(new BorderStroke(color, BorderStrokeStyle.SOLID, null, new BorderWidths(width)));
+	}
+
 	public static Color color(Color color, double opacity) {
 		checkNotNull(color);
 		return Color.color(color.getRed(), color.getGreen(), color.getBlue(), opacity);

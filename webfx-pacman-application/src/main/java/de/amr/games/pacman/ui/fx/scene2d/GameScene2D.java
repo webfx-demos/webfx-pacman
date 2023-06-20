@@ -106,7 +106,7 @@ public abstract class GameScene2D implements GameScene {
 	}
 
 	protected Font sceneFont() {
-		return ui.theme().font("font.arcade", s(8));
+		return ui.theme().font("font.arcade", Math.floor(s(8)));
 	}
 
 	public void setRoundedCorners(boolean roundedCorners) {
@@ -418,8 +418,6 @@ public abstract class GameScene2D implements GameScene {
 	}
 
 	protected void drawTileGrid(int tilesX, int tilesY) {
-		g.save();
-		g.translate(0.5, 0.5);
 		g.setStroke(ArcadeTheme.PALE);
 		g.setLineWidth(0.2);
 		for (int row = 0; row <= tilesY; ++row) {
@@ -428,7 +426,6 @@ public abstract class GameScene2D implements GameScene {
 		for (int col = 0; col <= tilesY; ++col) {
 			g.strokeLine(s(TS * (col)), 0, s(TS * (col)), s(tilesY * TS));
 		}
-		g.restore();
 	}
 
 	/**

@@ -2,6 +2,7 @@ package de.amr.games.pacman.ui.fx.app;
 
 import de.amr.games.pacman.model.GameVariant;
 import de.amr.games.pacman.model.IllegalGameVariantException;
+import de.amr.games.pacman.ui.fx.util.Logger;
 import de.amr.games.pacman.ui.fx.util.ResourceManager;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -56,6 +57,7 @@ public class StartPage {
 		playButton.setCursor(Cursor.HAND);
 		playButton.setBackground(ResourceManager.coloredRoundedBackground(ui.theme.color("startpage.button.bgColor"), 20));
 		playButton.setOnMouseClicked(e -> {
+			Logger.info("Mouse clicked: {}", e);
 			if (e.getButton().equals(MouseButton.PRIMARY)) {
 				ui.showGamePage();
 			}
