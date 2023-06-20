@@ -53,7 +53,7 @@ public class PacManGames2dUI implements GameEventListener {
 	protected KeyboardSteering keyboardPlayerSteering;
 	protected SoundHandler soundHandler;
 	protected GameScene currentGameScene;
-	protected boolean onStartPage;
+	protected boolean showingStartPage;
 
 	public void init(Stage stage, Settings settings, Theme theme) {
 		checkNotNull(stage);
@@ -76,7 +76,7 @@ public class PacManGames2dUI implements GameEventListener {
 		double width = height * 4.0 / 3.0;
 		scene = new Scene(new Region(), width, height, Color.BLACK);
 		scene.heightProperty().addListener((py, ov, nv) -> {
-			if (!onStartPage) {
+			if (!showingStartPage) {
 				resizeGamePage(nv.doubleValue());
 			}});
 
@@ -97,12 +97,17 @@ public class PacManGames2dUI implements GameEventListener {
 	}
 
 	protected void onTick() {
-		GameController.it().update();
-		gamePage.update();
+		if (!showingStartPage) {
+			GameController.it().update();
+			gamePage.update();
+		}
 	}
 
-	protected void onRender() {
-		gamePage.render();
+	protected void onRender()
+	{
+		if (!showingStartPage) {
+			gamePage.render();
+		}
 	}
 
 	protected void configureGameScenes() {
@@ -138,7 +143,7 @@ public class PacManGames2dUI implements GameEventListener {
 		scene.setRoot(startPage.root());
 		startPage.root().requestFocus();
 		updateStage();
-		onStartPage = true;
+		showingStartPage = true;
 	}
 
 	protected void createGamePage() {
@@ -154,12 +159,12 @@ public class PacManGames2dUI implements GameEventListener {
 
 	protected void showGamePage() {
 		reboot();
-		scene.setRoot(gamePage.root());
-		gamePage.root().requestFocus();
 		clock.start();
+		scene.setRoot(gamePage.root());
 		resizeGamePage(scene.getHeight());
 		updateStage();
-		onStartPage = false;
+		showingStartPage = false;
+		gamePage.root().requestFocus();
 	}
 
 	protected void configureHelpMenus() {
