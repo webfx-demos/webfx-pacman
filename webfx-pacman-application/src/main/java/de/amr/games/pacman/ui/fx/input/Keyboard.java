@@ -4,9 +4,9 @@ See file LICENSE in repository root directory for details.
 */
 package de.amr.games.pacman.ui.fx.input;
 
+import de.amr.games.pacman.ui.fx.util.Logger;
 import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyEvent;
-import de.amr.games.pacman.ui.fx.util.Logger;
 
 import java.util.stream.Stream;
 

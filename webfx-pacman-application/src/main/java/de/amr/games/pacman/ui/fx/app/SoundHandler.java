@@ -6,13 +6,13 @@ package de.amr.games.pacman.ui.fx.app;
 
 import de.amr.games.pacman.event.SoundEvent;
 import de.amr.games.pacman.model.GameVariant;
+import de.amr.games.pacman.ui.fx.util.Logger;
 import de.amr.games.pacman.ui.fx.util.Theme;
 import javafx.animation.Animation;
 import javafx.animation.Animation.Status;
 import javafx.animation.PauseTransition;
 import javafx.scene.media.AudioClip;
 import javafx.util.Duration;
-import de.amr.games.pacman.ui.fx.util.Logger;
 
 import java.util.stream.IntStream;
 import java.util.stream.Stream;

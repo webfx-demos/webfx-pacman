@@ -10,8 +10,8 @@ import de.amr.games.pacman.model.actors.Animations;
 import de.amr.games.pacman.model.actors.Ghost;
 import de.amr.games.pacman.model.actors.Pac;
 import de.amr.games.pacman.model.actors.PacAnimations;
-import dev.webfx.platform.util.collection.Collections;
 import de.amr.games.pacman.ui.fx.util.Logger;
+import dev.webfx.platform.util.collection.Collections;
 
 import java.util.BitSet;
 import java.util.List;

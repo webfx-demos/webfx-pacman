@@ -6,11 +6,11 @@ package de.amr.games.pacman.ui.fx.app;
 
 import de.amr.games.pacman.lib.Direction;
 import de.amr.games.pacman.model.GameVariant;
+import dev.webfx.platform.util.collection.Collections;
 import javafx.scene.input.KeyCode;
 
 import java.util.HashMap;
 import java.util.Map;
-import dev.webfx.platform.util.collection.Collections;
 
 /**
  * @author Armin Reichert

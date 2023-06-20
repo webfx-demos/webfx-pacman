@@ -5,8 +5,8 @@ import de.amr.games.pacman.controller.GameState;
 import de.amr.games.pacman.model.GameLevel;
 import de.amr.games.pacman.model.GameVariant;
 import de.amr.games.pacman.ui.fx.PacManGames2d;
-import de.amr.games.pacman.ui.fx.input.PacMouseSteering;
 import de.amr.games.pacman.ui.fx.input.Keyboard;
+import de.amr.games.pacman.ui.fx.input.PacMouseSteering;
 import de.amr.games.pacman.ui.fx.rendering2d.ArcadeTheme;
 import de.amr.games.pacman.ui.fx.scene.GameScene;
 import de.amr.games.pacman.ui.fx.scene.GameSceneConfiguration;
@@ -14,6 +14,7 @@ import de.amr.games.pacman.ui.fx.scene2d.GameScene2D;
 import de.amr.games.pacman.ui.fx.scene2d.HelpMenu;
 import de.amr.games.pacman.ui.fx.scene2d.HelpMenuFactory;
 import de.amr.games.pacman.ui.fx.util.FlashMessageView;
+import de.amr.games.pacman.ui.fx.util.Logger;
 import de.amr.games.pacman.ui.fx.util.ResourceManager;
 import javafx.scene.Cursor;
 import javafx.scene.Parent;
@@ -26,7 +27,6 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.util.Duration;
-import de.amr.games.pacman.ui.fx.util.Logger;
 
 import static de.amr.games.pacman.lib.Globals.oneOf;
 

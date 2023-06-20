@@ -4,6 +4,7 @@ See file LICENSE in repository root directory for details.
 */
 package de.amr.games.pacman.ui.fx.util;
 
+import dev.webfx.platform.resource.Resource;
 import javafx.geometry.Insets;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
@@ -13,8 +14,6 @@ import javafx.scene.text.Font;
 
 import java.util.HashSet;
 import java.util.Set;
-
-import dev.webfx.platform.resource.Resource;
 
 import static de.amr.games.pacman.lib.Globals.checkNotNull;
 

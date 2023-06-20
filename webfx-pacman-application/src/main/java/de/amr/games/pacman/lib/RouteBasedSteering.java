@@ -8,9 +8,9 @@ import de.amr.games.pacman.controller.Steering;
 import de.amr.games.pacman.model.GameLevel;
 import de.amr.games.pacman.model.actors.Creature;
 import de.amr.games.pacman.ui.fx.util.Logger;
+import dev.webfx.platform.util.collection.Collections;
 
 import java.util.List;
-import dev.webfx.platform.util.collection.Collections;
 
 /**
  * Steering of a creature based on a route.

@@ -7,11 +7,11 @@ package de.amr.games.pacman.ui.fx.app;
 import de.amr.games.pacman.model.GameVariant;
 import de.amr.games.pacman.ui.fx.PacManGames2d;
 import de.amr.games.pacman.ui.fx.rendering2d.ArcadeTheme;
+import de.amr.games.pacman.ui.fx.util.Logger;
+import dev.webfx.kit.util.scene.DeviceSceneUtil;
+import dev.webfx.platform.windowlocation.WindowLocation;
 import javafx.application.Application;
 import javafx.stage.Stage;
-import de.amr.games.pacman.ui.fx.util.Logger;
-import dev.webfx.platform.windowlocation.WindowLocation;
-import dev.webfx.kit.util.scene.DeviceSceneUtil;
 
 import java.util.Locale;
 import java.util.Optional;

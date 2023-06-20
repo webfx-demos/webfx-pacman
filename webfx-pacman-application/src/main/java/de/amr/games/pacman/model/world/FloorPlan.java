@@ -6,9 +6,6 @@ package de.amr.games.pacman.model.world;
 
 import de.amr.games.pacman.lib.Vector2i;
 
-import java.io.PrintWriter;
-import java.io.Writer;
-
 import static de.amr.games.pacman.lib.Globals.v2i;
 
 /**

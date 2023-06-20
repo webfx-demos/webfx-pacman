@@ -8,12 +8,12 @@ import de.amr.games.pacman.controller.Steering;
 import de.amr.games.pacman.lib.Direction;
 import de.amr.games.pacman.model.GameLevel;
 import de.amr.games.pacman.model.actors.Creature;
+import de.amr.games.pacman.ui.fx.util.Logger;
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination.Modifier;
 import javafx.scene.input.KeyEvent;
-import de.amr.games.pacman.ui.fx.util.Logger;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -10,9 +10,7 @@ import javafx.beans.property.SimpleBooleanProperty;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCodeCombination;
 
-import static de.amr.games.pacman.ui.fx.util.Ufx.alt;
-import static de.amr.games.pacman.ui.fx.util.Ufx.just;
-import static de.amr.games.pacman.ui.fx.util.Ufx.shift;
+import static de.amr.games.pacman.ui.fx.util.Ufx.*;
 
 /**
  * @author Armin Reichert

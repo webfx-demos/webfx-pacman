@@ -8,8 +8,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import static de.amr.games.pacman.lib.Globals.checkNotNull;
-
 /**
  * Selects entries randomly from a list without repetitions.
  * 
