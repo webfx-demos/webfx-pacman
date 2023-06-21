@@ -15,7 +15,7 @@ The game can be started by opening the following URL(s) in a browser:
 - [Ms. Pac-Man game](https://mspacman.webfx.dev)
 - [Pac-Man game](https://pacman.webfx.dev)
 
-### With a keyboard
+### Scene selection
 
 From the start page and intro scence of either game, you can switch to the other game by pressing <kbd>V</kbd>. Pressing <kbd>Enter</kbd> or <kbd>Space</kbd> or clicking the "Play!"
 button displays the intro scene of the selected game variant.
