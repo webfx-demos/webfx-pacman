@@ -1,4 +1,4 @@
-# WebFX version of JavaFX UI for Pac-Man and Ms. Pac-Man
+# WebFX UI for Pac-Man and Ms. Pac-Man Arcade games
 
 ## About this project
 
