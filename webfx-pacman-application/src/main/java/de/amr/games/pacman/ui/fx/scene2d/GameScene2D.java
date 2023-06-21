@@ -106,7 +106,8 @@ public abstract class GameScene2D implements GameScene {
 	}
 
 	protected Font sceneFont() {
-		return ui.theme().font("font.arcade", Math.floor(s(8)));
+		double size = Math.floor(TS * scaling);
+		return ui.theme().font("font.arcade", size);
 	}
 
 	public void setRoundedCorners(boolean roundedCorners) {

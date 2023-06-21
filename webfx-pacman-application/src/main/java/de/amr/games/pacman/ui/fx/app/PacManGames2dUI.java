@@ -30,6 +30,7 @@ import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import dev.webfx.kit.util.scene.DeviceSceneUtil;
 
 import static de.amr.games.pacman.controller.GameState.INTRO;
 import static de.amr.games.pacman.lib.Globals.checkNotNull;
@@ -74,7 +75,7 @@ public class PacManGames2dUI implements GameEventListener {
 		var screenSize = Screen.getPrimary().getBounds();
 		double height = screenSize.getHeight() * 0.8;
 		double width = height * 4.0 / 3.0;
-		scene = new Scene(new Region(), width, height, Color.BLACK);
+		scene = DeviceSceneUtil.newScene(new Region(), width, height, Color.BLACK);
 		scene.heightProperty().addListener((py, ov, nv) -> {
 			if (!showingStartPage) {
 				resizeGamePage(nv.doubleValue());

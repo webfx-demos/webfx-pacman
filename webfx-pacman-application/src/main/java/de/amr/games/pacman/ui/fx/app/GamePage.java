@@ -258,10 +258,11 @@ public class GamePage {
             ui.toggleImmunity();
         } else if (Keyboard.pressed(PacManGames2d.KEY_PAUSE)) {
             ui.togglePaused();
-        } else if (Keyboard.pressed(PacManGames2d.KEY_PAUSE_STEP) || Keyboard.pressed(PacManGames2d.KEY_SINGLE_STEP)) {
+        } else if (Keyboard.pressed(PacManGames2d.KEY_PAUSE_STEP)
+                || Keyboard.pressed(PacManGames2d.KEY_SINGLE_STEP)) {
             ui.oneSimulationStep();
         } else if (Keyboard.pressed(PacManGames2d.KEY_TEN_STEPS)) {
-//            ui.tenSimulationSteps();
+            ui.tenSimulationSteps();
         } else if (Keyboard.pressed(PacManGames2d.KEY_SIMULATION_FASTER)) {
             ui.changeSimulationSpeed(5);
         } else if (Keyboard.pressed(PacManGames2d.KEY_SIMULATION_SLOWER)) {
@@ -272,8 +273,6 @@ public class GamePage {
             if (gameState != GameState.BOOT && gameState != GameState.INTRO) {
                 ui.restartIntro();
             }
-        } else if (Keyboard.pressed(PacManGames2d.KEY_TEST_LEVELS)) {
-//            ui.startLevelTestMode();
         } else if (Keyboard.pressed(PacManGames2d.KEY_FULLSCREEN)) {
             ui.stage.setFullScreen(true);
         }
