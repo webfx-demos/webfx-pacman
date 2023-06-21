@@ -20,7 +20,7 @@ The game can be started by opening the following URL(s) in a browser:
 From the start page and intro scence of either game, you can switch to the other game by pressing <kbd>V</kbd>. Pressing <kbd>Enter</kbd> or <kbd>Space</kbd> or clicking the "Play!"
 button displays the intro scene of the selected game variant.
 
-To be able to play, you first have to "insert a coin" which is done either by pressing the key <kbd>5</kbd> or by clicking anywhere on the intro scene. After having added credit, the game can be started by pressing key <kbd>1</kbd> or by clicking anywhere with the mouse (or touching). (The used keys used are derived from the MAME Arcade emulator). To quit the play scene and return to the intro scene, press key <kbd>Q</kbd>.
+To be able to play, you first have to "insert a coin" which is done either by pressing the key <kbd>5</kbd> or by clicking anywhere on the intro scene. After having added credit, the game can be started by pressing key <kbd>1</kbd> or by clicking anywhere with the mouse (or touching). (The used keys are derived from the MAME Arcade emulator). To quit the play scene and return to the intro scene, press key <kbd>Q</kbd>.
 
 Pac-Man steering:
 - Pac-Man is steered using the cursor keys.
