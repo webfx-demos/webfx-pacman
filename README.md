@@ -2,7 +2,7 @@
 
 ## About this project
 
-Repository [Pac-Man games](https://github.com/armin-reichert/pacman-basic) contains is a UI-agnostic
+Repository [Pac-Man games](https://github.com/armin-reichert/pacman-basic) contains a UI-agnostic
 Java implementation of the classic Arcade games Pac-Man and Ms. Pac-Man. A JavaFX user interface for these games, with
 2D and 3D play scenes, can be found [here](https://github.com/armin-reichert/pacman-javafx).
 
