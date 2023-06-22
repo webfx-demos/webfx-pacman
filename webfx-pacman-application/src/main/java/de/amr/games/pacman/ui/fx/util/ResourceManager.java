@@ -114,7 +114,7 @@ public class ResourceManager {
 	 */
 	public Image image(String relPath) {
 		var url = url(relPath);
-		var image = new Image(url);
+		var image = new Image(url, true);
 		imagesLoaded.add(image);
 		return image;
 	}
