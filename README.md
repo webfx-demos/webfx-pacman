@@ -12,8 +12,9 @@ It can be run on all platforms supported by WebFX, especially inside a browser v
 ## How to use
 
 The game can be started by opening the following URL(s) in a browser:
-- [Ms. Pac-Man game](https://mspacman.webfx.dev)
-- [Pac-Man game](https://pacman.webfx.dev)
+- [New WebFX application](https://armin-reichert.github.io/webfx-pacman/)
+- [Ms. Pac-Man game](https://mspacman.webfx.dev) (will be updated soon)
+- [Pac-Man game](https://pacman.webfx.dev) (will be updated soon)
 
 ### Scene selection
 
