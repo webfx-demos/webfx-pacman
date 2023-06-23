@@ -27,6 +27,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.util.Duration;
 
@@ -48,6 +49,7 @@ public class GamePage {
     private final StackPane root = new StackPane();
     private final BorderPane layoutPane = new BorderPane();
     private final BorderPane rootPane = new BorderPane();
+    private final Rectangle rootPaneClipNode = new Rectangle();
     private final Canvas canvas = new Canvas();
     private final Pane popupLayer = new Pane();
     private final HelpMenuFactory helpMenuFactory = new HelpMenuFactory();
@@ -63,9 +65,10 @@ public class GamePage {
 
         root.getChildren().addAll(layoutPane, popupLayer, flashMessageView);
 
-        //TODO in desktop version, corners are black, in GWT they are transparent (bug?) what is wanted here
         rootPane.setBackground(ResourceManager.coloredBackground(Color.BLACK));
+        //TODO in desktop version, corners are black, in GWT they are transparent (bug?) what is wanted here
         rootPane.setBorder(ResourceManager.roundedBorder(BORDER_COLOR, BORDER_CORNER_RADIUS, BORDER_WIDTH));
+        rootPane.setClip(rootPaneClipNode);
         rootPane.setCenter(canvas);
         rootPane.heightProperty().addListener((py, ov, nv) -> resize(scaling));
 
@@ -183,17 +186,24 @@ public class GamePage {
         this.scaling = scaling;
         double w = Math.round( (GameScene2D.WIDTH_UNSCALED  + 30) * scaling );
         double h = Math.round( (GameScene2D.HEIGHT_UNSCALED + 15) * scaling );
+        double borderWidth  = Math.max(5, Math.ceil(h / 60));
+        double cornerRadius = Math.ceil(15 * scaling);
 
         rootPane.setMinSize (w, h);
         rootPane.setPrefSize(w, h);
         rootPane.setMaxSize (w, h);
 
+        rootPaneClipNode.setWidth(w);
+        rootPaneClipNode.setHeight(h);
+
+        // Don't ask me why
+        rootPaneClipNode.setArcWidth(35*scaling);
+        rootPaneClipNode.setArcHeight(35*scaling);
+
         popupLayer.setMinSize (w, h);
         popupLayer.setPrefSize(w, h);
         popupLayer.setMaxSize (w, h);
 
-        double borderWidth  = Math.max(5, Math.ceil(h / 60));
-        double cornerRadius = Math.ceil(15 * scaling);
         rootPane.setBorder(ResourceManager.roundedBorder(ArcadeTheme.PALE, cornerRadius, borderWidth));
 
         if (gameScene2D != null) {
