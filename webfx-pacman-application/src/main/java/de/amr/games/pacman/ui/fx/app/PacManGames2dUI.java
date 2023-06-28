@@ -31,6 +31,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import dev.webfx.kit.util.scene.DeviceSceneUtil;
+import de.amr.games.pacman.ui.fx.*;
 
 import static de.amr.games.pacman.controller.GameState.INTRO;
 import static de.amr.games.pacman.lib.Globals.checkNotNull;
@@ -152,7 +153,7 @@ public class PacManGames2dUI implements GameEventListener {
 	}
 
 	private void resizeGamePage(double sceneHeight) {
-		double ratio = sceneHeight / GameScene2D.HEIGHT_UNSCALED;
+		double ratio = sceneHeight / PacManGames2d.CANVAS_HEIGHT_UNSCALED;
 		double s = ratio * 0.9; // use at most 90% of available height
 		s = Math.floor(s * 10) / 10; // round scaling factor to first decimal digit
 		gamePage.resize(s);
@@ -160,12 +161,12 @@ public class PacManGames2dUI implements GameEventListener {
 
 	protected void showGamePage() {
 		reboot();
-		clock.start();
 		scene.setRoot(gamePage.root());
 		resizeGamePage(scene.getHeight());
 		updateStage();
 		showingStartPage = false;
 		gamePage.root().requestFocus();
+		clock.start();
 	}
 
 	protected void configureHelpMenus() {

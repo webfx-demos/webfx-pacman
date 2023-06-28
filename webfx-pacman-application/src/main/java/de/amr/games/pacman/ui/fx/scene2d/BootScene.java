@@ -7,7 +7,7 @@ package de.amr.games.pacman.ui.fx.scene2d;
 import de.amr.games.pacman.ui.fx.app.PacManGames2dUI;
 import de.amr.games.pacman.ui.fx.rendering2d.ArcadeTheme;
 import javafx.geometry.Rectangle2D;
-
+import de.amr.games.pacman.ui.fx.*;
 import static de.amr.games.pacman.lib.Globals.RND;
 
 /**
@@ -98,10 +98,10 @@ public class BootScene extends GameScene2D {
 		g.setStroke(ArcadeTheme.PALE);
 		g.setLineWidth(s(2.0));
 		for (int row = 0; row <= numRows; ++row) {
-			g.strokeLine(0, s(row * raster), s(WIDTH_UNSCALED), s(row * raster));
+			g.strokeLine(0, s(row * raster), s(PacManGames2d.CANVAS_WIDTH_UNSCALED), s(row * raster));
 		}
 		for (int col = 0; col <= numCols; ++col) {
-			g.strokeLine(s(col * raster), 0, s(col * raster), s(HEIGHT_UNSCALED));
+			g.strokeLine(s(col * raster), 0, s(col * raster), s(PacManGames2d.CANVAS_HEIGHT_UNSCALED));
 		}
 	}
 }

@@ -184,8 +184,8 @@ public class GamePage {
         }
 
         this.scaling = scaling;
-        double w = Math.round( (GameScene2D.WIDTH_UNSCALED  + 30) * scaling );
-        double h = Math.round( (GameScene2D.HEIGHT_UNSCALED + 15) * scaling );
+        double w = Math.round( (PacManGames2d.CANVAS_WIDTH_UNSCALED  + 30) * scaling );
+        double h = Math.round( (PacManGames2d.CANVAS_HEIGHT_UNSCALED + 15) * scaling );
         double borderWidth  = Math.max(5, Math.ceil(h / 60));
         double cornerRadius = Math.ceil(15 * scaling);
 

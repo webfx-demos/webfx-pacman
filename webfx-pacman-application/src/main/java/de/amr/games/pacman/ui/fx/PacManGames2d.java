@@ -17,6 +17,10 @@ import static de.amr.games.pacman.ui.fx.util.Ufx.*;
  */
 public class PacManGames2d {
 
+	public static final int   CANVAS_WIDTH_UNSCALED  = 224;
+	public static final int   CANVAS_HEIGHT_UNSCALED = 288;
+	public static final float CANVAS_ASPECT_RATIO    = 28f / 36;
+
 	public static final ResourceManager MGR = new ResourceManager("/de/amr/games/pacman/ui/fx/", PacManGames2d.class);
 
 	//@formatter:off
