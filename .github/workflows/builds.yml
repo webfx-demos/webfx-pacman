@@ -79,7 +79,7 @@ jobs:
       app-parent-module-dir:     .
       app-openjfx-module-dir:    ./${{ matrix.app.module-token }}-application-openjfx
       app-gwt-module-dir:        ./${{ matrix.app.module-token }}-application-gwt
-      app-gwt-build-dir:         ./${{ matrix.app.module-token }}-application-gwt/target/${{ matrix.app.module-token }}-gwt-${{ matrix.app.version }}/${{ matrix.app.gwt-token }}_gwt
+      app-gwt-build-dir:         ./${{ matrix.app.module-token }}-application-gwt/target/${{ matrix.app.module-token }}-application-gwt-${{ matrix.app.version }}/${{ matrix.app.gwt-token }}_application_gwt
       app-gluon-module-dir:      ./${{ matrix.app.module-token }}-application-gluon
       web-push-repository-name:  'webfx-netlify'
       web-push-repository-owner: 'webfx-project'
@@ -184,19 +184,6 @@ jobs:
           destination-github-username: ${{ env.web-push-username }}
           user-email: ${{ env.web-push-email }}
 
-      - if: matrix.web-artifact-suffix != null && env.API_GITHUB_TOKEN != ''
-        name: Push GWT build to ${{ matrix.app.web-push-branch2 }} branch
-        uses: cpina/github-action-push-to-another-repository@master
-        env:
-          API_TOKEN_GITHUB: ${{ env.API_GITHUB_TOKEN }}
-        with:
-          source-directory: ${{ env.app-gwt-build-dir }}
-          destination-repository-username: ${{ env.web-push-repository-owner }}
-          destination-repository-name: ${{ env.web-push-repository-name }}
-          target-branch: ${{ matrix.app.web-push-branch2 }}
-          destination-github-username: ${{ env.web-push-username }}
-          user-email: ${{ env.web-push-email }}
-
 
       ##################################################################################################################
       #                                           Staging artifacts                                                    #
@@ -265,7 +252,7 @@ jobs:
         name: Create Windows Installer (msi)
         run: |
           mvn -B javafx:jlink
-          ${{ env.JAVA_HOME }}\bin\jpackage --input .\target\ --name ${{ env.app-name }} --main-jar ${{ matrix.app.module-token }}-openjfx-${{ matrix.app.version }}.jar --main-class dev.webfx.platform.shared.services.boot.ApplicationBooter --type msi --runtime-image .\target\jlinkImage --app-version 0.0.0 --win-per-user-install --win-menu --win-menu-group WebFX
+          ${{ env.JAVA_HOME }}\bin\jpackage --input .\target\ --name ${{ env.app-name }} --main-jar ${{ matrix.app.module-token }}-application-openjfx-${{ matrix.app.version }}.jar --main-class dev.webfx.platform.shared.services.boot.ApplicationBooter --type msi --runtime-image .\target\jlinkImage --app-version 0.0.0 --win-per-user-install --win-menu --win-menu-group WebFX
         working-directory: ${{ env.app-openjfx-module-dir }}
 
       # Staging 9)
@@ -308,7 +295,10 @@ jobs:
       # Gluon needs additional libraries on Linux
       - if: runner.os == 'Linux'
         name: Install libraries required for Gluon on Linux
-        run: sudo apt update; sudo apt install libasound2-dev libavcodec-dev libavformat-dev libavutil-dev libgl-dev libgtk-3-dev libpango1.0-dev libxtst-dev
+        run:  |
+          sudo apt update
+          sudo apt install libasound2-dev libavcodec-dev libavformat-dev libavutil-dev libgl-dev libgtk-3-dev libpango1.0-dev libxtst-dev
+      
 
       # Passing the Gluon License (if set)
       - if: env.GLUON_LICENSE != ''
