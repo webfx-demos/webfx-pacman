@@ -43,7 +43,7 @@ public class BootScene extends GameScene2D {
 		}
 
 		else if (timer.atSecond(start + 2.5)) {
-			paintGrid(16);
+			paintGrid(PacManGames2d.CANVAS_WIDTH_UNSCALED,PacManGames2d.CANVAS_HEIGHT_UNSCALED, 16);
 		}
 
 		else if (timer.atSecond(start + 3)) {
@@ -91,17 +91,19 @@ public class BootScene extends GameScene2D {
 		return new Rectangle2D(x, y, raster, raster);
 	}
 
-	private void paintGrid(int raster) {
+	private void paintGrid(double width, double height, int raster) {
 		drawSceneBackground();
 		var numRows = TILES_Y / 2;
 		var numCols = TILES_X / 2;
 		g.setStroke(ArcadeTheme.PALE);
 		g.setLineWidth(s(2.0));
 		for (int row = 0; row <= numRows; ++row) {
-			g.strokeLine(0, s(row * raster), s(PacManGames2d.CANVAS_WIDTH_UNSCALED), s(row * raster));
+			g.setLineWidth(row == 0 || row == numRows ? s(4.0) : s(2.0));
+			g.strokeLine(0, s(row * raster), s(width), s(row * raster));
 		}
 		for (int col = 0; col <= numCols; ++col) {
-			g.strokeLine(s(col * raster), 0, s(col * raster), s(PacManGames2d.CANVAS_HEIGHT_UNSCALED));
+			g.setLineWidth(col == 0 || col == numCols ? s(4.0) : s(2.0));
+			g.strokeLine(s(col * raster), 0, s(col * raster), s(height));
 		}
 	}
 }
