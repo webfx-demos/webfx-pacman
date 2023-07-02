@@ -184,6 +184,18 @@ jobs:
           destination-github-username: ${{ env.web-push-username }}
           user-email: ${{ env.web-push-email }}
 
+      - if: matrix.web-artifact-suffix != null && env.API_GITHUB_TOKEN != ''
+        name: Push GWT build to ${{ matrix.app.web-push-branch2 }} branch
+        uses: cpina/github-action-push-to-another-repository@master
+        env:
+          API_TOKEN_GITHUB: ${{ env.API_GITHUB_TOKEN }}
+        with:
+          source-directory: ${{ env.app-gwt-build-dir }}
+          destination-repository-username: ${{ env.web-push-repository-owner }}
+          destination-repository-name: ${{ env.web-push-repository-name }}
+          target-branch: ${{ matrix.app.web-push-branch2 }}
+          destination-github-username: ${{ env.web-push-username }}
+          user-email: ${{ env.web-push-email }}
 
       ##################################################################################################################
       #                                           Staging artifacts                                                    #
