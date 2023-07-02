@@ -6,7 +6,7 @@ Repository [Pac-Man games](https://github.com/armin-reichert/pacman-basic) conta
 Java implementation of the classic Arcade games Pac-Man and Ms. Pac-Man. A JavaFX user interface for these games, with
 2D and 3D play scenes, can be found [here](https://github.com/armin-reichert/pacman-javafx).
 
-This repository contains a WebFX compatible, stripped-down version of the JavaFX user intefaces without 3D scenes. 
+This repository contains a [WebFX](https://webfx.dev/) compatible, stripped-down version of the JavaFX user intefaces without 3D scenes. 
 It can be run on all platforms supported by WebFX, especially inside a browser via the GWT implementation.
 
 ## How to use

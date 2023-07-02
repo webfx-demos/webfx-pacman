@@ -49,7 +49,6 @@ public class GamePage {
     private final StackPane root = new StackPane();
     private final BorderPane layoutPane = new BorderPane();
     private final BorderPane rootPane = new BorderPane();
-    private final Rectangle rootPaneClipNode = new Rectangle();
     private final Canvas canvas = new Canvas();
     private final Pane popupLayer = new Pane();
     private final HelpMenuFactory helpMenuFactory = new HelpMenuFactory();
@@ -68,7 +67,6 @@ public class GamePage {
         rootPane.setBackground(ResourceManager.coloredBackground(Color.BLACK));
         //TODO in desktop version, corners are black, in GWT they are transparent (bug?) what is wanted here
         rootPane.setBorder(ResourceManager.roundedBorder(BORDER_COLOR, BORDER_CORNER_RADIUS, BORDER_WIDTH));
-        rootPane.setClip(rootPaneClipNode);
         rootPane.setCenter(canvas);
         rootPane.heightProperty().addListener((py, ov, nv) -> resize(scaling));
 
@@ -193,12 +191,10 @@ public class GamePage {
         rootPane.setPrefSize(w, h);
         rootPane.setMaxSize (w, h);
 
-        rootPaneClipNode.setWidth(w);
-        rootPaneClipNode.setHeight(h);
-
-        // Don't ask me why
-        rootPaneClipNode.setArcWidth(35*scaling);
-        rootPaneClipNode.setArcHeight(35*scaling);
+        var roundedRect = new Rectangle(w, h);
+        roundedRect.setArcWidth (35 * scaling);
+        roundedRect.setArcHeight(35 * scaling);
+        rootPane.setClip(roundedRect);
 
         popupLayer.setMinSize (w, h);
         popupLayer.setPrefSize(w, h);
@@ -212,7 +208,7 @@ public class GamePage {
         updateHelpButton();
         updateSignature();
 
-        Logger.info("Resized game page: scaling: {} height: {} border: {}", scaling, h, borderWidth);
+        Logger.trace("Resized game page: scaling: {} height: {} border: {}", scaling, h, borderWidth);
     }
 
     private void updateHelpButton() {
