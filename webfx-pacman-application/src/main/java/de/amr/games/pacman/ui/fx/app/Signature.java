@@ -21,6 +21,8 @@ import javafx.util.Duration;
  */
 public class Signature {
 
+	private static final Color TEXT_COLOR = Color.GOLD;
+
 	private Text remakeText;
 	private Text nameText;
 	// Does not work in GWT
@@ -32,11 +34,11 @@ public class Signature {
 
 	public Signature() {
 		remakeText = new Text("Remake (2023) by  ");
-		remakeText.setFill(Color.gray(0.6));
+		remakeText.setFill(TEXT_COLOR);
 		remakeText.setFont(Font.font("Helvetica", 14));
 
 		nameText = new Text("Armin Reichert");
-		nameText.setFill(Color.gray(0.6));
+		nameText.setFill(TEXT_COLOR);
 		nameText.setFont(Font.font("Serif", 14));
 
 		sentence = new GridPane();

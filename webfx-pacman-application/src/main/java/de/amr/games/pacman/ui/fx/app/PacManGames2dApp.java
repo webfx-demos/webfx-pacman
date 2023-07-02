@@ -36,10 +36,7 @@ public class PacManGames2dApp extends Application {
 		ui = new PacManGames2dUI();
 		settings.variant = getGameVariantFromHostname().orElse(GameVariant.MS_PACMAN);
 		ui.init(stage, settings, new ArcadeTheme(PacManGames2d.MGR));
-		//TODO What is this good for?
-		DeviceSceneUtil.onFontsAndImagesLoaded(() -> {
-			Logger.info("{} images loaded", PacManGames2d.MGR.numLoadedImages());
-		}, PacManGames2d.MGR.getLoadedImages());
+		Logger.info("{} images loaded", PacManGames2d.MGR.numLoadedImages());
 		Logger.info("Game started. {} Hz language={}", ui.clock().targetFrameratePy.get(), Locale.getDefault());
 	}
 
