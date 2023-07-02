@@ -32,7 +32,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        app: [{name: 'PacMan', module-token: 'webfx-pacman', gwt-token: 'webfx_pacman', gluon-token: 'WebFXPacman', web-push-branch: 'pacman', web-push-branch2: 'mspacman', android-package-name: 'dev.webfx.demo.pacman', android-track: 'beta', ios-bundle-id: 'dev.webfx.demo.pacman', version: '0.1.0-SNAPSHOT'}]
+        app: [{name: 'PacMan', module-token: 'webfx-pacman', gwt-token: 'webfx_pacman', gluon-token: 'WebFXPacman', web-push-branch: 'pacman', web-push-branch2: 'mspacman', android-package-name: 'dev.webfx.demo.pacman', android-track: 'beta', ios-bundle-id: 'dev.webfx.demo.pacman', version: '1.0'}]
         os-config:  [1, 2, 3, 4]
         include:
           - os-config: 1 # Generates builds 1) 2) 3) 4) & 5)
