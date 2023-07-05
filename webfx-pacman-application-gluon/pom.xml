@@ -140,6 +140,13 @@
                         <list>dev/webfx/platform/meta/exe/[^/]+$</list>
                         <list>images/checkbox/[^/]+$</list>
                     </resourcesList>
+                    <appIdentifier>dev.webfx.demo.pacman</appIdentifier>
+                    <releaseConfiguration>
+                        <!-- macOS/iOS -->
+                        <bundleName>Pac-Man</bundleName>
+                        <!-- Android -->
+                        <appLabel>Pac-Man</appLabel>
+                    </releaseConfiguration>
 
                 </configuration>
             </plugin>
