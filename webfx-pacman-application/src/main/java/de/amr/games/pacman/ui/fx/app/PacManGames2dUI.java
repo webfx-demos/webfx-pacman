@@ -77,9 +77,13 @@ public class PacManGames2dUI implements GameEventListener {
 		double height = screenSize.getHeight() * 0.8;
 		double width = height * 4.0 / 3.0;
 		scene = DeviceSceneUtil.newScene(new Region(), width, height, Color.BLACK);
+		scene.widthProperty().addListener((py, ov, nv) -> {
+			if (!showingStartPage) {
+				resizeGamePage(scene.getWidth(), scene.getHeight());
+			}});
 		scene.heightProperty().addListener((py, ov, nv) -> {
 			if (!showingStartPage) {
-				resizeGamePage(nv.doubleValue());
+				resizeGamePage(scene.getWidth(), scene.getHeight());
 			}});
 
 		configureGameScenes();
@@ -152,9 +156,11 @@ public class PacManGames2dUI implements GameEventListener {
 		gamePage = new GamePage(this);
 	}
 
-	private void resizeGamePage(double sceneHeight) {
-		double ratio = sceneHeight / PacManGames2d.CANVAS_HEIGHT_UNSCALED;
-		double s = ratio * 0.9; // use at most 90% of available height
+	private void resizeGamePage(double width, double height) {
+		double s = 0.9 * height / PacManGames2d.CANVAS_HEIGHT_UNSCALED;
+		if (s * PacManGames2d.CANVAS_WIDTH_UNSCALED > 0.8 * width) {
+			s = 0.8 * width / PacManGames2d.CANVAS_WIDTH_UNSCALED;
+		}
 		s = Math.floor(s * 10) / 10; // round scaling factor to first decimal digit
 		gamePage.resize(s);
 	}
@@ -162,7 +168,7 @@ public class PacManGames2dUI implements GameEventListener {
 	protected void showGamePage() {
 		reboot();
 		scene.setRoot(gamePage.root());
-		resizeGamePage(scene.getHeight());
+		resizeGamePage(scene.getWidth(), scene.getHeight());
 		updateStage();
 		showingStartPage = false;
 		gamePage.root().requestFocus();

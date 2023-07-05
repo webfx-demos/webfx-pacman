@@ -2,24 +2,23 @@
 
 ## About this project
 
-Repository [Pac-Man games](https://github.com/armin-reichert/pacman-basic) contains a UI-agnostic
+Repository [pacman-basic](https://github.com/armin-reichert/pacman-basic) contains a UI-agnostic
 Java implementation of the classic Arcade games Pac-Man and Ms. Pac-Man. A JavaFX user interface for these games, with
 2D and 3D play scenes, can be found [here](https://github.com/armin-reichert/pacman-javafx).
 
-This repository contains a [WebFX](https://webfx.dev/) compatible, stripped-down version of the JavaFX user intefaces without 3D scenes. 
+This repository contains a [WebFX](https://webfx.dev/)-compatible version of the JavaFX user interface (without 3D scenes). 
 It can be run on all platforms supported by WebFX, especially inside a browser via the GWT implementation.
 
 ## How to use
 
-The game can be started by opening the following URL(s) in a browser:
-- [Pac-Man/Ms. Pac-Man](https://armin-reichert.github.io/webfx-pacman/) (new WebFX application)
-- [Ms. Pac-Man](https://mspacman.webfx.dev) (will be updated soon)
-- [Pac-Man](https://pacman.webfx.dev) (will be updated soon)
+The game can be started by opening one of the following URL(s) in a browser:
+- [Pac-Man / Ms. Pac-Man](https://armin-reichert.github.io/webfx-pacman/)
+- [Ms. Pac-Man](https://mspacman.webfx.dev) (WebFx Demo server)
+- [Pac-Man](https://pacman.webfx.dev) (WebFX Demo server)
 
 ### Scene selection
 
-From the start page and intro scence of either game, you can switch to the other game by pressing <kbd>V</kbd>. Pressing <kbd>Enter</kbd> or <kbd>Space</kbd> or clicking the "Play!"
-button displays the intro scene of the selected game variant.
+From the start page and from the intro scence of either game, you can switch to the other game variant by pressing <kbd>V</kbd>. Pressing <kbd>Enter</kbd> or <kbd>Space</kbd> or clicking the "Play!" button displays starts the intro scene of the selected game variant.
 
 To be able to play, you first have to "insert a coin" which is done either by pressing the key <kbd>5</kbd> or by clicking anywhere on the intro scene. After having added credit, the game can be started by pressing key <kbd>1</kbd> or by clicking anywhere with the mouse (or touching). (The used keys are derived from the [MAME](https://www.mamedev.org/) Arcade emulator). To quit the play scene and return to the intro scene, press key <kbd>Q</kbd>.
 
@@ -47,9 +46,9 @@ Play scene cheats:
 - <kbd>Alt+N</kbd>: Enter next game level
 - <kbd>Alt+X</kbd>: Kill all ghosts outside the ghost house
 
-### With mouse or touch screen
+### Mouse or touch screen Pac-Man steering
 
-- Intro scene:  Click/tap anywhere to "add a coin" and change to the "credit scene".
+- Intro scene: Click/tap anywhere to "add a coin" and change to the "credit scene".
 - Credit scene: Click/tap anywhere to start the game and change to the play scene.
-- Play scene:   To steer Pac-Man, use a mouse drag or a "wipe" gesture. Dragging / wiping anywhere inside the maze to any direction causes Pac-Man to move to that direction (as soon as he can).
+- Play scene: To steer Pac-Man, use a mouse drag or a "wipe" gesture. Dragging / wiping anywhere inside the maze to any direction causes Pac-Man to move to that direction (as soon as he can).
 
