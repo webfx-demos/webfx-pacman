@@ -143,7 +143,7 @@ public class PlayScene2D extends GameScene2D {
 
 	private void hideTileContent(Vector2i tile) {
 		g.setFill(ArcadeTheme.BLACK);
-		g.fillRect(s(TS * tile.x() - 1), s(TS * tile.y() - 1), s(TS + 2), s(TS + 2));
+		g.fillRect( s(TS * tile.x()) - 1, s(TS * tile.y()) - 1, s(TS) + 2, s(TS) + 2);
 	}
 
 	@Override
