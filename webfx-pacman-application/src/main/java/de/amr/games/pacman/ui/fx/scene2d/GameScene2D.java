@@ -385,7 +385,7 @@ public abstract class GameScene2D implements GameScene {
 		Image logo = ui.theme().get("mspacman.logo.midway");
 		g.drawImage(logo, s(x), s(y + 2), s(TS * 4 - 2), s(TS * 4));
 		g.setFill(ArcadeTheme.RED);
-		g.setFont(Font.font("Dialog", s(11)));
+		g.setFont(sceneFont());
 		g.fillText("\u00a9", s(x + TS * 5), s(y + TS * 2 + 2)); // (c) symbol
 		g.setFont(sceneFont());
 		g.fillText("MIDWAY MFG CO", s(x + TS * 7), s(y + TS * 2));
