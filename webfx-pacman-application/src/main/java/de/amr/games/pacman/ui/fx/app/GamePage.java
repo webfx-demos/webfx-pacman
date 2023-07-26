@@ -182,25 +182,26 @@ public class GamePage {
         }
 
         this.scaling = scaling;
-        double w = Math.round( (PacManGames2d.CANVAS_WIDTH_UNSCALED  + 30) * scaling );
+
+        double w = Math.round( (PacManGames2d.CANVAS_WIDTH_UNSCALED  + 25) * scaling );
         double h = Math.round( (PacManGames2d.CANVAS_HEIGHT_UNSCALED + 15) * scaling );
-        double borderWidth  = Math.max(5, Math.ceil(h / 60));
-        double cornerRadius = Math.ceil(15 * scaling);
 
         rootPane.setMinSize (w, h);
         rootPane.setPrefSize(w, h);
         rootPane.setMaxSize (w, h);
 
         var roundedRect = new Rectangle(w, h);
-        roundedRect.setArcWidth (35 * scaling);
-        roundedRect.setArcHeight(35 * scaling);
+        roundedRect.setArcWidth (26 * scaling);
+        roundedRect.setArcHeight(26 * scaling);
         rootPane.setClip(roundedRect);
+
+        double borderWidth  = Math.max(5, Math.ceil(h / 55));
+        double cornerRadius = Math.ceil(10 * scaling);
+        rootPane.setBorder(ResourceManager.roundedBorder(ArcadeTheme.PALE, cornerRadius, borderWidth));
 
         popupLayer.setMinSize (w, h);
         popupLayer.setPrefSize(w, h);
         popupLayer.setMaxSize (w, h);
-
-        rootPane.setBorder(ResourceManager.roundedBorder(ArcadeTheme.PALE, cornerRadius, borderWidth));
 
         if (gameScene2D != null) {
             gameScene2D.setScaling(scaling);
