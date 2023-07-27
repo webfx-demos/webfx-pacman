@@ -190,12 +190,15 @@ public class GamePage {
         rootPane.setPrefSize(w, h);
         rootPane.setMaxSize (w, h);
 
+        // This is all trial-and-error
         var roundedRect = new Rectangle(w, h);
-        roundedRect.setArcWidth (26 * scaling);
-        roundedRect.setArcHeight(26 * scaling);
+        roundedRect.setScaleX(0.99);
+        roundedRect.setScaleY(0.99);
+        roundedRect.setArcWidth (20 * scaling);
+        roundedRect.setArcHeight(20 * scaling);
         rootPane.setClip(roundedRect);
 
-        double borderWidth  = Math.max(5, Math.ceil(h / 55));
+        double borderWidth  = Math.max(5, Math.ceil(h / 50));
         double cornerRadius = Math.ceil(10 * scaling);
         rootPane.setBorder(ResourceManager.roundedBorder(ArcadeTheme.PALE, cornerRadius, borderWidth));
 
