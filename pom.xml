@@ -9,12 +9,11 @@
         <groupId>dev.webfx</groupId>
         <artifactId>webfx-parent</artifactId>
         <version>0.1.0-SNAPSHOT</version>
+        <relativePath/>
     </parent>
 
     <groupId>de.amr</groupId>
-
     <artifactId>webfx-pacman</artifactId>
-
     <version>1.0</version>
 
     <repositories>
