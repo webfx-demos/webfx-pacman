@@ -25,8 +25,6 @@ public class Signature {
 
 	private Text remakeText;
 	private Text nameText;
-	// Does not work in GWT
-//	private final TextFlow sentence;
 	private final GridPane sentence;
 	private final FadeTransition fadeIn;
 	private final FadeTransition fadeOut;
