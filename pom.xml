@@ -21,7 +21,7 @@
         <!-- For WebFX snapshots download (including webfx-parent) -->
         <repository>
             <id>webfx-snapshots</id>
-            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+            <url>https://central.sonatype.com/repository/maven-snapshots/</url>
             <releases>
                 <enabled>false</enabled>
             </releases>
@@ -39,6 +39,7 @@
         <module>webfx-pacman-application-gluon</module>
         <module>webfx-pacman-application-gwt</module>
         <module>webfx-pacman-application-openjfx</module>
+        <module>webfx-pacman-application-teavm</module>
     </modules>
 
 </project>
