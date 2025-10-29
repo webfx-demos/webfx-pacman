@@ -11,7 +11,7 @@
         <version>1.0</version>
     </parent>
 
-    <artifactId>webfx-pacman-application-teavm</artifactId>
+    <artifactId>webfx-pacman-application-teavm-wasm</artifactId>
 
     <packaging>war</packaging>
 
