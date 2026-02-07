@@ -39,7 +39,7 @@
         <module>webfx-pacman-application-gluon</module>
         <module>webfx-pacman-application-gwt</module>
         <module>webfx-pacman-application-openjfx</module>
-        <module>webfx-pacman-application-teavm</module>
+        <module>webfx-pacman-application-teavm-js</module>
         <module>webfx-pacman-application-teavm-wasm</module>
     </modules>
 
